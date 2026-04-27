@@ -107,17 +107,17 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Inter','Segoe UI',Arial,sans-serif;color:#333;background:#FAFDF7;line-height:1.6}
+        body{font-family:'Montserrat','Segoe UI',Arial,sans-serif;color:#333;background:#f8f9fa;line-height:1.6}
         a{text-decoration:none;color:inherit}
         img{max-width:100%;display:block}
         .container{max-width:1200px;margin:0 auto;padding:0 20px}
         /* Header */
-        header{background:linear-gradient(135deg,#1a3c34,#1B5E20);color:white;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+        header{background:linear-gradient(135deg,#0f3d5c,#175580);color:white;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.15)}
         .top-bar{background:rgba(0,0,0,.18);padding:6px 20px;font-size:13px;display:flex;justify-content:flex-end;gap:18px;flex-wrap:wrap}
-        .top-bar a{color:#A5D6A7}
+        .top-bar a{color:#b3d4e8}
         .top-bar a:hover{color:white}
         nav{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;max-width:1200px;margin:0 auto;gap:15px}
         .brand{display:flex;align-items:center;gap:12px;cursor:pointer}
@@ -135,12 +135,12 @@
         .page.active{display:block}
         @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
         /* Hero */
-        .hero{background:linear-gradient(135deg,#1a3c34 0%,#1B5E20 50%,#2E7D32 100%);color:white;text-align:center;padding:70px 20px}
+        .hero{background:linear-gradient(135deg,#0f3d5c 0%,#175580 50%,#2980b9 100%);color:white;text-align:center;padding:70px 20px}
         .hero h1{font-size:42px;margin-bottom:15px;font-weight:700}
         .hero .subtitle{font-size:20px;opacity:.95;margin-bottom:10px}
         .hero p{font-size:17px;opacity:.85;max-width:680px;margin:0 auto 30px}
         .btn{display:inline-block;padding:14px 32px;border-radius:50px;font-weight:700;font-size:16px;cursor:pointer;transition:transform .2s,box-shadow .2s;border:none}
-        .btn-primary{background:white;color:#1B5E20}
+        .btn-primary{background:white;color:#175580}
         .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.2)}
         .btn-wa{background:#25D366;letter-spacing:0.5px;color:white}
         .btn-wa:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(37,211,102,.3)}
@@ -149,44 +149,44 @@
         /* Sections */
         section{padding:60px 0}
         .section-title{text-align:center;margin-bottom:45px}
-        .section-title h2{font-size:32px;color:#1B5E20;margin-bottom:10px}
+        .section-title h2{font-size:32px;color:#175580;margin-bottom:10px}
         .section-title p{color:#666;font-size:17px;max-width:600px;margin:0 auto}
         /* Cards grid */
         .grid{display:grid;gap:25px}
         .grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
         .grid-4{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
-        .card{background:white;border-radius:16px;padding:30px 25px;box-shadow:0 2px 15px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;border-top:3px solid #2E7D32}
+        .card{background:white;border-radius:16px;padding:30px 25px;box-shadow:0 2px 15px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;border-top:3px solid #2980b9}
         .card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.1)}
         .card .icon{font-size:42px;margin-bottom:15px}
-        .card h3{font-size:19px;color:#1B5E20;margin-bottom:10px}
+        .card h3{font-size:19px;color:#175580;margin-bottom:10px}
         .card p{color:#666;font-size:14px}
         /* Quick access cards (Inicio) */
         .quick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;margin-top:40px}
         .quick-card{background:white;padding:30px 22px;border-radius:14px;text-align:center;cursor:pointer;transition:all .2s;border:2px solid transparent;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-        .quick-card:hover{border-color:#1B5E20;transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.1)}
+        .quick-card:hover{border-color:#175580;transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.1)}
         .quick-card .icon{font-size:44px;margin-bottom:12px}
-        .quick-card h3{font-size:17px;color:#1B5E20;margin-bottom:6px}
+        .quick-card h3{font-size:17px;color:#175580;margin-bottom:6px}
         .quick-card p{font-size:13px;color:#666}
         /* Pricing cards */
         .pricing-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:30px 0}
-        .price-card{background:white;border-radius:16px;padding:30px 35px;text-align:center;box-shadow:0 2px 15px rgba(0,0,0,.06);border-top:3px solid #2E7D32;min-width:230px}
-        .price-card.alt{border-top-color:#2E7D32}
-        .price-card.alt .price{color:#2E7D32}
+        .price-card{background:white;border-radius:16px;padding:30px 35px;text-align:center;box-shadow:0 2px 15px rgba(0,0,0,.06);border-top:3px solid #2980b9;min-width:230px}
+        .price-card.alt{border-top-color:#2980b9}
+        .price-card.alt .price{color:#2980b9}
         .price-card.warn{border-top-color:#f39c12}
         .price-card.warn .price{color:#f39c12;font-size:22px}
         .price-card .label{font-size:14px;color:#666;margin-bottom:8px;font-weight:600}
-        .price-card .price{font-size:38px;font-weight:700;color:#1B5E20}
+        .price-card .price{font-size:38px;font-weight:700;color:#175580}
         .price-card .price small{font-size:14px;font-weight:400;color:#999}
         /* About me */
         .about{display:grid;grid-template-columns:280px 1fr;gap:50px;align-items:center;background:white;padding:50px;border-radius:20px;box-shadow:0 2px 15px rgba(0,0,0,.06)}
-        .about img{width:240px;height:240px;border-radius:50%;object-fit:cover;border:6px solid #E8F5E9}
-        .about h2{color:#1B5E20;font-size:28px;margin-bottom:8px}
+        .about img{width:240px;height:240px;border-radius:50%;object-fit:cover;border:6px solid #e3eff8}
+        .about h2{color:#175580;font-size:28px;margin-bottom:8px}
         .about h3{color:#666;font-weight:400;margin-bottom:18px;font-size:16px}
         .about p{color:#555;margin-bottom:14px}
         .credentials{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-        .tag{background:#E8F5E9;color:#1B5E20;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600}
+        .tag{background:#e3eff8;color:#175580;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600}
         /* VIH section */
-        .vih-bg{background:linear-gradient(135deg,#B71C1C,#D32F2F);color:white;padding:60px 0;border-radius:20px;margin:30px 0}
+        .vih-bg{background:linear-gradient(135deg,#8e2444,#c0392b);color:white;padding:60px 0;border-radius:20px;margin:30px 0}
         .vih-bg .section-title h2{color:white}
         .vih-bg .section-title p{color:rgba(255,255,255,.9)}
         .vih-card{background:rgba(255,255,255,.1);border-radius:16px;padding:28px;border:1px solid rgba(255,255,255,.15);border-top:none}
@@ -199,46 +199,46 @@
         .pkg.featured{border:2px solid #f39c12}
         .pkg .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#f39c12;color:white;padding:4px 16px;border-radius:20px;font-size:12px;font-weight:700}
         .pkg h3{font-size:22px;color:#2c3e50;margin-bottom:5px}
-        .pkg .pkg-price{font-size:34px;font-weight:700;color:#1B5E20;margin:14px 0}
+        .pkg .pkg-price{font-size:34px;font-weight:700;color:#175580;margin:14px 0}
         .pkg .pkg-price small{font-size:14px;color:#999;font-weight:400}
         .pkg ul{list-style:none;text-align:left;margin:18px 0}
         .pkg ul li{padding:7px 0;font-size:14px;color:#555;border-bottom:1px solid #f0f0f0}
-        .pkg ul li:before{content:"✓ ";color:#1B5E20;font-weight:700}
+        .pkg ul li:before{content:"✓ ";color:#175580;font-weight:700}
         /* Steps */
         .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin:30px 0}
         .step{background:#f0f4f8;border-radius:14px;padding:25px 20px;text-align:center}
-        .step .num{display:inline-block;background:#1B5E20;color:white;width:38px;height:38px;line-height:38px;border-radius:50%;font-weight:700;margin-bottom:12px}
-        .step h4{color:#1B5E20;margin-bottom:6px;font-size:16px}
+        .step .num{display:inline-block;background:#175580;color:white;width:38px;height:38px;line-height:38px;border-radius:50%;font-weight:700;margin-bottom:12px}
+        .step h4{color:#175580;margin-bottom:6px;font-size:16px}
         .step p{font-size:13px;color:#666}
         /* About / Sobre */
         .about{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:start;background:white;padding:40px;border-radius:20px;box-shadow:0 2px 20px rgba(0,0,0,.06)}
-        .about img{width:260px;height:260px;border-radius:50%;object-fit:cover;border:6px solid #E8F5E9;box-shadow:0 8px 25px rgba(23,85,128,.2)}
-        .about h2{color:#1B5E20;font-size:28px;margin-bottom:6px}
-        .about h3{color:#2E7D32;font-size:17px;font-weight:500;margin-bottom:18px}
+        .about img{width:260px;height:260px;border-radius:50%;object-fit:cover;border:6px solid #e3eff8;box-shadow:0 8px 25px rgba(23,85,128,.2)}
+        .about h2{color:#175580;font-size:28px;margin-bottom:6px}
+        .about h3{color:#2980b9;font-size:17px;font-weight:500;margin-bottom:18px}
         .about p{margin-bottom:14px;color:#555;font-size:15px}
         .credentials{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
-        .credentials .tag{background:#E8F5E9;color:#1B5E20;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600}
+        .credentials .tag{background:#e3eff8;color:#175580;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600}
         .memberships{margin-top:45px;background:linear-gradient(135deg,#f8fafd,#e8f1f8);border-radius:20px;padding:35px}
-        .memberships h3{color:#1B5E20;font-size:22px;margin-bottom:8px;text-align:center}
+        .memberships h3{color:#175580;font-size:22px;margin-bottom:8px;text-align:center}
         .memberships .sub{text-align:center;color:#666;font-size:14px;margin-bottom:25px}
         .memberships-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-        .membership{background:white;border-radius:14px;padding:22px;border-left:4px solid #2E7D32;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-        .membership .acr{display:inline-block;background:#1B5E20;color:white;padding:3px 10px;border-radius:6px;font-size:12px;font-weight:700;margin-bottom:8px}
+        .membership{background:white;border-radius:14px;padding:22px;border-left:4px solid #2980b9;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+        .membership .acr{display:inline-block;background:#175580;color:white;padding:3px 10px;border-radius:6px;font-size:12px;font-weight:700;margin-bottom:8px}
         .membership h4{color:#2c3e50;font-size:15px;margin-bottom:4px;line-height:1.3}
         .membership p{font-size:12px;color:#888;margin:0}
         /* Vaccine card */
         .vax-card{position:relative}
-        .vax-card .agotada{position:absolute;top:15px;right:15px;background:#D32F2F;color:white;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700}
-        .tag-pill{display:inline-block;background:#E8F5E9;color:#1B5E20;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:600;margin:3px 3px 0 0}
+        .vax-card .agotada{position:absolute;top:15px;right:15px;background:#c0392b;color:white;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700}
+        .tag-pill{display:inline-block;background:#e3eff8;color:#175580;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:600;margin:3px 3px 0 0}
         /* About */
         .about{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:start;background:white;border-radius:20px;padding:40px;box-shadow:0 2px 15px rgba(0,0,0,.06)}
-        .about img{width:260px;height:260px;border-radius:50%;object-fit:cover;border:6px solid #1B5E20;box-shadow:0 8px 25px rgba(23,85,128,.25)}
-        .about h2{font-size:28px;color:#1B5E20;margin-bottom:6px}
+        .about img{width:260px;height:260px;border-radius:50%;object-fit:cover;border:6px solid #175580;box-shadow:0 8px 25px rgba(23,85,128,.25)}
+        .about h2{font-size:28px;color:#175580;margin-bottom:6px}
         .about h3{font-size:17px;color:#666;font-weight:500;margin-bottom:18px}
         .about p{margin-bottom:14px;color:#444;font-size:15px}
         .credentials{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-        .credentials .tag{background:#E8F5E9;color:#1B5E20;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600}
-        .memberships{margin-top:40px;background:linear-gradient(135deg,#1a3c34 0%,#1B5E20 50%,#2E7D32 100%);color:white;border-radius:20px;padding:40px}
+        .credentials .tag{background:#e3eff8;color:#175580;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600}
+        .memberships{margin-top:40px;background:linear-gradient(135deg,#0f3d5c 0%,#175580 50%,#2980b9 100%);color:white;border-radius:20px;padding:40px}
         .memberships h2{font-size:26px;margin-bottom:10px;text-align:center}
         .memberships .subt{text-align:center;opacity:.9;margin-bottom:30px;font-size:15px}
         .mem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
@@ -247,7 +247,7 @@
         .mem-card .mem-acr{font-weight:700;font-size:16px;margin-bottom:3px}
         .mem-card .mem-name{font-size:13px;opacity:.88;line-height:1.4}
         /* Peritaje */
-        .peritaje-bg{background:#1a2e1a;color:white;padding:60px 0;border-radius:20px}
+        .peritaje-bg{background:#1a1a2e;color:white;padding:60px 0;border-radius:20px}
         .peritaje-bg .section-title h2{color:white}
         .peritaje-bg .section-title p{color:rgba(255,255,255,.7)}
         .peritaje-areas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:35px}
@@ -258,7 +258,7 @@
         .peri-card .price small{font-size:13px;color:rgba(255,255,255,.6);font-weight:400}
         .peri-card p{color:rgba(255,255,255,.75);font-size:13px}
         /* Contact */
-        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;background:#1B5E20;color:white;padding:50px;border-radius:20px;align-items:start}
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;background:#175580;color:white;padding:50px;border-radius:20px;align-items:start}
         .contact-grid h2{font-size:30px;margin-bottom:18px}
         .contact-info{list-style:none;margin-top:18px}
         .contact-info li{padding:12px 0;font-size:16px;display:flex;align-items:flex-start;gap:12px}
@@ -268,16 +268,16 @@
         .contact-form input,.contact-form textarea{padding:14px 18px;border:none;border-radius:10px;font-size:15px;font-family:inherit;background:rgba(255,255,255,.18);color:white;outline:none}
         .contact-form input::placeholder,.contact-form textarea::placeholder{color:rgba(255,255,255,.65)}
         .contact-form textarea{min-height:110px;resize:vertical}
-        .contact-form button{background:white;color:#1B5E20;border:none;padding:14px;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer}
+        .contact-form button{background:white;color:#175580;border:none;padding:14px;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer}
         /* Footer */
-        footer{background:#1a3c34;color:rgba(255,255,255,.75);text-align:center;padding:30px 20px;font-size:14px;margin-top:60px}
+        footer{background:#0f3d5c;color:rgba(255,255,255,.75);text-align:center;padding:30px 20px;font-size:14px;margin-top:60px}
         footer a{color:rgba(255,255,255,.85);margin:0 10px}
         footer .legal{margin-top:14px;font-size:11px;opacity:.55;line-height:1.7}
         .center{text-align:center;margin-top:30px}
         /* Mobile */
         @media (max-width:900px){
             .menu-toggle{display:block}
-            .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#1a3c34;flex-direction:column;padding:10px;gap:0;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+            .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#0f3d5c;flex-direction:column;padding:10px;gap:0;box-shadow:0 4px 12px rgba(0,0,0,.2)}
             .nav-links.open{display:flex}
             .nav-links a{padding:14px;border-radius:0;border-bottom:1px solid rgba(255,255,255,.08)}
             .hero h1{font-size:30px}
@@ -320,7 +320,7 @@
 <!-- ============ INICIO ============ -->
 <div class="page" id="page-inicio">
     <section class="hero">
-        <h1>Dr. Carlos Gómez Ponce</h1>
+        <h1>Dr. Carlos Augusto Gómez Ponce</h1>
         <div class="subtitle">Especialista en Enfermedades Infecciosas</div>
         <p>Atención médica integral en Ciudad Juárez. Consulta presencial y en línea, vacunación, atención VIH, interconsulta hospitalaria y peritaje médico.</p>
         <a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita" target="_blank" class="btn btn-wa">💬 Agenda tu cita por WhatsApp</a>
@@ -476,7 +476,7 @@
                         <div class="card vih-card"><div class="icon">❤️</div><h3>Acompañamiento Integral</h3><p>Educación, adherencia al tratamiento y mejora en calidad de vida.</p></div>
                     </div>
                     <div class="center" style="margin-top:40px">
-                        <a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20sobre%20VIH" target="_blank" class="btn btn-primary" style="background:white;color:#B71C1C">💬 Agenda tu consulta confidencial</a>
+                        <a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20sobre%20VIH" target="_blank" class="btn btn-primary" style="background:white;color:#8e2444">💬 Agenda tu consulta confidencial</a>
                     </div>
                 </div>
             </div>
@@ -502,7 +502,7 @@
                         <li>Protocolo básico de manejo de brotes</li>
                         <li>Recomendaciones de prevención</li>
                     </ul>
-                    <a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20me%20interesa%20el%20paquete%20B%C3%A1sico" target="_blank" class="btn btn-primary" style="background:#1B5E20;color:white;padding:10px 24px;font-size:14px">Solicitar info</a>
+                    <a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20me%20interesa%20el%20paquete%20B%C3%A1sico" target="_blank" class="btn btn-primary" style="background:#175580;color:white;padding:10px 24px;font-size:14px">Solicitar info</a>
                 </div>
                 <div class="pkg featured">
                     <div class="badge">RECOMENDADO</div>
@@ -515,7 +515,7 @@
                         <li>1 capacitación mensual al personal médico</li>
                         <li>Reporte mensual de incidencias</li>
                     </ul>
-                    <a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20me%20interesa%20el%20paquete%20Plus" target="_blank" class="btn btn-primary" style="background:#1B5E20;color:white;padding:10px 24px;font-size:14px">Solicitar info</a>
+                    <a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20me%20interesa%20el%20paquete%20Plus" target="_blank" class="btn btn-primary" style="background:#175580;color:white;padding:10px 24px;font-size:14px">Solicitar info</a>
                 </div>
                 <div class="pkg">
                     <h3>Premium</h3>
@@ -528,7 +528,7 @@
                         <li>Campañas de vacunación</li>
                         <li>Protocolos completos</li>
                     </ul>
-                    <a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20me%20interesa%20el%20paquete%20Premium" target="_blank" class="btn btn-primary" style="background:#1B5E20;color:white;padding:10px 24px;font-size:14px">Solicitar info</a>
+                    <a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20me%20interesa%20el%20paquete%20Premium" target="_blank" class="btn btn-primary" style="background:#175580;color:white;padding:10px 24px;font-size:14px">Solicitar info</a>
                 </div>
             </div>
             <div class="section-title" style="margin-top:70px">
@@ -536,9 +536,9 @@
                 <p>Servicio para médicos especialistas con casos infecciosos complejos en pacientes hospitalizados</p>
             </div>
             <div class="grid grid-3">
-                <div class="card"><h3>Interconsulta Inicial</h3><div style="font-size:30px;font-weight:700;color:#1B5E20;margin:10px 0">$1,500 <small style="font-size:14px;color:#999">MXN</small></div><p>Evaluación completa del caso, revisión de expediente, exploración física y plan de manejo inicial.</p></div>
-                <div class="card"><h3>Seguimiento Diario</h3><div style="font-size:30px;font-weight:700;color:#1B5E20;margin:10px 0">$1,200 <small style="font-size:14px;color:#999">MXN/día</small></div><p>Visita diaria al paciente hospitalizado, ajuste de tratamiento y coordinación con el equipo médico.</p></div>
-                <div class="card"><h3>Interconsulta de Urgencia</h3><div style="font-size:30px;font-weight:700;color:#1B5E20;margin:10px 0">$2,000 <small style="font-size:14px;color:#999">MXN</small></div><p>Atención fuera de horario para casos que requieren valoración urgente por infectología.</p></div>
+                <div class="card"><h3>Interconsulta Inicial</h3><div style="font-size:30px;font-weight:700;color:#175580;margin:10px 0">$1,500 <small style="font-size:14px;color:#999">MXN</small></div><p>Evaluación completa del caso, revisión de expediente, exploración física y plan de manejo inicial.</p></div>
+                <div class="card"><h3>Seguimiento Diario</h3><div style="font-size:30px;font-weight:700;color:#175580;margin:10px 0">$1,200 <small style="font-size:14px;color:#999">MXN/día</small></div><p>Visita diaria al paciente hospitalizado, ajuste de tratamiento y coordinación con el equipo médico.</p></div>
+                <div class="card"><h3>Interconsulta de Urgencia</h3><div style="font-size:30px;font-weight:700;color:#175580;margin:10px 0">$2,000 <small style="font-size:14px;color:#999">MXN</small></div><p>Atención fuera de horario para casos que requieren valoración urgente por infectología.</p></div>
             </div>
             <div class="center"><a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20me%20interesa%20la%20interconsulta%20hospitalaria" target="_blank" class="btn btn-wa">💬 Solicitar interconsulta</a></div>
         </div>
@@ -615,31 +615,31 @@
                     <div class="icon">🩺</div>
                     <h3>¿Cuándo Ir al Infectólogo?</h3>
                     <p>7 señales de que necesitas un especialista en enfermedades infecciosas. No siempre es obvio cuándo acudir.</p>
-                    <p style="color:#1B5E20;font-weight:600;margin-top:10px">Leer artículo →</p>
+                    <p style="color:#175580;font-weight:600;margin-top:10px">Leer artículo →</p>
                 </a>
                 <a href="/blog/vih-deteccion-tratamiento-ciudad-juarez.html" class="card" style="cursor:pointer;text-decoration:none">
                     <div class="icon">🔴</div>
                     <h3>VIH: Detección y Tratamiento</h3>
                     <p>Todo lo que necesitas saber sobre las pruebas de VIH, tratamiento antirretroviral y cómo vivir con calidad.</p>
-                    <p style="color:#1B5E20;font-weight:600;margin-top:10px">Leer artículo →</p>
+                    <p style="color:#175580;font-weight:600;margin-top:10px">Leer artículo →</p>
                 </a>
                 <a href="/blog/hepatitis-tipos-sintomas-tratamiento.html" class="card" style="cursor:pointer;text-decoration:none">
                     <div class="icon">🟡</div>
                     <h3>Hepatitis: Tipos y Tratamiento</h3>
                     <p>Diferencias entre hepatitis A, B y C. Síntomas, transmisión y opciones de tratamiento actuales.</p>
-                    <p style="color:#1B5E20;font-weight:600;margin-top:10px">Leer artículo →</p>
+                    <p style="color:#175580;font-weight:600;margin-top:10px">Leer artículo →</p>
                 </a>
                 <a href="/blog/vacunas-adultos-cuales-necesitas.html" class="card" style="cursor:pointer;text-decoration:none">
                     <div class="icon">💉</div>
                     <h3>Vacunas para Adultos</h3>
                     <p>Las vacunas no son solo para niños. Conoce cuáles necesitas según tu edad y estilo de vida.</p>
-                    <p style="color:#1B5E20;font-weight:600;margin-top:10px">Leer artículo →</p>
+                    <p style="color:#175580;font-weight:600;margin-top:10px">Leer artículo →</p>
                 </a>
                 <a href="/blog/medicina-del-viajero-que-es.html" class="card" style="cursor:pointer;text-decoration:none">
                     <div class="icon">✈️</div>
                     <h3>Medicina del Viajero</h3>
                     <p>¿Vas a viajar? Prepárate con vacunas, profilaxis y consejos para proteger tu salud en el extranjero.</p>
-                    <p style="color:#1B5E20;font-weight:600;margin-top:10px">Leer artículo →</p>
+                    <p style="color:#175580;font-weight:600;margin-top:10px">Leer artículo →</p>
                 </a>
             </div>
         </div>
