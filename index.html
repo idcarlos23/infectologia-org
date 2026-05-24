@@ -306,7 +306,6 @@
         }
     .vax-price{color:#175580;font-weight:bold;font-size:1.1em;margin:5px 0;}
 </style>
-<script type="text/javascript">var hh_widgets = ['Calendar'];(function(d, s, id) { var js, h = d.getElementsByTagName('head')[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//widgets.hulilabs.com/js/widgets/loader.js"; js.setAttribute('data-href',"//widgets.hulilabs.com"); h.appendChild(js);}(document, 'script', 'huli-loader'));</script>
 </head>
 <body>
 
@@ -696,7 +695,7 @@
                     <div style="margin-top:24px">
                         <h3 style="font-size:18px;color:white;margin-bottom:10px">📅 Agenda tu cita aquí</h3>
                         <p style="font-size:13px;opacity:0.9;margin-bottom:12px">Selecciona el horario que más te convenga y sigue los pasos para confirmar.</p>
-                        <div class='huli-cw' data-doctor="113606" data-clinic="6841" data-lang="es" data-href="//widgets.hulilabs.com"></div>
+                        <iframe id="huli-calendar" src="https://widgets.hulilabs.com/es/calendar?did=113606&clid=6841" style="width:100%;min-height:500px;border:none;border-radius:12px;background:white" allowtransparency="true" frameborder="0"></iframe>
                     </div>
                 </div>
                 <form class="contact-form" onsubmit="event.preventDefault(); window.open('https://wa.me/528148206457?text=Hola%20Dr.%20Carlos,%20me%20llamo%20'+encodeURIComponent(this.nombre.value)+'.%20'+encodeURIComponent(this.mensaje.value),'_blank');">
@@ -738,7 +737,7 @@ function showPage(id){
     document.querySelector('.nav-links').classList.remove('open');
     history.replaceState(null,'','#'+id);
     window.scrollTo({top:0,behavior:'smooth'});
-    if(id==='contacto'&&window.HuliWidgets&&window.HuliWidgets.reset){setTimeout(function(){HuliWidgets.reset()},300);}
+
 }
 document.addEventListener('DOMContentLoaded',function(){
     document.querySelectorAll('[data-page]').forEach(function(el){
