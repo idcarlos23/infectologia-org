@@ -738,6 +738,7 @@ function showPage(id){
     document.querySelector('.nav-links').classList.remove('open');
     history.replaceState(null,'','#'+id);
     window.scrollTo({top:0,behavior:'smooth'});
+    if(id==='contacto'&&window.HuliWidgets&&window.HuliWidgets.reset){setTimeout(function(){HuliWidgets.reset()},300);}
 }
 document.addEventListener('DOMContentLoaded',function(){
     document.querySelectorAll('[data-page]').forEach(function(el){
