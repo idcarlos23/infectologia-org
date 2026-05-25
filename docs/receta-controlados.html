@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receta de Medicamentos Controlados — Dr. Gómez Ponce</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}@page{size:5.5in 8.5in;margin:0}
+  body{font-family:'Montserrat',sans-serif;background:#e9ecef;display:flex;justify-content:center;padding:20px}
+  .lock-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:#1a1a2e;z-index:9999;display:flex;justify-content:center;align-items:center}
+  .lock-box{text-align:center;color:#fff;padding:40px}.lock-box .lock-icon{font-size:48px;margin-bottom:16px}.lock-box h2{font-size:18px;font-weight:800;margin-bottom:6px}.lock-box p{font-size:12px;color:#888;margin-bottom:20px}
+  .lock-input{padding:14px 20px;border-radius:12px;border:2px solid #444;background:#2a2a4a;color:#fff;font-family:'Montserrat',sans-serif;font-size:15px;width:260px;text-align:center;outline:none}
+  .lock-btn{display:block;margin:16px auto 0;padding:12px 40px;border-radius:50px;border:none;background:linear-gradient(135deg,#175580,#2980b9);color:#fff;font-size:14px;font-weight:700;cursor:pointer}
+  .lock-error{color:#e74c3c;font-size:12px;margin-top:10px;display:none}.hidden{display:none!important}
+  .receta{width:5.5in;height:8.5in;background:#fff;border:1px solid #ccc;position:relative;overflow:hidden}
+  .receta::before{content:'';position:absolute;bottom:-100px;left:-100px;top:auto;width:500px;height:500px;background-image:url('https://infectologia.org/images/logo-icono.jpg');background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0.06;pointer-events:none;z-index:0;border-radius:50%}
+  .controlled-banner{background:#c0392b;color:#fff;text-align:center;padding:4px;font-size:8px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+  .header{background:linear-gradient(135deg,#175580,#2980b9);color:#fff;padding:14px 20px 12px;display:flex;align-items:center;gap:12px}
+  .header-logo{width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.3)}
+  .header-info{flex:1}.header-name{font-size:12px;font-weight:800}.header-specialty{font-size:9px;opacity:0.9;margin-bottom:3px}.header-cedulas{font-size:7px;opacity:0.75;line-height:1.4}
+  .contact-bar{background:#f8f9fa;border-bottom:2px solid #c0392b;padding:5px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:3px}
+  .contact-item{font-size:7px;color:#555;display:flex;align-items:center;gap:3px}
+  .body{padding:12px 20px;position:relative;z-index:1}
+  .section-title{font-size:8px;font-weight:700;color:#c0392b;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;margin-top:8px;border-bottom:1px solid #e0e0e0;padding-bottom:3px}
+  .field-row{display:flex;gap:10px;margin-bottom:5px}.field{flex:1}.field-label{font-size:7px;color:#888;text-transform:uppercase}.field-value{font-size:10px;color:#333;border-bottom:1px solid #ddd;min-height:16px;padding-bottom:2px;outline:none}
+  .rx-header{display:flex;align-items:center;gap:8px;margin-top:10px;margin-bottom:6px}
+  .rx-symbol{font-size:20px;font-weight:700;color:#c0392b}.rx-title{font-size:8px;font-weight:700;color:#c0392b;text-transform:uppercase;letter-spacing:1px}
+  .rx-area{border:1px solid #e0e0e0;border-radius:4px;min-height:160px;padding:8px 12px;font-size:10px;color:#333;line-height:1.8;outline:none;background:#fafbfc}
+  .warning-text{background:#fff3cd;border:1px solid #ffc107;border-radius:4px;padding:6px 10px;font-size:7.5px;color:#856404;margin-top:8px;line-height:1.5}
+  .footer{position:absolute;bottom:0;left:0;right:0}
+  .signature-area{position:relative;padding:4px 20px 4px}
+  .signature-section{text-align:center}
+  .signature-img{width:110px;height:auto;display:block;margin:0 auto -4px}
+  .signature-line{border-top:1px solid #333;width:160px;margin:0 auto 3px}
+  .signature-name{font-size:9px;font-weight:700;color:#333}.signature-detail{font-size:7px;color:#666}
+  .stamp-mini{width:65px;height:65px;border-radius:50%;border:1.5px solid #1a4e8a;position:absolute;right:80px;top:-5px;display:flex;justify-content:center;align-items:center;box-shadow:inset 0 0 0 1px #1a4e8a,inset 0 0 0 2.5px transparent,inset 0 0 0 3px #1a4e8a;opacity:0.8;transform:rotate(-8deg)}
+  .stamp-mini svg{position:absolute;width:100%;height:100%;top:0;left:0}
+  .stamp-mini svg text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:5.5px;fill:#1a4e8a;letter-spacing:1px;text-transform:uppercase}
+  .stamp-center{text-align:center;z-index:2;padding:0 10px}
+  .stamp-center-name{font-size:4px;font-weight:900;color:#1a4e8a;line-height:1.3;text-transform:uppercase}.stamp-center-line{width:24px;height:1px;background:#1a4e8a;margin:1px auto}
+  .stamp-center-ced{font-size:3px;font-weight:700;color:#1a4e8a;line-height:1.4}
+  .stamp-star{font-size:3.5px;color:#1a4e8a;position:absolute}.stamp-star-l{left:5px;top:50%;transform:translateY(-50%)}.stamp-star-r{right:5px;top:50%;transform:translateY(-50%)}
+  .footer-bar{background:#c0392b;color:#fff;text-align:center;padding:4px 20px;font-size:6px;letter-spacing:0.3px}
+  .print-btn{position:fixed;top:20px;right:20px;background:#c0392b;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;cursor:pointer;z-index:100}
+  @media print{body{background:#fff;padding:0}.receta{border:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}.receta::before{-webkit-print-color-adjust:exact;print-color-adjust:exact}.no-print{display:none!important}}
+</style>
+</head>
+<body>
+<div class="lock-screen" id="lockScreen"><div class="lock-box"><div class="lock-icon">🔒</div><h2>Documento protegido</h2><p>Dr. Carlos Augusto Gómez Ponce</p><input type="password" class="lock-input" id="lockPass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')unlock()"><button class="lock-btn" onclick="unlock()">Acceder</button><div class="lock-error" id="lockError">Contraseña incorrecta</div></div></div>
+<script>function unlock(){if(document.getElementById('lockPass').value==='@mxm7944cSyp'){document.getElementById('lockScreen').classList.add('hidden');document.querySelector('.receta').style.display='';document.querySelector('.print-btn').style.display=''}else{document.getElementById('lockError').style.display='block'}}</script>
+<button class="print-btn no-print" style="display:none" onclick="window.print()">🖨️ Imprimir / PDF</button>
+<div class="receta" style="display:none">
+  <div class="controlled-banner">⚠️ Receta de Medicamentos Controlados — Fracción II, III y IV</div>
+  <div class="header">
+    <img src="https://infectologia.org/images/logo-icono.jpg" class="header-logo" alt="Logo">
+    <div class="header-info"><div class="header-name">DR. CARLOS AUGUSTO GÓMEZ PONCE</div><div class="header-specialty">Especialista en Enfermedades Infecciosas</div><div class="header-cedulas">Céd. Prof. 7238054 · Céd. Esp. 9507713 · Céd. Subesp. 10407013<br>COFEPRIS 2408022002A00066</div></div>
+  </div>
+  <div class="contact-bar">
+    <div class="contact-item">📍 CME Unidad Sendero, Av. F. Villarreal Torres 2050, Cd. Juárez</div>
+    <div class="contact-item">📞 656-690-7705</div>
+    <div class="contact-item">💬 81 4820 6457</div>
+  </div>
+  <div class="body">
+    <div class="field-row"><div class="field"><div class="field-label">Fecha</div><div class="field-value" contenteditable="true"></div></div><div class="field"><div class="field-label">Folio</div><div class="field-value" contenteditable="true"></div></div></div>
+    <div class="section-title">Datos del Paciente</div>
+    <div class="field-row"><div class="field" style="flex:3"><div class="field-label">Nombre completo</div><div class="field-value" contenteditable="true"></div></div><div class="field" style="flex:1"><div class="field-label">Edad</div><div class="field-value" contenteditable="true"></div></div><div class="field" style="flex:1"><div class="field-label">Sexo</div><div class="field-value" contenteditable="true"></div></div></div>
+    <div class="field-row"><div class="field"><div class="field-label">Domicilio</div><div class="field-value" contenteditable="true"></div></div></div>
+    <div class="field-row"><div class="field"><div class="field-label">Diagnóstico</div><div class="field-value" contenteditable="true"></div></div></div>
+    <div class="rx-header"><div class="rx-symbol">℞</div><div class="rx-title">Prescripción — Medicamento Controlado</div></div>
+    <div class="rx-area" contenteditable="true">
+1. Medicamento:
+   Presentación:
+   Dosis:
+   Vía:
+   Frecuencia:
+   Duración:
+   Cantidad total (con letra):
+    </div>
+    <div class="warning-text">⚠️ Esta receta ampara exclusivamente medicamentos de las fracciones II, III y IV de la Ley General de Salud. Válida por 30 días a partir de la fecha de expedición. No surtir más de una vez.</div>
+  </div>
+  <div class="footer">
+    <div class="signature-area">
+      <div class="signature-section"><img src="https://storage.googleapis.com/claude-ai-attachments-modassembly/761193fb-28fb-4317-99c8-2a150a4b76de/attachments/firma-carlos.png" class="signature-img" alt="Firma"><div class="signature-line"></div><div class="signature-name">Dr. Carlos Augusto Gómez Ponce</div><div class="signature-detail">Infectólogo · Céd. Prof. 7238054 · Céd. Esp. 9507713</div></div>
+      <div class="stamp-mini"><svg viewBox="0 0 100 100"><defs><path id="topArc" d="M 15,50 A 35,35 0 0,1 85,50"/><path id="bottomArc" d="M 15,54 A 35,35 0 0,0 85,54"/></defs><text><textPath href="#topArc" startOffset="50%" text-anchor="middle">INFECTOLOGÍA</textPath></text><text><textPath href="#bottomArc" startOffset="50%" text-anchor="middle">CIUDAD JUÁREZ</textPath></text></svg><span class="stamp-star stamp-star-l">✦</span><span class="stamp-star stamp-star-r">✦</span><div class="stamp-center"><div class="stamp-center-name">Dr. Carlos Augusto<br>Gómez Ponce</div><div class="stamp-center-line"></div><div class="stamp-center-ced">C.P. 7238054<br>C.E. 9507713<br>C.S.E. 10407013</div></div></div>
+    </div>
+    <div class="footer-bar">CP 7238054 · CE 9507713 · CSE 10407013 · COFEPRIS 2408022002A00066 · infectologia.org</div>
+  </div>
+</div>
+</body></html>
