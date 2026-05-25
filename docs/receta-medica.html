@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receta Médica - Dr. Carlos Augusto Gómez Ponce</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  /* PASSWORD SCREEN */
+  .lock-screen {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: #1a1a2e; z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .lock-box {
+    text-align: center; color: #fff; padding: 40px;
+  }
+  .lock-box .lock-icon { font-size: 48px; margin-bottom: 16px; }
+  .lock-box h2 { font-size: 18px; font-weight: 800; margin-bottom: 6px; color: #fff; }
+  .lock-box p { font-size: 12px; color: #888; margin-bottom: 20px; }
+  .lock-input {
+    padding: 14px 20px; border-radius: 12px; border: 2px solid #444;
+    background: #2a2a4a; color: #fff; font-family: 'Montserrat', sans-serif;
+    font-size: 15px; width: 260px; text-align: center; outline: none;
+  }
+  .lock-input:focus { border-color: #175580; }
+  .lock-btn {
+    display: block; margin: 16px auto 0; padding: 12px 40px; border-radius: 50px;
+    border: none; background: linear-gradient(135deg, #175580, #2980b9);
+    color: #fff; font-family: 'Montserrat', sans-serif; font-size: 14px;
+    font-weight: 700; cursor: pointer;
+  }
+  .lock-btn:hover { transform: scale(1.03); }
+  .lock-error { color: #e74c3c; font-size: 12px; margin-top: 10px; display: none; }
+  .hidden { display: none !important; }
+</style>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: 5.5in 8.5in; margin: 0; }
+  body { font-family: 'Montserrat', Arial, sans-serif; background: #f0f0f0; display: flex; justify-content: center; padding: 20px; }
+  .receta { width: 5.5in; height: 8.5in; background: #fff; border: 1px solid #ccc; padding: 0; position: relative; overflow: hidden; }
+  .receta::before { content: ''; position: absolute; bottom: -100px; left: -100px; top: auto; transform: none; width: 500px; height: 500px; background-image: url('https://infectologia.org/images/logo-icono.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center; opacity: 0.06; pointer-events: none; z-index: 0; border-radius: 50%; }
+  .header { background: linear-gradient(135deg, #175580, #2980b9); color: #fff; padding: 16px 20px 14px; display: flex; align-items: center; gap: 14px; }
+  .header-logo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.3); flex-shrink: 0; }
+  .header-info { flex: 1; }
+  .header-name { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 2px; }
+  .header-specialty { font-size: 9.5px; font-weight: 400; opacity: 0.9; margin-bottom: 4px; }
+  .header-cedulas { font-size: 7.5px; opacity: 0.75; line-height: 1.4; }
+  .contact-bar { background: #f8f9fa; border-bottom: 2px solid #175580; padding: 6px 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; }
+  .contact-item { font-size: 7px; color: #555; display: flex; align-items: center; gap: 3px; }
+  .contact-item .icon { font-size: 8px; }
+  .body { padding: 14px 20px; flex: 1; }
+  .fecha-row { display: flex; justify-content: space-between; margin-bottom: 12px; align-items: center; }
+  .fecha-label { font-size: 8px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+  .fecha-field { font-size: 10px; color: #333; border-bottom: 1px solid #ccc; min-width: 140px; padding-bottom: 2px; }
+  .section-title { font-size: 8px; font-weight: 700; color: #175580; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; margin-top: 10px; border-bottom: 1px solid #e0e0e0; padding-bottom: 3px; }
+  .field-row { display: flex; gap: 12px; margin-bottom: 6px; }
+  .field { flex: 1; }
+  .field-label { font-size: 7px; color: #888; text-transform: uppercase; letter-spacing: 0.3px; }
+  .field-value { font-size: 10px; color: #333; border-bottom: 1px solid #ddd; min-height: 16px; padding-bottom: 2px; outline: none; }
+  .field-value:focus { border-bottom-color: #175580; background: #f0f7fc; }
+  .rx-header { display: flex; align-items: center; gap: 8px; margin-top: 14px; margin-bottom: 8px; }
+  .rx-symbol { font-size: 22px; font-weight: 700; color: #175580; line-height: 1; }
+  .rx-title { font-size: 8px; font-weight: 700; color: #175580; text-transform: uppercase; letter-spacing: 1px; }
+  .rx-area { border: 1px solid #e0e0e0; border-radius: 4px; min-height: 200px; padding: 10px 12px; font-size: 10px; color: #333; line-height: 1.8; outline: none; background: #fafbfc; }
+  .rx-area:focus { border-color: #175580; background: #f0f7fc; }
+  .instructions-area { border: 1px solid #e0e0e0; border-radius: 4px; min-height: 60px; padding: 8px 12px; font-size: 9px; color: #555; line-height: 1.6; outline: none; margin-top: 6px; background: #fafbfc; }
+  .instructions-area:focus { border-color: #175580; background: #f0f7fc; }
+  .footer { position: absolute; bottom: 0; left: 0; right: 0; padding: 0; }
+  .signature-area { position: relative; padding: 4px 20px 6px; }
+  .signature-section { text-align: center; }
+  .signature-img { width: 130px; height: auto; display: block; margin: 0 auto -4px; }
+  .signature-line { border-top: 1px solid #333; width: 180px; margin: 0 auto 4px; }
+  .signature-name { font-size: 9px; font-weight: 700; color: #333; }
+  .signature-detail { font-size: 7px; color: #666; margin-top: 1px; }
+  .stamp-mini { width: 75px; height: 75px; border-radius: 50%; border: 1.5px solid #1a4e8a; position: absolute; right: 100px; top: -5px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; box-shadow: inset 0 0 0 1px #1a4e8a, inset 0 0 0 2.5px transparent, inset 0 0 0 3px #1a4e8a; opacity: 0.8; transform: rotate(-8deg); }
+  .stamp-mini svg { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
+  .stamp-mini svg text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 5.5px; fill: #1a4e8a; letter-spacing: 1px; text-transform: uppercase; }
+  .stamp-center { text-align: center; z-index: 2; padding: 0 12px; }
+  .stamp-center-name { font-size: 4.5px; font-weight: 900; color: #1a4e8a; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 1px; }
+  .stamp-center-line { width: 28px; height: 1px; background: #1a4e8a; margin: 1px auto; }
+  .stamp-center-ced { font-size: 3.5px; font-weight: 700; color: #1a4e8a; line-height: 1.4; }
+  .stamp-star { font-size: 5px; color: #1a4e8a; position: absolute; }
+  .stamp-star-l { left: 6px; top: 50%; transform: translateY(-50%); }
+  .stamp-star-r { right: 6px; top: 50%; transform: translateY(-50%); }
+  .footer-bar { background: #175580; color: #fff; text-align: center; padding: 5px 20px; font-size: 6.5px; letter-spacing: 0.3px; opacity: 0.95; }
+  @media print { body { background: none; padding: 0; } .receta { border: none; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; } .receta::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .no-print { display: none !important; } }
+  .print-btn { position: fixed; top: 20px; right: 20px; background: #175580; color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 100; }
+  .print-btn:hover { background: #2980b9; }
+  .help-text { position: fixed; top: 70px; right: 20px; background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 12px 16px; font-family: 'Montserrat', sans-serif; font-size: 11px; color: #666; max-width: 220px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 100; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="lock-screen" id="lockScreen">
+  <div class="lock-box">
+    <div class="lock-icon">🔒</div>
+    <h2>Documento protegido</h2>
+    <p>Dr. Carlos Augusto Gómez Ponce</p>
+    <input type="password" class="lock-input" id="lockPass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')unlock()">
+    <button class="lock-btn" onclick="unlock()">Acceder</button>
+    <div class="lock-error" id="lockError">Contraseña incorrecta</div>
+  </div>
+</div>
+<script>
+function unlock(){
+  var p=document.getElementById('lockPass').value;
+  if(p==='@mxm7944cSyp'){
+    document.getElementById('lockScreen').classList.add('hidden');
+    document.querySelector('.receta').style.display='';
+    document.querySelector('.print-btn').style.display='';
+    document.querySelector('.help-text').style.display='';
+  } else {
+    document.getElementById('lockError').style.display='block';
+  }
+}
+</script>
+<button class="print-btn no-print" style="display:none" onclick="window.print()">📄 Imprimir / PDF</button>
+<div class="help-text no-print" style="display:none">💡 Haz clic en cualquier campo para editarlo. Luego imprime o guarda como PDF.</div>
+<div class="receta" style="display:none">
+  <div class="header">
+    <img src="https://infectologia.org/images/logo-icono.jpg" alt="Logo" class="header-logo">
+    <div class="header-info">
+      <div class="header-name">DR. CARLOS AUGUSTO GÓMEZ PONCE</div>
+      <div class="header-specialty">Especialista en Enfermedades Infecciosas — Adultos y Niños</div>
+      <div class="header-cedulas">Céd. Prof. 7238054 · Céd. Esp. 9507713 · Céd. Subesp. 10407013<br>COFEPRIS 2408022002A00066</div>
+    </div>
+  </div>
+  <div class="contact-bar">
+    <div class="contact-item"><span class="icon">📍</span> Centro Médico de Especialidades Unidad Sendero, Av. Francisco Villarreal Torres 2050, Cd. Juárez, Chih.</div>
+    <div class="contact-item"><span class="icon">📞</span> 656-690-7705</div>
+    <div class="contact-item"><span class="icon">💬</span> WhatsApp: 81 4820 6457</div>
+    <div class="contact-item"><span class="icon">🌐</span> infectologia.org</div>
+  </div>
+  <div class="body">
+    <div class="fecha-row">
+      <div><span class="fecha-label">Fecha: </span><span class="fecha-field" contenteditable="true">____________________</span></div>
+      <div><span class="fecha-label">Folio: </span><span class="fecha-field" contenteditable="true" style="min-width:80px;">________</span></div>
+    </div>
+    <div class="section-title">Datos del Paciente</div>
+    <div class="field-row">
+      <div class="field" style="flex:3;"><div class="field-label">Nombre completo</div><div class="field-value" contenteditable="true"></div></div>
+      <div class="field" style="flex:1;"><div class="field-label">Edad</div><div class="field-value" contenteditable="true"></div></div>
+      <div class="field" style="flex:1;"><div class="field-label">Sexo</div><div class="field-value" contenteditable="true"></div></div>
+    </div>
+    <div class="field-row">
+      <div class="field" style="flex:1;"><div class="field-label">Peso (kg)</div><div class="field-value" contenteditable="true"></div></div>
+      <div class="field" style="flex:1;"><div class="field-label">Talla (cm)</div><div class="field-value" contenteditable="true"></div></div>
+      <div class="field" style="flex:1;"><div class="field-label">T.A.</div><div class="field-value" contenteditable="true"></div></div>
+      <div class="field" style="flex:1;"><div class="field-label">Temp.</div><div class="field-value" contenteditable="true"></div></div>
+      <div class="field" style="flex:1;"><div class="field-label">Alergias</div><div class="field-value" contenteditable="true"></div></div>
+    </div>
+    <div class="field-row"><div class="field"><div class="field-label">Diagnóstico</div><div class="field-value" contenteditable="true"></div></div></div>
+    <div class="rx-header"><div class="rx-symbol">℞</div><div class="rx-title">Prescripción</div></div>
+    <div class="rx-area" contenteditable="true">
+1. 
+
+2. 
+
+3. 
+    </div>
+    <div class="section-title" style="margin-top:10px;">Indicaciones adicionales</div>
+    <div class="instructions-area" contenteditable="true"></div>
+  </div>
+  <div class="footer">
+    <div class="signature-area">
+      <div class="signature-section">
+        <img src="https://storage.googleapis.com/claude-ai-attachments-modassembly/761193fb-28fb-4317-99c8-2a150a4b76de/attachments/firma-carlos.png" class="signature-img" alt="Firma">
+        <div class="signature-line"></div>
+        <div class="signature-name">Dr. Carlos Augusto Gómez Ponce</div>
+        <div class="signature-detail">Infectólogo · Céd. Prof. 7238054 · Céd. Esp. 9507713</div>
+      </div>
+      <div class="stamp-mini">
+        <svg viewBox="0 0 100 100"><defs><path id="topArc" d="M 15,50 A 35,35 0 0,1 85,50"/><path id="bottomArc" d="M 15,54 A 35,35 0 0,0 85,54"/></defs><text><textPath href="#topArc" startOffset="50%" text-anchor="middle">INFECTOLOGÍA</textPath></text><text><textPath href="#bottomArc" startOffset="50%" text-anchor="middle">CIUDAD JUÁREZ</textPath></text></svg>
+        <span class="stamp-star stamp-star-l">✦</span><span class="stamp-star stamp-star-r">✦</span>
+        <div class="stamp-center"><div class="stamp-center-name">Dr. Carlos Augusto<br>Gómez Ponce</div><div class="stamp-center-line"></div><div class="stamp-center-ced">C.P. 7238054<br>C.E. 9507713<br>C.S.E. 10407013</div></div>
+      </div>
+    </div>
+    <div class="footer-bar">CP 7238054 · CE 9507713 · CSE 10407013 · COFEPRIS 2408022002A00066 · infectologia.org</div>
+  </div>
+</div>
+</body>
+</html>
