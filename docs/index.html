@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentos — Dr. Gómez Ponce</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Montserrat',sans-serif;background:#f4f6f8;min-height:100vh}
+.lock-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:#1a1a2e;z-index:9999;display:flex;justify-content:center;align-items:center}
+.lock-box{text-align:center;color:#fff;padding:40px}
+.lock-box .lock-icon{font-size:56px;margin-bottom:16px}
+.lock-box h2{font-size:20px;font-weight:800;margin-bottom:6px}
+.lock-box p{font-size:12px;color:#888;margin-bottom:24px}
+.lock-input{padding:14px 20px;border-radius:12px;border:2px solid #444;background:#2a2a4a;color:#fff;font-family:'Montserrat',sans-serif;font-size:15px;width:280px;text-align:center;outline:none}
+.lock-input:focus{border-color:#175580}
+.lock-btn{display:block;margin:16px auto 0;padding:12px 40px;border-radius:50px;border:none;background:linear-gradient(135deg,#175580,#2980b9);color:#fff;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:transform 0.2s}
+.lock-btn:hover{transform:scale(1.03)}
+.lock-error{color:#e74c3c;font-size:12px;margin-top:10px;display:none}
+.hidden{display:none!important}
+.page-header{background:linear-gradient(135deg,#175580,#2980b9);color:#fff;padding:30px 40px;text-align:center}
+.page-header img{width:60px;height:60px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);margin-bottom:12px}
+.page-header h1{font-size:22px;font-weight:800;letter-spacing:0.5px;margin-bottom:4px}
+.page-header p{font-size:12px;opacity:0.8}
+.container{max-width:900px;margin:0 auto;padding:30px 20px}
+.section{margin-bottom:30px}
+.section-title{font-size:13px;font-weight:800;color:#175580;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;padding-bottom:6px;border-bottom:2px solid #e0e0e0;display:flex;align-items:center;gap:8px}
+.section-title .emoji{font-size:16px}
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.doc-card{background:#fff;border-radius:10px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border:1px solid #eee;transition:all 0.2s;cursor:pointer;text-decoration:none;color:inherit;display:block}
+.doc-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.1);border-color:#175580}
+.doc-card .doc-icon{font-size:24px;margin-bottom:6px}
+.doc-card .doc-name{font-size:13px;font-weight:700;color:#333;margin-bottom:3px}
+.doc-card .doc-desc{font-size:10px;color:#888;line-height:1.4}
+.doc-card .doc-badge{display:inline-block;font-size:8px;font-weight:700;padding:2px 8px;border-radius:4px;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px}
+.badge-locked{background:#fff3cd;color:#856404}
+.badge-open{background:#d4edda;color:#155724}
+.badge-info{background:#e8f4fd;color:#0c5460}
+.footer{text-align:center;padding:20px;font-size:10px;color:#bbb;border-top:1px solid #eee;margin-top:20px}
+@media(max-width:600px){.container{padding:20px 12px}.doc-grid{grid-template-columns:1fr}.page-header{padding:20px}}
+</style>
+</head>
+<body>
+<div class="lock-screen" id="lockScreen">
+  <div class="lock-box">
+    <div class="lock-icon">🔒</div>
+    <h2>Área de Documentos</h2>
+    <p>Dr. Carlos Augusto Gómez Ponce · Infectología</p>
+    <input type="password" class="lock-input" id="lockPass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')unlock()">
+    <button class="lock-btn" onclick="unlock()">Acceder</button>
+    <div class="lock-error" id="lockError">Contraseña incorrecta</div>
+  </div>
+</div>
+<script>
+var P='w4X@LEjUD!X1Pnc';
+function unlock(){if(document.getElementById('lockPass').value===P){document.getElementById('lockScreen').classList.add('hidden');document.getElementById('mainContent').style.display=''}else{document.getElementById('lockError').style.display='block'}}
+</script>
+<div id="mainContent" style="display:none">
+  <div class="page-header">
+    <img src="/images/logo-icono.jpg" alt="Logo">
+    <h1>Documentos del Consultorio</h1>
+    <p>Dr. Carlos Augusto Gómez Ponce · Infectología · Ciudad Juárez</p>
+  </div>
+  <div class="container">
+    <div class="section">
+      <div class="section-title"><span class="emoji">📋</span> Formatos Clínicos</div>
+      <div class="doc-grid">
+        <a class="doc-card" href="https://modassembly.com/show/vISspq" target="_blank"><div class="doc-icon">📝</div><div class="doc-name">Receta Médica</div><div class="doc-desc">Receta media carta con datos del paciente y prescripción</div><span class="doc-badge badge-locked">🔒 Protegido</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/rFS33f" target="_blank"><div class="doc-icon">⚠️</div><div class="doc-name">Receta de Controlados</div><div class="doc-desc">Receta para medicamentos controlados (Fracciones II, III, IV)</div><span class="doc-badge badge-locked">🔒 Protegido</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/cRo946" target="_blank"><div class="doc-icon">📄</div><div class="doc-name">Hoja Membretada</div><div class="doc-desc">Hoja en blanco con membrete oficial del consultorio</div><span class="doc-badge badge-locked">🔒 Protegido</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/8gLRab" target="_blank"><div class="doc-icon">📜</div><div class="doc-name">Constancia Médica</div><div class="doc-desc">Constancia de atención médica para trámites</div><span class="doc-badge badge-locked">🔒 Protegido</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/YjSNw7" target="_blank"><div class="doc-icon">🔬</div><div class="doc-name">Solicitud de Laboratorio</div><div class="doc-desc">Solicitud de estudios con checkboxes por categoría</div><span class="doc-badge badge-locked">🔒 Protegido</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/mv7mUi" target="_blank"><div class="doc-icon">🔄</div><div class="doc-name">Referencia / Contrarreferencia</div><div class="doc-desc">Formato para referir o contrareferir pacientes</div><span class="doc-badge badge-locked">🔒 Protegido</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/eohSOZ" target="_blank"><div class="doc-icon">💉</div><div class="doc-name">Certificado de Vacunación</div><div class="doc-desc">Registro de vacunas aplicadas con tabla de seguimiento</div><span class="doc-badge badge-locked">🔒 Protegido</span></a>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="emoji">🏥</span> Expediente Clínico (NOM-004)</div>
+      <div class="doc-grid">
+        <a class="doc-card" href="https://modassembly.com/show/XnJUMJ" target="_blank"><div class="doc-icon">📖</div><div class="doc-name">Historia Clínica</div><div class="doc-desc">Historia clínica completa conforme a la NOM-004-SSA3-2012</div><span class="doc-badge badge-open">Abierto</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/z77TCt" target="_blank"><div class="doc-icon">🩺</div><div class="doc-name">Nota de Consulta</div><div class="doc-desc">Nota de consulta de especialidad con signos vitales</div><span class="doc-badge badge-open">Abierto</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/7ZjVuv" target="_blank"><div class="doc-icon">✍️</div><div class="doc-name">Consentimiento Informado</div><div class="doc-desc">Carta de consentimiento informado (NOM-004)</div><span class="doc-badge badge-open">Abierto</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/3JOQ68" target="_blank"><div class="doc-icon">💉</div><div class="doc-name">Consentimiento de Vacunación</div><div class="doc-desc">Consentimiento para aplicación de vacunas (NOM-036)</div><span class="doc-badge badge-locked">🔒 Protegido</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/RQD57T" target="_blank"><div class="doc-icon">🔐</div><div class="doc-name">Consentimiento + Privacidad</div><div class="doc-desc">Consentimiento de consulta con aviso de privacidad integrado</div><span class="doc-badge badge-locked">🔒 Protegido</span></a>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="emoji">👨‍👩‍👧‍👦</span> Hojas Informativas para Pacientes</div>
+      <div class="doc-grid">
+        <a class="doc-card" href="https://modassembly.com/show/TJAlIb" target="_blank"><div class="doc-icon">💜</div><div class="doc-name">Vivir con VIH</div><div class="doc-desc">Guía de 5 hojas para persona con diagnóstico reciente (lenguaje IAS)</div><span class="doc-badge badge-info">5 páginas</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/Gf71Xv" target="_blank"><div class="doc-icon">🫁</div><div class="doc-name">Neumonía en Niños</div><div class="doc-desc">Datos de alarma para padres y cuidadores</div><span class="doc-badge badge-info">Informativa</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/evfB1w" target="_blank"><div class="doc-icon">🤢</div><div class="doc-name">Gastroenteritis en Niños</div><div class="doc-desc">Datos de alarma e hidratación oral</div><span class="doc-badge badge-info">Informativa</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/eLrKkL" target="_blank"><div class="doc-icon">🤧</div><div class="doc-name">Sinusitis en Niños</div><div class="doc-desc">Datos de alarma de sinusitis aguda bacteriana</div><span class="doc-badge badge-info">Informativa</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/EV84rH" target="_blank"><div class="doc-icon">👂</div><div class="doc-name">Otitis Media en Niños</div><div class="doc-desc">Datos de alarma de infección de oído</div><span class="doc-badge badge-info">Informativa</span></a>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="emoji">🔬</span> Investigación</div>
+      <div class="doc-grid">
+        <a class="doc-card" href="https://modassembly.com/show/64Ya4W" target="_blank"><div class="doc-icon">📊</div><div class="doc-name">Protocolo Epclusa</div><div class="doc-desc">Protocolo de investigación: Eficacia SOF/VEL en Hepatitis C</div><span class="doc-badge badge-info">Protocolo</span></a>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="emoji">🎨</span> Identidad y Papelería</div>
+      <div class="doc-grid">
+        <a class="doc-card" href="https://modassembly.com/show/Yuz7Me" target="_blank"><div class="doc-icon">💼</div><div class="doc-name">Tarjeta de Presentación</div><div class="doc-desc">Frente y reverso de tarjeta profesional</div><span class="doc-badge badge-open">Abierto</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/8g0kqs" target="_blank"><div class="doc-icon">📅</div><div class="doc-name">Tarjeta de Próxima Cita</div><div class="doc-desc">Tarjeta para recordar la siguiente cita del paciente</div><span class="doc-badge badge-open">Abierto</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/JBiKRQ" target="_blank"><div class="doc-icon">🔏</div><div class="doc-name">Sello Digital</div><div class="doc-desc">Sello profesional con efecto de tinta</div><span class="doc-badge badge-open">Abierto</span></a>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="emoji">📱</span> Marketing y Estrategia</div>
+      <div class="doc-grid">
+        <a class="doc-card" href="https://modassembly.com/show/87HhM8" target="_blank"><div class="doc-icon">📅</div><div class="doc-name">Plan de Contenido Instagram</div><div class="doc-desc">Plan de contenido mayo 2026</div><span class="doc-badge badge-info">Estrategia</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/QXzy5a" target="_blank"><div class="doc-icon">🎬</div><div class="doc-name">Escaletas para Reels</div><div class="doc-desc">Guiones para reels de Instagram - Virology Summit</div><span class="doc-badge badge-info">Estrategia</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/FflYoi" target="_blank"><div class="doc-icon">📈</div><div class="doc-name">Estrategia Google Ads</div><div class="doc-desc">Configuración, keywords y textos de anuncios</div><span class="doc-badge badge-info">Estrategia</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/S9wmMt" target="_blank"><div class="doc-icon">💼</div><div class="doc-name">Guía LinkedIn</div><div class="doc-desc">Guía de optimización del perfil de LinkedIn</div><span class="doc-badge badge-info">Estrategia</span></a>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="emoji">🎮</span> Herramientas Interactivas</div>
+      <div class="doc-grid">
+        <a class="doc-card" href="https://modassembly.com/show/SAlX4y" target="_blank"><div class="doc-icon">🧠</div><div class="doc-name">Quiz Médico (con registro)</div><div class="doc-desc">Quiz interactivo con formulario de registro de pacientes</div><span class="doc-badge badge-info">Interactivo</span></a>
+        <a class="doc-card" href="https://modassembly.com/show/SCyoMF" target="_blank"><div class="doc-icon">🎯</div><div class="doc-name">Quiz Médico (original)</div><div class="doc-desc">Quiz interactivo de conocimientos médicos</div><span class="doc-badge badge-info">Interactivo</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    Dr. Carlos Augusto Gómez Ponce · Infectología · infectologia.org<br>
+    Documentos de uso exclusivo del consultorio · © 2026
+  </div>
+</div>
+</body>
+</html>
