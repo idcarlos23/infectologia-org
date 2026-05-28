@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día Mundial del Cáncer de Sangre</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #1a1a2e;
+  padding: 20px;
+}
+
+.post {
+  width: 1080px;
+  height: 1080px;
+  background: linear-gradient(145deg, #0a0a1a 0%, #1a0a2e 30%, #2d0a3e 60%, #1a0a2e 100%);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+.bg-circle-1 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 30, 60, 0.15) 0%, transparent 70%);
+  top: -150px;
+  right: -150px;
+}
+
+.bg-circle-2 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(180, 40, 80, 0.1) 0%, transparent 70%);
+  bottom: 100px;
+  left: -100px;
+}
+
+.cell {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 50, 70, 0.15);
+}
+.cell-1 { width: 120px; height: 120px; top: 80px; left: 60px; }
+.cell-2 { width: 80px; height: 80px; top: 200px; right: 120px; }
+.cell-3 { width: 60px; height: 60px; bottom: 200px; right: 80px; }
+.cell-4 { width: 100px; height: 100px; bottom: 300px; left: 100px; }
+.cell-inner {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  background: rgba(200, 50, 70, 0.08);
+  top: 30%;
+  left: 30%;
+}
+
+.ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #c81e3c, #e63956, #ff6b6b, #e63956, #c81e3c);
+}
+
+/* Header with logo */
+.header {
+  position: absolute;
+  top: 28px;
+  left: 50px;
+  right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+
+.header-doctor-name {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.header-specialty {
+  color: rgba(255,255,255,0.45);
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.date-badge {
+  background: rgba(200, 30, 60, 0.2);
+  border: 1px solid rgba(200, 30, 60, 0.4);
+  border-radius: 30px;
+  padding: 10px 22px;
+  color: #ff8a9a;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Title */
+.title-area {
+  position: absolute;
+  top: 110px;
+  left: 50px;
+  right: 50px;
+}
+
+.title-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 50px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.title-accent {
+  color: #ff6b6b;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
+}
+
+/* Cancer types */
+.cancer-types {
+  position: absolute;
+  top: 300px;
+  left: 50px;
+  right: 50px;
+  display: flex;
+  gap: 16px;
+}
+
+.cancer-type {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(200, 30, 60, 0.25);
+  border-radius: 16px;
+  padding: 16px 14px;
+  text-align: center;
+}
+
+.cancer-type-icon { font-size: 26px; margin-bottom: 6px; }
+.cancer-type-name { color: #ff8a9a; font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+.cancer-type-desc { color: rgba(255,255,255,0.45); font-size: 11.5px; font-weight: 500; line-height: 1.4; }
+
+/* Content */
+.content-section {
+  position: absolute;
+  top: 448px;
+  left: 50px;
+  right: 50px;
+}
+
+.section-label {
+  color: #ff6b6b;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(200,30,60,0.4), transparent);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.info-card {
+  background: rgba(255,255,255,0.04);
+  border-left: 3px solid #c81e3c;
+  border-radius: 0 12px 12px 0;
+  padding: 14px 16px;
+}
+
+.info-card-title { color: #ffffff; font-size: 14px; font-weight: 700; margin-bottom: 5px; }
+.info-card-text { color: rgba(255,255,255,0.55); font-size: 12.5px; line-height: 1.5; }
+
+/* Prevention */
+.prevention {
+  position: absolute;
+  top: 755px;
+  left: 50px;
+  right: 50px;
+}
+
+.prevention-label {
+  color: #4ade80;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.prevention-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(74,222,128,0.4), transparent);
+}
+
+.prevention-items { display: flex; gap: 12px; }
+
+.prevention-item {
+  flex: 1;
+  background: rgba(74, 222, 128, 0.06);
+  border: 1px solid rgba(74, 222, 128, 0.15);
+  border-radius: 12px;
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.prevention-icon { font-size: 22px; margin-bottom: 5px; }
+.prevention-text { color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 600; line-height: 1.4; }
+
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.35);
+  padding: 16px 50px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.doctor-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.doctor-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+
+.doctor-name { color: #ffffff; font-size: 15px; font-weight: 700; }
+.doctor-specialty { color: rgba(255,255,255,0.45); font-size: 12px; font-weight: 500; }
+
+.doctor-web { color: #ff8a9a; font-size: 14px; font-weight: 600; }
+
+.footer-credentials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.credential {
+  color: rgba(255,255,255,0.35);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.credential-label {
+  color: rgba(255,255,255,0.5);
+  font-weight: 700;
+}
+</style>
+</head>
+<body>
+<div class="post">
+  <div class="bg-circle-1"></div>
+  <div class="bg-circle-2"></div>
+  
+  <div class="cell cell-1"><div class="cell-inner"></div></div>
+  <div class="cell cell-2"><div class="cell-inner"></div></div>
+  <div class="cell cell-3"><div class="cell-inner"></div></div>
+  <div class="cell cell-4"><div class="cell-inner"></div></div>
+  
+  <div class="ribbon"></div>
+  
+  <!-- Header with logo -->
+  <div class="header">
+    <div class="header-left">
+      <img src="https://infectologia.org/images/logo-icono.jpg" alt="Logo" class="header-logo">
+      <div>
+        <div class="header-doctor-name">Dr. Carlos Gómez Ponce</div>
+        <div class="header-specialty">Infectólogo · Cd. Juárez</div>
+      </div>
+    </div>
+    <div class="date-badge">📅 28 de mayo</div>
+  </div>
+  
+  <div class="title-area">
+    <div class="title-main">
+      Cáncer de <span class="title-accent">Sangre</span><br>
+      e Infecciones
+    </div>
+    <div class="subtitle">Lo que debes saber desde la infectología</div>
+  </div>
+  
+  <div class="cancer-types">
+    <div class="cancer-type">
+      <div class="cancer-type-icon">🔴</div>
+      <div class="cancer-type-name">Leucemia</div>
+      <div class="cancer-type-desc">Afecta glóbulos blancos y debilita la defensa</div>
+    </div>
+    <div class="cancer-type">
+      <div class="cancer-type-icon">🟣</div>
+      <div class="cancer-type-name">Linfoma</div>
+      <div class="cancer-type-desc">Ataca el sistema linfático e inmunológico</div>
+    </div>
+    <div class="cancer-type">
+      <div class="cancer-type-icon">🔵</div>
+      <div class="cancer-type-name">Mieloma</div>
+      <div class="cancer-type-desc">Daña células plasmáticas y anticuerpos</div>
+    </div>
+  </div>
+  
+  <div class="content-section">
+    <div class="section-label">🔬 ¿Por qué importan las infecciones?</div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-title">Sistema inmune comprometido</div>
+        <div class="info-card-text">La enfermedad y la quimioterapia reducen los glóbulos blancos, dejando al cuerpo vulnerable a bacterias, virus y hongos.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Infecciones oportunistas</div>
+        <div class="info-card-text">Hongos como Aspergillus, virus como herpes zóster y bacterias resistentes pueden causar complicaciones graves.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Primera causa de complicación</div>
+        <div class="info-card-text">Las infecciones son la principal causa de hospitalización y mortalidad en pacientes con cáncer hematológico.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">El infectólogo es clave</div>
+        <div class="info-card-text">El manejo conjunto con un infectólogo permite prevenir, detectar y tratar infecciones de forma oportuna.</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="prevention">
+    <div class="prevention-label">🛡️ Prevención</div>
+    <div class="prevention-items">
+      <div class="prevention-item">
+        <div class="prevention-icon">💉</div>
+        <div class="prevention-text">Vacunación<br>oportuna</div>
+      </div>
+      <div class="prevention-item">
+        <div class="prevention-icon">💊</div>
+        <div class="prevention-text">Profilaxis<br>antimicrobiana</div>
+      </div>
+      <div class="prevention-item">
+        <div class="prevention-icon">🧼</div>
+        <div class="prevention-text">Higiene<br>rigurosa</div>
+      </div>
+      <div class="prevention-item">
+        <div class="prevention-icon">🩺</div>
+        <div class="prevention-text">Seguimiento<br>con infectólogo</div>
+      </div>
+      <div class="prevention-item">
+        <div class="prevention-icon">⚠️</div>
+        <div class="prevention-text">Atención<br>ante fiebre</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer with logo, credentials -->
+  <div class="footer">
+    <div class="footer-top">
+      <div class="doctor-info">
+        <img src="https://infectologia.org/images/logo-icono.jpg" alt="Logo" class="doctor-logo">
+        <div>
+          <div class="doctor-name">Dr. Carlos Augusto Gómez Ponce</div>
+          <div class="doctor-specialty">Especialista en Enfermedades Infecciosas — Adultos y Niños</div>
+        </div>
+      </div>
+      <div class="doctor-web">infectologia.org</div>
+    </div>
+    <div class="footer-credentials">
+      <div class="credential"><span class="credential-label">Céd. Prof.</span> 7238054</div>
+      <div class="credential"><span class="credential-label">Céd. Esp.</span> 9507713</div>
+      <div class="credential"><span class="credential-label">Céd. Subesp.</span> 10407013</div>
+      <div class="credential"><span class="credential-label">COFEPRIS</span> 2408022002A00066</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
