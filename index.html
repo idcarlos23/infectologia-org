@@ -12,30 +12,38 @@
 <!-- Google Ads Conversion Tracking & Enhanced Analytics -->
 <script>
 (function(){
+  // Detect Google Ads traffic via URL parameters
   var params = new URLSearchParams(window.location.search);
   var isAdsTraffic = params.has('gclid') || params.get('utm_source') === 'google' || params.get('utm_medium') === 'cpc';
+  
+  // Store ads traffic flag for session
   if(isAdsTraffic) sessionStorage.setItem('gads_visitor','1');
   var isAdsVisitor = isAdsTraffic || sessionStorage.getItem('gads_visitor') === '1';
 
+  // Show sticky CTA bar for Google Ads visitors
   if(isAdsVisitor){
     document.addEventListener('DOMContentLoaded', function(){
       var bar = document.createElement('div');
       bar.id = 'ads-cta-bar';
       bar.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">' +
-        '<span style="font-size:15px">\ud83e\ude7a <strong>Dr. Carlos G\u00f3mez Ponce</strong> \u00b7 Infect\u00f3logo Cd. Ju\u00e1rez \u00b7 Consulta L-V 3-5 PM</span>' +
-        '<a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20encontr%C3%A9%20su%20sitio%20en%20Google%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita" target="_blank" onclick="trackConversion(\u0027whatsapp_click\u0027,\u0027ads_bar\u0027)" style="background:#25D366;color:white;padding:8px 18px;border-radius:25px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap">\ud83d\udcac Agendar por WhatsApp</a>' +
-        '<a href="tel:+526566907705" onclick="trackConversion(\u0027phone_click\u0027,\u0027ads_bar\u0027)" style="background:white;color:#175580;padding:8px 18px;border-radius:25px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap">\ud83d\udcde Llamar ahora</a>' +
-        '<button onclick="this.parentElement.parentElement.style.display=\u0027none\u0027" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;padding:0 4px;line-height:1">\u2715</button>' +
+        '<span style="font-size:15px">🩺 <strong>Dr. Carlos Gómez Ponce</strong> · Infectólogo Cd. Juárez · Consulta L-V 3-5 PM</span>' +
+        '<a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20encontr%C3%A9%20su%20sitio%20en%20Google%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita" target="_blank" onclick="trackConversion(\'whatsapp_click\',\'ads_bar\')" style="background:#25D366;color:white;padding:8px 18px;border-radius:25px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap">💬 Agendar por WhatsApp</a>' +
+        '<a href="tel:+526566907705" onclick="trackConversion(\'phone_click\',\'ads_bar\')" style="background:white;color:#175580;padding:8px 18px;border-radius:25px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap">📞 Llamar ahora</a>' +
+        '<button onclick="this.parentElement.parentElement.style.display=\'none\'" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;padding:0 4px;line-height:1">✕</button>' +
         '</div>';
       bar.style.cssText = 'position:fixed;top:0;left:0;right:0;background:linear-gradient(135deg,#175580,#1a6b9c);color:white;padding:10px 16px;z-index:10000;box-shadow:0 2px 10px rgba(0,0,0,0.3);font-family:Montserrat,sans-serif;animation:slideDown 0.5s ease';
       document.body.prepend(bar);
+      
+      // Add animation
       var style = document.createElement('style');
       style.textContent = '@keyframes slideDown{from{transform:translateY(-100%)}to{transform:translateY(0)}} #ads-cta-bar a:hover{transform:scale(1.05);transition:transform 0.2s}';
       document.head.appendChild(style);
     });
   }
 
+  // Universal conversion tracking function
   window.trackConversion = function(action, label){
+    // Google Analytics 4 event
     if(typeof gtag !== 'undefined'){
       gtag('event', action, {
         'event_category': 'conversion',
@@ -45,7 +53,9 @@
     }
   };
 
+  // Auto-attach tracking to all WhatsApp links, phone links, and CTAs
   document.addEventListener('DOMContentLoaded', function(){
+    // Track WhatsApp clicks
     document.querySelectorAll('a[href*="wa.me"]').forEach(function(link){
       link.addEventListener('click', function(){
         var section = this.closest('section') || this.closest('.page');
@@ -54,22 +64,30 @@
         trackConversion('whatsapp_click', label);
       });
     });
+
+    // Track phone clicks
     document.querySelectorAll('a[href^="tel:"]').forEach(function(link){
       link.addEventListener('click', function(){
         trackConversion('phone_click', this.href);
       });
     });
+
+    // Track Hulivida (online booking) clicks
     document.querySelectorAll('a[href*="hulivida"]').forEach(function(link){
       link.addEventListener('click', function(){
         trackConversion('booking_click', 'hulivida');
       });
     });
+
+    // Track contact form submissions
     var contactForm = document.querySelector('.contact-form');
     if(contactForm){
       contactForm.addEventListener('submit', function(){
         trackConversion('form_submit', 'contact_form');
       });
     }
+
+    // Track page navigation (which services users view)
     document.querySelectorAll('[data-page]').forEach(function(el){
       el.addEventListener('click', function(){
         if(typeof gtag !== 'undefined'){
@@ -109,7 +127,7 @@
       "telephone": ["+526566907705", "+526566662046"],
       "email": "info@infectologia.org",
       "medicalSpecialty": "Infectología",
-      "image": "https://infectologia.org",
+      "image": "https://infectologia.org/img/dr-gomez-ponce.jpg",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Av. Francisco Villarreal Torres No. 2050, Plaza Sendero",
@@ -450,7 +468,7 @@
     <section>
         <div class="container">
             <div class="about">
-                <img src="https://storage.googleapis.com/claude-ai-attachments-modassembly/73a8737d-9075-468c-9f88-71f2c6b361e4/attachments/attachments/photo_fixed.jpg" alt="Dr. Carlos Augusto Gómez Ponce - Infectólogo Ciudad Juárez">
+                <img src="img/dr-gomez-ponce.jpg" alt="Dr. Carlos Augusto Gómez Ponce - Infectólogo Ciudad Juárez">
                 <div>
                     <h2>Dr. Carlos Augusto Gómez Ponce</h2>
                     <h3>Especialista en Enfermedades Infecciosas</h3>
