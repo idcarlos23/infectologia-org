@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InfectoGuía — Referencia Clínica</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a56db;
+  --primary-light: #e8effd;
+  --primary-dark: #1040a0;
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --border: #e5e7eb;
+  --hiv: #dc2626;
+  --hiv-light: #fef2f2;
+  --hep: #059669;
+  --hep-light: #ecfdf5;
+  --tb: #d97706;
+  --tb-light: #fffbeb;
+  --ai: #7c3aed;
+  --ai-light: #f5f3ff;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,.1);
+  --radius: 12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
+/* NAV */
+.topbar { background:#fff; border-bottom:1px solid var(--border); padding:0 24px; height:56px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+.topbar .logo { font-weight:700; font-size:20px; color:var(--primary); display:flex; align-items:center; gap:8px; }
+.topbar .logo span { font-size:22px; }
+.topbar nav { display:flex; gap:4px; }
+.topbar nav { gap:6px; }
+.topbar nav button { background:none; border:2px solid transparent; padding:10px 18px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; color:var(--text-light); transition:.2s; font-family:inherit; -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+.topbar nav button:hover { background:var(--bg); color:var(--text); }
+.topbar nav button.active { background:var(--primary-light); color:var(--primary); border-color:var(--primary); }
+
+/* LAYOUT */
+.container { max-width:1200px; margin:0 auto; padding:24px; }
+
+/* HOME */
+.hero { text-align:center; padding:48px 0 32px; }
+.hero h1 { font-size:32px; font-weight:700; margin-bottom:8px; }
+.hero p { color:var(--text-light); font-size:16px; max-width:600px; margin:0 auto; }
+
+.disease-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:20px; margin-top:32px; }
+.disease-card { background:var(--card); border-radius:var(--radius); padding:24px; cursor:pointer; border:2px solid var(--border); transition:.2s; }
+.disease-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-lg); }
+.disease-card.hiv { border-color:var(--hiv); }
+.disease-card.hiv:hover { background:var(--hiv-light); }
+.disease-card.hep { border-color:var(--hep); }
+.disease-card.hep:hover { background:var(--hep-light); }
+.disease-card.tb { border-color:var(--tb); }
+.disease-card.tb:hover { background:var(--tb-light); }
+.disease-card h2 { font-size:20px; margin-bottom:4px; }
+.disease-card .subtitle { color:var(--text-light); font-size:14px; margin-bottom:16px; }
+.disease-card .sources { display:flex; flex-wrap:wrap; gap:6px; }
+.disease-card .source-tag { font-size:11px; padding:3px 8px; border-radius:20px; font-weight:500; }
+.hiv .source-tag { background:var(--hiv-light); color:var(--hiv); }
+.hep .source-tag { background:var(--hep-light); color:var(--hep); }
+.tb .source-tag { background:var(--tb-light); color:var(--tb); }
+
+/* SECTION VIEW */
+.section-view { display:none; }
+.section-view.active { display:block; }
+.back-btn { display:inline-flex; align-items:center; gap:6px; color:var(--primary); font-weight:500; cursor:pointer; margin-bottom:20px; font-size:14px; background:none; border:none; font-family:inherit; }
+.back-btn:hover { text-decoration:underline; }
+
+.section-header { margin-bottom:24px; }
+.section-header h1 { font-size:28px; display:flex; align-items:center; gap:10px; }
+.section-header .badge { font-size:12px; padding:4px 10px; border-radius:20px; font-weight:600; }
+.badge-hiv { background:var(--hiv-light); color:var(--hiv); }
+.badge-hep { background:var(--hep-light); color:var(--hep); }
+.badge-tb { background:var(--tb-light); color:var(--tb); }
+
+.topics-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:16px; }
+.topic-card { background:var(--card); border-radius:var(--radius); padding:20px; border:1px solid var(--border); cursor:pointer; transition:.2s; }
+.topic-card:hover { box-shadow:var(--shadow-lg); border-color:var(--primary); }
+.topic-card h3 { font-size:16px; margin-bottom:6px; }
+.topic-card p { font-size:13px; color:var(--text-light); line-height:1.5; }
+.topic-card .guide-sources { margin-top:10px; display:flex; gap:4px; flex-wrap:wrap; }
+.topic-card .gs { font-size:10px; padding:2px 6px; border-radius:10px; background:var(--bg); color:var(--text-light); }
+
+/* CONTENT VIEW */
+.content-view { display:none; }
+.content-view.active { display:block; }
+.content-panel { background:var(--card); border-radius:var(--radius); padding:28px; border:1px solid var(--border); margin-bottom:20px; }
+.content-panel h2 { font-size:20px; margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid var(--bg); }
+.content-panel h3 { font-size:16px; margin:16px 0 8px; color:var(--primary-dark); }
+.content-panel p, .content-panel li { font-size:14px; line-height:1.7; color:#374151; }
+.content-panel ul, .content-panel ol { padding-left:20px; margin:8px 0; }
+.content-panel li { margin-bottom:4px; }
+.content-panel table { width:100%; border-collapse:collapse; margin:12px 0; font-size:13px; }
+.content-panel th { background:var(--bg); padding:10px 12px; text-align:left; font-weight:600; border:1px solid var(--border); }
+.content-panel td { padding:8px 12px; border:1px solid var(--border); }
+.content-panel tr:hover td { background:#f9fafb; }
+.source-label { display:inline-block; font-size:11px; padding:2px 8px; border-radius:10px; font-weight:600; margin:2px; }
+.src-dhhs { background:#dbeafe; color:#1e40af; }
+.src-eacs { background:#fce7f3; color:#9d174d; }
+.src-oms { background:#d1fae5; color:#065f46; }
+.src-mex { background:#fef3c7; color:#92400e; }
+.src-aasld { background:#e0e7ff; color:#3730a3; }
+.src-easl { background:#fce7f3; color:#9d174d; }
+.src-who { background:#d1fae5; color:#065f46; }
+
+.highlight-box { background:#eff6ff; border-left:4px solid var(--primary); padding:14px 18px; border-radius:0 8px 8px 0; margin:14px 0; font-size:14px; }
+.warning-box { background:#fef3c7; border-left:4px solid #d97706; padding:14px 18px; border-radius:0 8px 8px 0; margin:14px 0; font-size:14px; }
+
+/* TABS within content */
+.guide-tabs { display:flex; gap:4px; margin-bottom:16px; flex-wrap:wrap; }
+.guide-tab { padding:6px 14px; border-radius:20px; font-size:13px; font-weight:500; cursor:pointer; border:1px solid var(--border); background:#fff; transition:.2s; font-family:inherit; }
+.guide-tab:hover { background:var(--bg); }
+.guide-tab.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+
+/* AI CHAT */
+.chat-section { display:none; }
+.chat-section.active { display:flex; flex-direction:column; min-height:60vh; max-height:calc(100vh - 100px); }
+.chat-header { padding:16px 0; }
+.chat-header h1 { font-size:24px; display:flex; align-items:center; gap:10px; }
+.chat-header p { color:var(--text-light); font-size:14px; margin-top:4px; }
+.chat-messages { flex:1; overflow-y:auto; padding:16px 0; display:flex; flex-direction:column; gap:16px; }
+.chat-msg { max-width:85%; padding:14px 18px; border-radius:16px; font-size:14px; line-height:1.6; }
+.chat-msg.user { background:var(--primary); color:#fff; align-self:flex-end; border-bottom-right-radius:4px; }
+.chat-msg.ai { background:var(--card); border:1px solid var(--border); align-self:flex-start; border-bottom-left-radius:4px; }
+.chat-msg.ai table { width:100%; border-collapse:collapse; margin:10px 0; font-size:13px; }
+.chat-msg.ai th { background:var(--bg); padding:8px; text-align:left; border:1px solid var(--border); font-weight:600; }
+.chat-msg.ai td { padding:6px 8px; border:1px solid var(--border); }
+.chat-msg.ai h3, .chat-msg.ai h4 { margin:10px 0 6px; }
+.chat-msg.ai ul, .chat-msg.ai ol { padding-left:18px; margin:6px 0; }
+.chat-msg.ai li { margin-bottom:3px; }
+.chat-msg.ai code { background:var(--bg); padding:1px 5px; border-radius:4px; font-size:13px; }
+.chat-msg.ai .source-ref { display:inline-block; font-size:11px; padding:2px 8px; border-radius:10px; font-weight:600; margin:2px; background:var(--ai-light); color:var(--ai); }
+.chat-msg.system { background:var(--ai-light); color:var(--ai); align-self:center; font-size:13px; border-radius:20px; padding:8px 16px; text-align:center; }
+.chat-input-area { padding:16px 0; border-top:1px solid var(--border); display:flex; gap:10px; }
+.chat-input-area input { flex:1; padding:12px 18px; border:2px solid var(--border); border-radius:25px; font-size:14px; font-family:inherit; outline:none; transition:.2s; }
+.chat-input-area input:focus { border-color:var(--primary); }
+.chat-input-area button { background:var(--primary); color:#fff; border:none; width:44px; height:44px; border-radius:50%; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; transition:.2s; }
+.chat-input-area button:hover { background:var(--primary-dark); }
+.chat-input-area button:disabled { background:var(--border); cursor:not-allowed; }
+.typing-indicator { display:flex; gap:4px; padding:4px; }
+.typing-indicator span { width:8px; height:8px; background:var(--text-light); border-radius:50%; animation:bounce .6s infinite alternate; }
+.typing-indicator span:nth-child(2) { animation-delay:.2s; }
+.typing-indicator span:nth-child(3) { animation-delay:.4s; }
+@keyframes bounce { to { opacity:.3; transform:translateY(-4px); } }
+
+.examples-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:10px; margin-top:16px; }
+.example-btn { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 16px; text-align:left; cursor:pointer; font-size:13px; color:var(--text); font-family:inherit; transition:.2s; line-height:1.4; }
+.example-btn:hover { border-color:var(--primary); background:var(--primary-light); }
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+  .topbar { padding:0 12px; }
+  .topbar nav button { padding:6px 10px; font-size:12px; }
+  .container { padding:16px; }
+  .hero h1 { font-size:24px; }
+  .disease-cards { grid-template-columns:1fr; }
+  .chat-msg { max-width:95%; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo"><span>🦠</span> InfectoGuía</div>
+  <nav>
+    <button id="nav-guias" class="active" onclick="showHome()">📚 Guías</button>
+    <button id="nav-chat" onclick="showChat()">🤖 Asistente IA</button>
+  </nav>
+</div>
+
+<div class="container">
+
+  <!-- HOME -->
+  <div id="home" class="section-view active">
+    <div class="hero">
+      <h1>Guías de Práctica Clínica</h1>
+      <p>Referencia rápida basada en guías internacionales y nacionales. Selecciona una categoría.</p>
+    </div>
+    <div class="disease-cards">
+      <div class="disease-card hiv" onclick="showSection('hiv')">
+        <h2>🔴 VIH/SIDA</h2>
+        <p class="subtitle">Tratamiento antirretroviral, profilaxis, monitoreo</p>
+        <div class="sources">
+          <span class="source-tag">DHHS 2025</span>
+          <span class="source-tag">EACS 2024</span>
+          <span class="source-tag">OMS 2021</span>
+          <span class="source-tag">GPC México</span>
+        </div>
+      </div>
+      <div class="disease-card hep" onclick="showSection('hep')">
+        <h2>🟢 Hepatitis B y C</h2>
+        <p class="subtitle">Antivirales de acción directa, manejo crónico</p>
+        <div class="sources">
+          <span class="source-tag">AASLD 2024</span>
+          <span class="source-tag">EASL 2023</span>
+          <span class="source-tag">OMS 2024</span>
+          <span class="source-tag">GPC México</span>
+        </div>
+      </div>
+      <div class="disease-card tb" onclick="showSection('tb')">
+        <h2>🟡 Tuberculosis</h2>
+        <p class="subtitle">Esquemas, TB-DR, coinfección VIH</p>
+        <div class="sources">
+          <span class="source-tag">OMS 2022</span>
+          <span class="source-tag">ATS/IDSA 2022</span>
+          <span class="source-tag">NOM México</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION VIEWS -->
+  <div id="section-hiv" class="section-view">
+    <button class="back-btn" onclick="showHome()">← Regresar</button>
+    <div class="section-header">
+      <h1>🔴 VIH/SIDA <span class="badge badge-hiv">4 guías</span></h1>
+    </div>
+    <div class="topics-grid" id="hiv-topics"></div>
+  </div>
+
+  <div id="section-hep" class="section-view">
+    <button class="back-btn" onclick="showHome()">← Regresar</button>
+    <div class="section-header">
+      <h1>🟢 Hepatitis B y C <span class="badge badge-hep">4 guías</span></h1>
+    </div>
+    <div class="topics-grid" id="hep-topics"></div>
+  </div>
+
+  <div id="section-tb" class="section-view">
+    <button class="back-btn" onclick="showHome()">← Regresar</button>
+    <div class="section-header">
+      <h1>🟡 Tuberculosis <span class="badge badge-tb">3 guías</span></h1>
+    </div>
+    <div class="topics-grid" id="tb-topics"></div>
+  </div>
+
+  <!-- CONTENT VIEW -->
+  <div id="content-view" class="content-view"></div>
+
+  <!-- AI CHAT -->
+  <div id="chat-section" class="chat-section">
+    <div class="chat-header">
+      <button class="back-btn" onclick="showHome()">← Regresar a Guías</button>
+      <h1>🤖 Asistente de Guías Clínicas</h1>
+      <p>Pregunta sobre VIH, Hepatitis o TB. Responde basado en DHHS, EACS, OMS, AASLD, EASL y guías mexicanas.</p>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-msg system">Haz una pregunta sobre guías de VIH, Hepatitis o Tuberculosis</div>
+      <div class="examples-grid">
+        <button class="example-btn" onclick="askExample(this)">¿Cuál es el esquema ARV de inicio recomendado por DHHS para un paciente naïve?</button>
+        <button class="example-btn" onclick="askExample(this)">Compara el tratamiento de Hepatitis C entre AASLD y EASL para genotipo 1a</button>
+        <button class="example-btn" onclick="askExample(this)">¿Qué dice la OMS sobre el esquema de TB en pacientes coinfectados con VIH?</button>
+        <button class="example-btn" onclick="askExample(this)">¿Cuándo inicio profilaxis para PCP según DHHS y cuándo la suspendo?</button>
+        <button class="example-btn" onclick="askExample(this)">Interacciones de rifampicina con antirretrovirales</button>
+        <button class="example-btn" onclick="askExample(this)">Esquema de tratamiento de Hepatitis B según AASLD en paciente coinfectado con VIH</button>
+      </div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Escribe tu pregunta clínica..." onkeydown="if(event.key==='Enter')sendChat()">
+      <button onclick="sendChat()" id="send-btn">➤</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ===== GUIDELINE DATA =====
+const DATA = {
+  hiv: {
+    topics: [
+      {
+        id: "hiv-inicio",
+        title: "Inicio de TAR",
+        desc: "Cuándo y con qué iniciar tratamiento antirretroviral en adultos naïve",
+        sources: ["DHHS","EACS","OMS","México"],
+        content: `
+<h2>Inicio de Tratamiento Antirretroviral (TAR)</h2>
+
+<div class="highlight-box">
+<strong>Consenso universal:</strong> Todas las guías recomiendan inicio de TAR en TODOS los pacientes con VIH, independientemente del conteo de CD4, lo antes posible tras el diagnóstico.
+</div>
+
+<h3>Esquemas recomendados de inicio</h3>
+<table>
+<tr><th>Guía</th><th>Esquema preferido</th><th>Alternativas</th></tr>
+<tr>
+  <td><span class="source-label src-dhhs">DHHS 2025</span></td>
+  <td><strong>BIC/TAF/FTC</strong> (Biktarvy)<br><strong>DTG + TAF/FTC</strong><br><strong>DTG/3TC</strong> (si HBV neg, CV &lt;500,000, sin resistencia)</td>
+  <td>DOR/TDF/3TC<br>DTG + TDF/FTC<br>CAB + RPV (IM, con restricciones)</td>
+</tr>
+<tr>
+  <td><span class="source-label src-eacs">EACS 2024</span></td>
+  <td><strong>BIC/TAF/FTC</strong><br><strong>DTG/3TC</strong> (si HBV neg, CV &lt;500,000)<br><strong>DTG + TAF/FTC</strong></td>
+  <td>DOR/TDF/3TC<br>RAL + TAF/FTC</td>
+</tr>
+<tr>
+  <td><span class="source-label src-oms">OMS 2021</span></td>
+  <td><strong>DTG + TDF/3TC</strong> (primera línea para todos)</td>
+  <td>DTG + TAF/FTC<br>EFV 400 + TDF/3TC (si DTG no disponible)</td>
+</tr>
+<tr>
+  <td><span class="source-label src-mex">México GPC</span></td>
+  <td><strong>DTG + TDF/FTC</strong><br><strong>BIC/TAF/FTC</strong></td>
+  <td>EFV + TDF/FTC<br>ATV/r + TDF/FTC</td>
+</tr>
+</table>
+
+<h3>Inicio rápido (Same-day / Rapid Start)</h3>
+<table>
+<tr><th>Guía</th><th>Recomendación</th></tr>
+<tr><td><span class="source-label src-dhhs">DHHS</span></td><td>Recomienda inicio inmediato (mismo día del diagnóstico) si es posible. Antes de resultados de labs si CD4/CV no disponibles inmediatamente. <strong>Excepto:</strong> sospecha de OI que requiera tratamiento primero (meningitis criptocócica, TB meníngea).</td></tr>
+<tr><td><span class="source-label src-eacs">EACS</span></td><td>Favorece inicio rápido. Puede iniciarse antes de resultados de resistencia en la mayoría de pacientes.</td></tr>
+<tr><td><span class="source-label src-oms">OMS</span></td><td>Recomienda inicio en los primeros 7 días tras diagnóstico. Mismo día si el paciente está listo.</td></tr>
+</table>
+
+<div class="warning-box">
+<strong>⚠️ Precauciones antes de iniciar:</strong><br>
+• Descartar TB activa (todas las guías)<br>
+• Antígeno criptocócico si CD4 &lt;100 (OMS, DHHS)<br>
+• HLA-B*5701 antes de abacavir (DHHS, EACS)<br>
+• HBsAg (todas las guías — para selección de backbone)<br>
+• Genotipo de resistencia basal (DHHS, EACS — no retrasar inicio)
+</div>
+`
+      },
+      {
+        id: "hiv-monitoreo",
+        title: "Monitoreo del paciente con VIH",
+        desc: "Labs basales, seguimiento de CV y CD4, vigilancia de efectos adversos",
+        sources: ["DHHS","EACS","OMS"],
+        content: `
+<h2>Monitoreo del paciente con VIH</h2>
+
+<h3>Estudios basales (al diagnóstico)</h3>
+<table>
+<tr><th>Estudio</th><th>DHHS</th><th>EACS</th><th>OMS</th></tr>
+<tr><td>Carga viral VIH</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>CD4</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>Genotipo resistencia</td><td>✅</td><td>✅</td><td>No rutinario</td></tr>
+<tr><td>BH, QS, PFH</td><td>✅</td><td>✅</td><td>Según disponibilidad</td></tr>
+<tr><td>HBsAg, Anti-HCV</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>HLA-B*5701</td><td>Si se considera ABC</td><td>Si se considera ABC</td><td>No</td></tr>
+<tr><td>Lípidos</td><td>✅</td><td>✅</td><td>No rutinario</td></tr>
+<tr><td>EGO</td><td>✅</td><td>✅</td><td>No rutinario</td></tr>
+<tr><td>PPD/IGRA</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>VDRL/RPR</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>Toxoplasma IgG</td><td>✅ si CD4 &lt;100</td><td>✅</td><td>Según contexto</td></tr>
+<tr><td>Antígeno criptocócico</td><td>Si CD4 &lt;100</td><td>Si CD4 &lt;100</td><td>✅ si CD4 &lt;100</td></tr>
+</table>
+
+<h3>Seguimiento después de inicio de TAR</h3>
+<table>
+<tr><th>Parámetro</th><th>Frecuencia DHHS</th><th>Frecuencia EACS</th></tr>
+<tr><td>Carga viral</td><td>2-4 sem post-inicio, luego cada 4-8 sem hasta indetectable, después cada 3-6 meses</td><td>1 mes, 3 meses, luego cada 6 meses si estable</td></tr>
+<tr><td>CD4</td><td>Cada 3-6 meses × 2 años, luego anual si &gt;300 y suprimido</td><td>Cada 6 meses hasta estable, luego anual</td></tr>
+<tr><td>Función renal</td><td>Cada 6-12 meses (más frecuente con TDF)</td><td>Cada 3-6 meses con TDF, anual con TAF</td></tr>
+<tr><td>Lípidos</td><td>Anual</td><td>Anual</td></tr>
+</table>
+
+<div class="highlight-box">
+<strong>Meta de CV:</strong> Indetectable (&lt;50 copias/mL) a las 24 semanas de inicio. Si no se logra, evaluar adherencia y resistencia.
+</div>
+`
+      },
+      {
+        id: "hiv-oi",
+        title: "Profilaxis de infecciones oportunistas",
+        desc: "PCP, toxoplasmosis, MAC, criptococo — inicio y suspensión",
+        sources: ["DHHS","EACS","OMS"],
+        content: `
+<h2>Profilaxis de Infecciones Oportunistas</h2>
+
+<h3>Profilaxis primaria</h3>
+<table>
+<tr><th>Infección</th><th>Indicación</th><th>Esquema preferido</th><th>Suspender cuando</th></tr>
+<tr>
+  <td><strong>PCP</strong><br>(P. jirovecii)</td>
+  <td>CD4 &lt;200 o candidiasis orofaríngea o CD4 &lt;14%</td>
+  <td>TMP-SMX 160/800 mg diario<br><em>Alt: Dapsona 100mg/día, Atovacuona 1500mg/día, Pentamidina inhalada 300mg/mes</em></td>
+  <td>CD4 &gt;200 por &gt;3 meses con TAR</td>
+</tr>
+<tr>
+  <td><strong>Toxoplasmosis</strong></td>
+  <td>CD4 &lt;100 + IgG Toxo positiva</td>
+  <td>TMP-SMX 160/800 mg diario (cubre PCP también)<br><em>Alt: Dapsona 50mg + Pirimetamina 50mg/sem + Leucovorin</em></td>
+  <td>CD4 &gt;200 por &gt;3 meses con TAR</td>
+</tr>
+<tr>
+  <td><strong>MAC</strong><br>(M. avium)</td>
+  <td>CD4 &lt;50</td>
+  <td>Azitromicina 1200mg/semana<br><em>Alt: Claritromicina 500mg BID</em></td>
+  <td>CD4 &gt;100 por &gt;3 meses con TAR</td>
+</tr>
+<tr>
+  <td><strong>Criptococo</strong></td>
+  <td>Antígeno CrAg+ (sin meningitis activa)</td>
+  <td>Fluconazol 800mg/día × 2 sem, luego 400mg/día × 8 sem, luego 200mg/día</td>
+  <td>CD4 &gt;100 por &gt;12 meses, CV indetectable, completó tratamiento</td>
+</tr>
+</table>
+
+<h3>Profilaxis secundaria (post-tratamiento)</h3>
+<table>
+<tr><th>Infección</th><th>Esquema</th><th>Suspender</th></tr>
+<tr><td>PCP</td><td>TMP-SMX 160/800 diario</td><td>CD4 &gt;200 × 3 meses</td></tr>
+<tr><td>Toxoplasmosis</td><td>Sulfadiazina + Pirimetamina + Leucovorin</td><td>CD4 &gt;200 × 6 meses</td></tr>
+<tr><td>MAC</td><td>Azitromicina 600mg/día + Etambutol</td><td>CD4 &gt;100 × 6 meses + ≥12 meses tratamiento</td></tr>
+<tr><td>Criptococo</td><td>Fluconazol 200mg/día</td><td>CD4 &gt;100 × 12 meses + CV indetectable</td></tr>
+<tr><td>CMV</td><td>Valganciclovir 900mg/día</td><td>CD4 &gt;100 × 3-6 meses + sin lesión activa</td></tr>
+</table>
+
+<div class="warning-box">
+<strong>⚠️ OMS en contexto de recursos limitados:</strong> La profilaxis con TMP-SMX se recomienda para TODOS los pacientes con CD4 &lt;350 o estadio clínico 3-4, y puede mantenerse indefinidamente en áreas con alta prevalencia de malaria o infecciones bacterianas.
+</div>
+`
+      },
+      {
+        id: "hiv-resistencia",
+        title: "Falla virológica y resistencia",
+        desc: "Definición de falla, cuándo cambiar, esquemas de rescate",
+        sources: ["DHHS","EACS","OMS"],
+        content: `
+<h2>Falla Virológica y Cambio de TAR</h2>
+
+<h3>Definiciones</h3>
+<table>
+<tr><th>Guía</th><th>Falla virológica</th></tr>
+<tr><td><span class="source-label src-dhhs">DHHS</span></td><td>CV confirmada &gt;200 copias/mL después de 24 semanas de TAR, o rebote confirmado después de supresión</td></tr>
+<tr><td><span class="source-label src-eacs">EACS</span></td><td>CV &gt;50 copias/mL confirmada en 2 mediciones con 2-4 semanas de diferencia después de ≥6 meses de TAR</td></tr>
+<tr><td><span class="source-label src-oms">OMS</span></td><td>CV &gt;1000 copias/mL en 2 mediciones consecutivas con 3 meses de diferencia, con apoyo de adherencia entre mediciones</td></tr>
+</table>
+
+<div class="highlight-box">
+<strong>Antes de declarar falla:</strong> Siempre evaluar adherencia, interacciones farmacológicas, y tolerabilidad del esquema actual.
+</div>
+
+<h3>Esquemas de segunda línea</h3>
+<table>
+<tr><th>Guía</th><th>Falla a DTG + 2 ITIAN</th><th>Falla a INNTI + 2 ITIAN</th></tr>
+<tr><td><span class="source-label src-dhhs">DHHS</span></td><td>Basado en genotipo de resistencia. Considerar DRV/r + backbone optimizado ± INSTI si no hay resistencia a INSTI</td><td>DTG + backbone optimizado (cambiar ITIAN según resistencia)</td></tr>
+<tr><td><span class="source-label src-oms">OMS</span></td><td>DRV/r + 2 ITIAN (optimizados) ± INSTI de segunda gen</td><td>DTG + 2 ITIAN (AZT/3TC si falla a TDF)</td></tr>
+</table>
+`
+      },
+      {
+        id: "hiv-embarazo",
+        title: "VIH en embarazo",
+        desc: "TAR en embarazo, prevención de transmisión vertical",
+        sources: ["DHHS","OMS","México"],
+        content: `
+<h2>VIH en Embarazo</h2>
+
+<h3>Principios generales</h3>
+<div class="highlight-box">
+Todas las guías: iniciar TAR lo antes posible en toda embarazada con VIH, independientemente del CD4 o CV. El objetivo es CV indetectable antes del parto.
+</div>
+
+<h3>Esquemas recomendados en embarazo</h3>
+<table>
+<tr><th>Guía</th><th>Preferido</th><th>Alternativa</th><th>Evitar</th></tr>
+<tr>
+  <td><span class="source-label src-dhhs">DHHS</span></td>
+  <td>DTG + TAF/FTC (o TDF/FTC)<br>BIC/TAF/FTC</td>
+  <td>ATV/r + TDF/FTC<br>DRV/r + TDF/FTC</td>
+  <td>EFV (primer trimestre si es posible)<br>Cobicistat en 2do-3er trimestre</td>
+</tr>
+<tr>
+  <td><span class="source-label src-oms">OMS</span></td>
+  <td>DTG + TDF/3TC</td>
+  <td>EFV + TDF/3TC</td>
+  <td>—</td>
+</tr>
+</table>
+
+<h3>Profilaxis al recién nacido</h3>
+<table>
+<tr><th>Riesgo</th><th>Esquema RN (DHHS)</th></tr>
+<tr><td><strong>Bajo riesgo</strong><br>(madre con CV indetectable al parto)</td><td>AZT × 2 semanas</td></tr>
+<tr><td><strong>Alto riesgo</strong><br>(madre sin TAR, CV &gt;50, diagnóstico tardío)</td><td>AZT + 3TC + NVP × 6 semanas<br>(esquema presuntivo de VIH)</td></tr>
+</table>
+
+<h3>Vía de nacimiento</h3>
+<table>
+<tr><th>CV al momento del parto</th><th>Recomendación</th></tr>
+<tr><td>&lt;1000 copias/mL</td><td>Parto vaginal permitido</td></tr>
+<tr><td>&gt;1000 copias/mL o desconocida</td><td>Cesárea programada a las 38 semanas + AZT IV intraparto</td></tr>
+</table>
+`
+      },
+      {
+        id: "hiv-prep",
+        title: "PrEP y PEP",
+        desc: "Profilaxis pre y post-exposición al VIH",
+        sources: ["DHHS","OMS","México"],
+        content: `
+<h2>Profilaxis Pre-Exposición (PrEP) y Post-Exposición (PEP)</h2>
+
+<h3>PrEP — Profilaxis Pre-Exposición</h3>
+<table>
+<tr><th>Guía</th><th>Esquemas</th><th>Indicaciones</th></tr>
+<tr>
+  <td><span class="source-label src-dhhs">DHHS/CDC</span></td>
+  <td><strong>Oral diario:</strong> TDF/FTC o TAF/FTC<br><strong>Inyectable:</strong> Cabotegravir IM cada 2 meses<br><strong>A demanda (HSH):</strong> TDF/FTC 2-1-1 (off-label pero con evidencia)</td>
+  <td>Cualquier persona con riesgo sustancial de adquirir VIH: HSH, parejas serodiscordantes, personas con múltiples parejas, uso de drogas inyectables</td>
+</tr>
+<tr>
+  <td><span class="source-label src-oms">OMS</span></td>
+  <td><strong>Oral:</strong> TDF/FTC o TDF/3TC diario<br><strong>Inyectable:</strong> CAB-LA cada 2 meses<br><strong>Anillo vaginal:</strong> Dapivirina (mujeres)</td>
+  <td>Poblaciones con incidencia &gt;3 por 100 personas-año</td>
+</tr>
+</table>
+
+<h3>PEP — Profilaxis Post-Exposición</h3>
+<div class="warning-box">
+<strong>⚠️ Ventana:</strong> Iniciar lo antes posible, idealmente dentro de las primeras 2 horas. NO iniciar si han pasado más de 72 horas.
+</div>
+<table>
+<tr><th>Esquema PEP (DHHS)</th><th>Duración</th></tr>
+<tr><td><strong>Preferido:</strong> BIC/TAF/FTC (Biktarvy)<br><strong>Alternativo:</strong> DTG + TDF/FTC</td><td>28 días</td></tr>
+</table>
+<p><strong>Seguimiento PEP:</strong> VIH basal, 4 semanas, 12 semanas. BH y QS basal y a las 2 semanas.</p>
+`
+      }
+    ]
+  },
+  hep: {
+    topics: [
+      {
+        id: "hcv-tratamiento",
+        title: "Hepatitis C — Tratamiento",
+        desc: "Antivirales de acción directa según genotipo y cirrosis",
+        sources: ["AASLD","EASL","OMS"],
+        content: `
+<h2>Tratamiento de Hepatitis C</h2>
+
+<div class="highlight-box">
+<strong>Consenso universal:</strong> Todas las guías recomiendan tratar a TODOS los pacientes con infección crónica por VHC, independientemente del estadio de fibrosis.
+</div>
+
+<h3>Esquemas pangenotípicos (primera línea)</h3>
+<table>
+<tr><th>Esquema</th><th>Duración sin cirrosis</th><th>Duración con cirrosis compensada</th><th>Guías</th></tr>
+<tr>
+  <td><strong>SOF/VEL</strong> (Epclusa)</td>
+  <td>12 semanas</td>
+  <td>12 semanas</td>
+  <td><span class="source-label src-aasld">AASLD</span> <span class="source-label src-easl">EASL</span> <span class="source-label src-who">OMS</span></td>
+</tr>
+<tr>
+  <td><strong>GLE/PIB</strong> (Maviret)</td>
+  <td>8 semanas</td>
+  <td>8-12 semanas (según genotipo)</td>
+  <td><span class="source-label src-aasld">AASLD</span> <span class="source-label src-easl">EASL</span> <span class="source-label src-who">OMS</span></td>
+</tr>
+<tr>
+  <td><strong>SOF/VEL/VOX</strong> (Vosevi)</td>
+  <td>Reservado para retratamiento</td>
+  <td>12 semanas (retratamiento)</td>
+  <td><span class="source-label src-aasld">AASLD</span> <span class="source-label src-easl">EASL</span></td>
+</tr>
+</table>
+
+<h3>Consideraciones especiales</h3>
+<table>
+<tr><th>Situación</th><th>Recomendación</th></tr>
+<tr><td>Cirrosis descompensada (Child-Pugh B/C)</td><td>SOF/VEL + RBV × 12 sem (NO usar esquemas con IP: GLE/PIB, VOX)</td></tr>
+<tr><td>Coinfección VIH/VHC</td><td>Mismos esquemas. Revisar interacciones con TAR (especialmente con IP e INNTI)</td></tr>
+<tr><td>Enfermedad renal (TFG &lt;30)</td><td>GLE/PIB preferido (no requiere ajuste). SOF evitar si TFG &lt;30 (AASLD) o usar con precaución (EASL)</td></tr>
+<tr><td>Embarazo</td><td>No aprobado ningún DAA en embarazo (todas las guías)</td></tr>
+</table>
+
+<h3>Monitoreo durante y después del tratamiento</h3>
+<table>
+<tr><th>Momento</th><th>Estudio</th></tr>
+<tr><td>Basal</td><td>CV VHC, genotipo (si no pangenotípico), BH, QS, PFH, INR, TFG, VIH, HBsAg</td></tr>
+<tr><td>Semana 4</td><td>CV VHC, BH (si RBV), PFH</td></tr>
+<tr><td>Fin de tratamiento</td><td>CV VHC</td></tr>
+<tr><td>RVS12 (12 sem post-tx)</td><td>CV VHC — confirma curación</td></tr>
+</table>
+
+<div class="highlight-box">
+<strong>RVS12 = Curación:</strong> CV VHC indetectable 12 semanas después de completar tratamiento. Tasa de curación &gt;95% con DAAs actuales.
+</div>
+`
+      },
+      {
+        id: "hbv-tratamiento",
+        title: "Hepatitis B — Tratamiento",
+        desc: "Indicaciones, antivirales, monitoreo de HBV crónica",
+        sources: ["AASLD","EASL","OMS"],
+        content: `
+<h2>Tratamiento de Hepatitis B Crónica</h2>
+
+<h3>Indicaciones de tratamiento</h3>
+<table>
+<tr><th>Guía</th><th>Criterios para tratar</th></tr>
+<tr>
+  <td><span class="source-label src-aasld">AASLD 2024</span></td>
+  <td>• HBV DNA &gt;2000 UI/mL + ALT elevada (&gt;35 H / &gt;25 M)<br>• Cualquier nivel de HBV DNA con fibrosis significativa (≥F2)<br>• Cirrosis con HBV DNA detectable<br>• Considerar: &gt;40 años con DNA &gt;1M + ALT normal</td>
+</tr>
+<tr>
+  <td><span class="source-label src-easl">EASL 2023</span></td>
+  <td>• HBV DNA &gt;2000 + ALT &gt;ULN<br>• Fibrosis significativa independiente de ALT/DNA<br>• Cirrosis con cualquier nivel de DNA<br>• Manifestaciones extrahepáticas</td>
+</tr>
+<tr>
+  <td><span class="source-label src-who">OMS 2024</span></td>
+  <td>• Cirrosis clínica (independiente de DNA/ALT)<br>• APRI &gt;2<br>• Coinfección VIH<br>• Simplificación: tratar si HBsAg+ y &gt;30 años con ALT persistentemente anormal</td>
+</tr>
+</table>
+
+<h3>Esquemas de tratamiento</h3>
+<table>
+<tr><th>Fármaco</th><th>Dosis</th><th>Notas</th></tr>
+<tr><td><strong>Entecavir (ETV)</strong></td><td>0.5 mg/día (naïve)<br>1 mg/día (experimentado a LAM)</td><td>Primera línea. Alta barrera genética.</td></tr>
+<tr><td><strong>Tenofovir TDF</strong></td><td>300 mg/día</td><td>Primera línea. Vigilar función renal y ósea.</td></tr>
+<tr><td><strong>Tenofovir TAF</strong></td><td>25 mg/día</td><td>Mejor perfil renal y óseo. Preferido si &gt;60 años o enfermedad renal.</td></tr>
+<tr><td><strong>PEG-IFN alfa</strong></td><td>180 mcg/sem × 48 sem</td><td>Duración finita. Para HBeAg+ con ALT elevada. Contraindicado en cirrosis descompensada.</td></tr>
+</table>
+
+<div class="warning-box">
+<strong>⚠️ Coinfección VIH/VHB:</strong> Usar TAR que incluya TDF/FTC o TAF/FTC (cubren ambas infecciones). NUNCA suspender el componente activo contra HBV sin sustituirlo — riesgo de flare hepatitis.
+</div>
+`
+      },
+      {
+        id: "hep-screening",
+        title: "Tamizaje de hepatitis",
+        desc: "A quién tamizar, qué pruebas, interpretación",
+        sources: ["AASLD","EASL","OMS","México"],
+        content: `
+<h2>Tamizaje de Hepatitis Viral</h2>
+
+<h3>¿A quién tamizar?</h3>
+<table>
+<tr><th>Población</th><th>HBV</th><th>HCV</th></tr>
+<tr><td>Todos los adultos (al menos 1 vez)</td><td>✅ AASLD, OMS</td><td>✅ AASLD, OMS, CDC</td></tr>
+<tr><td>Embarazadas (cada embarazo)</td><td>✅ todas las guías</td><td>✅ todas las guías</td></tr>
+<tr><td>Pacientes con VIH</td><td>✅</td><td>✅</td></tr>
+<tr><td>HSH</td><td>✅</td><td>✅ (anual)</td></tr>
+<tr><td>Usuarios de drogas IV</td><td>✅</td><td>✅ (anual)</td></tr>
+<tr><td>Nacidos en áreas endémicas</td><td>✅</td><td>✅</td></tr>
+<tr><td>Receptores de transfusión antes de 1992</td><td>✅</td><td>✅</td></tr>
+<tr><td>Antes de inmunosupresión</td><td>✅ (riesgo reactivación)</td><td>✅</td></tr>
+</table>
+
+<h3>Interpretación de serologías HBV</h3>
+<table>
+<tr><th>HBsAg</th><th>Anti-HBs</th><th>Anti-HBc total</th><th>Interpretación</th></tr>
+<tr><td>−</td><td>−</td><td>−</td><td>Susceptible (no inmune)</td></tr>
+<tr><td>−</td><td>+</td><td>−</td><td>Inmune por vacuna</td></tr>
+<tr><td>−</td><td>+</td><td>+</td><td>Inmune por infección resuelta</td></tr>
+<tr><td>+</td><td>−</td><td>+</td><td>Infección crónica</td></tr>
+<tr><td>−</td><td>−</td><td>+</td><td>HBV oculta o window period</td></tr>
+</table>
+`
+      }
+    ]
+  },
+  tb: {
+    topics: [
+      {
+        id: "tb-tratamiento",
+        title: "Tratamiento de TB activa",
+        desc: "Esquema primario, TB extrapulmonar, duración",
+        sources: ["OMS","ATS/IDSA","México NOM"],
+        content: `
+<h2>Tratamiento de Tuberculosis Activa</h2>
+
+<h3>Esquema estándar (TB sensible)</h3>
+<table>
+<tr><th>Fase</th><th>Fármacos</th><th>Duración</th></tr>
+<tr><td><strong>Fase intensiva</strong></td><td>HRZE (Isoniazida + Rifampicina + Pirazinamida + Etambutol)</td><td>2 meses (diario)</td></tr>
+<tr><td><strong>Fase de continuación</strong></td><td>HR (Isoniazida + Rifampicina)</td><td>4 meses (diario)</td></tr>
+</table>
+
+<div class="highlight-box">
+<strong>Duración total:</strong> 6 meses estándar. Excepciones:<br>
+• TB ósea/articular: 6-9 meses<br>
+• TB meníngea: 9-12 meses (OMS recomienda 12 meses)<br>
+• TB pericárdica: 6 meses + considerar esteroides
+</div>
+
+<h3>Dosis por peso (adultos)</h3>
+<table>
+<tr><th>Fármaco</th><th>Dosis diaria</th><th>Dosis máxima</th></tr>
+<tr><td>Isoniazida (H)</td><td>5 mg/kg</td><td>300 mg</td></tr>
+<tr><td>Rifampicina (R)</td><td>10 mg/kg</td><td>600 mg</td></tr>
+<tr><td>Pirazinamida (Z)</td><td>25 mg/kg</td><td>2000 mg</td></tr>
+<tr><td>Etambutol (E)</td><td>15-20 mg/kg</td><td>1600 mg</td></tr>
+</table>
+
+<h3>Esteroides como adyuvante</h3>
+<table>
+<tr><th>Indicación</th><th>Esquema</th><th>Guía</th></tr>
+<tr><td>TB meníngea</td><td>Dexametasona × 6-8 semanas (esquema decreciente)</td><td>OMS, ATS ✅</td></tr>
+<tr><td>TB pericárdica</td><td>Prednisona × 6-8 semanas</td><td>OMS: considerar</td></tr>
+<tr><td>TB pulmonar estándar</td><td>No indicado</td><td>Todas ❌</td></tr>
+</table>
+`
+      },
+      {
+        id: "tb-latente",
+        title: "Infección latente por TB (ILTB)",
+        desc: "Diagnóstico, esquemas de tratamiento preventivo",
+        sources: ["OMS","ATS/IDSA","México"],
+        content: `
+<h2>Infección Latente por TB (ILTB)</h2>
+
+<h3>¿A quién tratar?</h3>
+<ul>
+  <li>Pacientes con VIH (todas las guías)</li>
+  <li>Contactos de caso de TB activa</li>
+  <li>Conversión reciente de PPD/IGRA</li>
+  <li>Antes de iniciar terapia con anti-TNF</li>
+  <li>Inmunosupresión (trasplante, quimioterapia)</li>
+  <li>Silicosis</li>
+</ul>
+
+<h3>Esquemas de tratamiento preventivo</h3>
+<table>
+<tr><th>Esquema</th><th>Duración</th><th>Recomendado por</th><th>Notas</th></tr>
+<tr>
+  <td><strong>3HP</strong><br>INH + Rifapentina semanal</td>
+  <td>3 meses (12 dosis)</td>
+  <td>OMS ✅, ATS ✅</td>
+  <td>Preferido. Mejor adherencia. Ojo: interacciones con ARVs (solo con EFV o RAL, NO con DTG a dosis estándar)</td>
+</tr>
+<tr>
+  <td><strong>4R</strong><br>Rifampicina diaria</td>
+  <td>4 meses</td>
+  <td>ATS ✅, OMS (condicional)</td>
+  <td>Buena alternativa. Menos hepatotoxicidad que INH.</td>
+</tr>
+<tr>
+  <td><strong>3HR</strong><br>INH + Rifampicina diario</td>
+  <td>3 meses</td>
+  <td>OMS ✅</td>
+  <td>Alternativa preferida en niños.</td>
+</tr>
+<tr>
+  <td><strong>6H / 9H</strong><br>Isoniazida diaria</td>
+  <td>6 o 9 meses</td>
+  <td>Todas (tradicional)</td>
+  <td>Mayor duración = menor adherencia. 9H preferido por ATS. Suplementar piridoxina (B6) 25-50 mg/día.</td>
+</tr>
+<tr>
+  <td><strong>1HP</strong><br>INH + Rifapentina diario</td>
+  <td>1 mes</td>
+  <td>OMS (condicional), ATS</td>
+  <td>Esquema más corto. Estudios en VIH+ y contactos.</td>
+</tr>
+</table>
+
+<div class="warning-box">
+<strong>⚠️ En pacientes con VIH:</strong><br>
+• Descartar SIEMPRE TB activa antes de iniciar tratamiento preventivo<br>
+• 3HP: NO usar con DTG estándar (interacción con rifapentina). Usar DTG 50mg BID durante y 2 semanas después, o considerar 6H/9H<br>
+• Rifampicina: ajustar dosis de DTG a 50mg BID
+</div>
+`
+      },
+      {
+        id: "tb-vih",
+        title: "Coinfección TB/VIH",
+        desc: "Cuándo iniciar TAR, interacciones, SIRI",
+        sources: ["OMS","DHHS","ATS/IDSA"],
+        content: `
+<h2>Coinfección TB/VIH</h2>
+
+<h3>¿Cuándo iniciar TAR?</h3>
+<table>
+<tr><th>CD4</th><th>Recomendación</th><th>Guía</th></tr>
+<tr><td>&lt;50</td><td>Iniciar TAR dentro de las <strong>primeras 2 semanas</strong> de inicio de tratamiento anti-TB</td><td>OMS, DHHS, ATS</td></tr>
+<tr><td>&gt;50</td><td>Iniciar TAR dentro de las <strong>primeras 8 semanas</strong></td><td>OMS, DHHS, ATS</td></tr>
+<tr><td>TB meníngea</td><td>Diferir TAR <strong>4-8 semanas</strong> (riesgo alto de SIRI con esteroides en SNC)</td><td>DHHS, OMS</td></tr>
+</table>
+
+<h3>Interacciones Rifampicina + ARVs</h3>
+<table>
+<tr><th>ARV</th><th>¿Compatible con Rifampicina?</th><th>Ajuste</th></tr>
+<tr><td>Dolutegravir (DTG)</td><td>✅ Sí, con ajuste</td><td><strong>DTG 50 mg BID</strong> (en lugar de 50 mg diario)</td></tr>
+<tr><td>Efavirenz (EFV)</td><td>✅ Sí</td><td>No requiere ajuste (EFV 600 mg)</td></tr>
+<tr><td>Raltegravir (RAL)</td><td>✅ Sí, con ajuste</td><td>RAL 800 mg BID</td></tr>
+<tr><td>Bictegravir (BIC)</td><td>❌ No</td><td>Contraindicado con rifampicina</td></tr>
+<tr><td>IP (ATV, DRV, LPV)</td><td>❌ No</td><td>Contraindicado. Considerar rifabutina como alternativa a rifampicina</td></tr>
+</table>
+
+<div class="highlight-box">
+<strong>Esquema TAR preferido con Rifampicina:</strong><br>
+• <strong>DTG 50mg BID</strong> + TDF/FTC (OMS, DHHS)<br>
+• EFV 600mg + TDF/FTC (alternativa OMS)
+</div>
+
+<h3>Síndrome Inflamatorio de Reconstitución Inmune (SIRI)</h3>
+<table>
+<tr><th>Tipo</th><th>Presentación</th><th>Manejo</th></tr>
+<tr><td>Paradójico</td><td>Empeoramiento de síntomas de TB después de iniciar TAR (fiebre, adenopatías, derrames)</td><td>Continuar TAR + anti-TB. AINEs o esteroides si grave (Prednisona 1-2 mg/kg × 4 sem)</td></tr>
+<tr><td>Desenmascarado</td><td>TB no diagnosticada que se manifiesta al iniciar TAR</td><td>Iniciar tratamiento anti-TB completo</td></tr>
+</table>
+`
+      },
+      {
+        id: "tb-resistente",
+        title: "TB resistente (MDR/XDR)",
+        desc: "Definiciones, esquemas actualizados, duración",
+        sources: ["OMS","ATS/IDSA"],
+        content: `
+<h2>Tuberculosis Resistente</h2>
+
+<h3>Definiciones</h3>
+<table>
+<tr><th>Categoría</th><th>Definición</th></tr>
+<tr><td><strong>Mono-R</strong></td><td>Resistencia a un solo fármaco de primera línea (ej. INH-R)</td></tr>
+<tr><td><strong>MDR-TB</strong></td><td>Resistencia a INH + Rifampicina</td></tr>
+<tr><td><strong>Pre-XDR</strong></td><td>MDR + resistencia a fluoroquinolona</td></tr>
+<tr><td><strong>XDR-TB</strong></td><td>Pre-XDR + resistencia a bedaquilina O linezolid</td></tr>
+</table>
+
+<h3>Esquema para MDR-TB (OMS 2022 actualizada)</h3>
+<div class="highlight-box">
+<strong>Régimen BPaL (corto, 6 meses):</strong><br>
+<strong>Bedaquilina + Pretomanid + Linezolid</strong><br>
+Recomendado por OMS para MDR-TB y pre-XDR (si sensible a linezolid). Duración: 6 meses (26 semanas).
+</div>
+
+<h3>Grupos de fármacos para MDR-TB (OMS)</h3>
+<table>
+<tr><th>Prioridad</th><th>Grupo</th><th>Fármacos</th></tr>
+<tr><td>Incluir los 3</td><td>Grupo A</td><td>Levofloxacino/Moxifloxacino, Bedaquilina, Linezolid</td></tr>
+<tr><td>Agregar 1-2</td><td>Grupo B</td><td>Clofazimina, Cicloserina/Terizidona</td></tr>
+<tr><td>Completar esquema</td><td>Grupo C</td><td>Etambutol, Delamanid, PZA, Imipenem+cilastatina, Amikacina, PAS</td></tr>
+</table>
+
+<div class="warning-box">
+<strong>⚠️ Linezolid:</strong> Vigilar toxicidad hematológica (BH semanal al inicio) y neuropatía periférica. Si anemia o plaquetopenia, considerar reducir dosis a 300mg/día.
+</div>
+`
+      }
+    ]
+  }
+};
+
+// ===== NAVIGATION =====
+let currentView = 'home';
+let chatHistory = [];
+
+function hideAll() {
+  ['home','section-hiv','section-hep','section-tb','content-view','chat-section'].forEach(id => {
+    var el = document.getElementById(id);
+    if(el) el.classList.remove('active');
+  });
+  document.getElementById('nav-guias').classList.remove('active');
+  document.getElementById('nav-chat').classList.remove('active');
+}
+
+function showHome() {
+  hideAll();
+  document.getElementById('home').classList.add('active');
+  document.getElementById('nav-guias').classList.add('active');
+  currentView = 'home';
+  window.scrollTo(0,0);
+}
+
+function showChat() {
+  hideAll();
+  document.getElementById('chat-section').classList.add('active');
+  document.getElementById('nav-chat').classList.add('active');
+  currentView = 'chat';
+  window.scrollTo(0,0);
+}
+
+function showSection(disease) {
+  hideAll();
+  document.getElementById('section-' + disease).classList.add('active');
+  document.querySelectorAll('.topbar nav button')[0].classList.add('active');
+  renderTopics(disease);
+  currentView = 'section';
+}
+
+function renderTopics(disease) {
+  const container = document.getElementById(disease + '-topics');
+  const topics = DATA[disease].topics;
+  container.innerHTML = topics.map(t => `
+    <div class="topic-card" onclick="showContent('${disease}','${t.id}')">
+      <h3>${t.title}</h3>
+      <p>${t.desc}</p>
+      <div class="guide-sources">
+        ${t.sources.map(s => `<span class="gs">${s}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function showContent(disease, topicId) {
+  hideAll();
+  const topic = DATA[disease].topics.find(t => t.id === topicId);
+  const container = document.getElementById('content-view');
+  const badgeClass = disease === 'hiv' ? 'badge-hiv' : disease === 'hep' ? 'badge-hep' : 'badge-tb';
+  container.innerHTML = `
+    <button class="back-btn" onclick="showSection('${disease}')">← Regresar a ${disease === 'hiv' ? 'VIH' : disease === 'hep' ? 'Hepatitis' : 'TB'}</button>
+    <div class="section-header">
+      <h1>${topic.title} <span class="badge ${badgeClass}">${topic.sources.join(' · ')}</span></h1>
+    </div>
+    <div class="content-panel">
+      ${topic.content}
+    </div>
+  `;
+  container.classList.add('active');
+  document.querySelectorAll('.topbar nav button')[0].classList.add('active');
+}
+
+// ===== AI CHAT =====
+// Build knowledge context from all guideline data
+function buildContext() {
+  let ctx = "Eres un asistente de guías de práctica clínica para enfermedades infecciosas (VIH, Hepatitis B/C, Tuberculosis). Responde basado ÚNICAMENTE en las siguientes guías clínicas. Siempre cita la fuente (DHHS, EACS, OMS, AASLD, EASL, GPC México, ATS/IDSA, NOM México). Si hay diferencias entre guías, menciónalas. Usa formato claro con tablas cuando sea apropiado. Responde en español. No des consejos médicos personalizados - solo refiere a las guías.\n\nCONTENIDO DE GUÍAS:\n\n";
+  for (const [disease, data] of Object.entries(DATA)) {
+    for (const topic of data.topics) {
+      ctx += `### ${topic.title} (${topic.sources.join(', ')})\n`;
+      ctx += topic.content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim() + "\n\n";
+    }
+  }
+  return ctx;
+}
+
+async function sendChat() {
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  
+  input.value = '';
+  const messagesDiv = document.getElementById('chat-messages');
+  
+  // Remove examples on first message
+  const examples = messagesDiv.querySelector('.examples-grid');
+  if (examples) examples.remove();
+  
+  // Add user message
+  messagesDiv.innerHTML += `<div class="chat-msg user">${escapeHtml(msg)}</div>`;
+  
+  // Add typing indicator
+  messagesDiv.innerHTML += `<div class="chat-msg ai" id="typing"><div class="typing-indicator"><span></span><span></span><span></span></div></div>`;
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  
+  document.getElementById('send-btn').disabled = true;
+  
+  // Build messages for Gemini
+  const systemCtx = buildContext();
+  
+  chatHistory.push({ role: "user", parts: [{ text: msg }] });
+  
+  const apiKey = "AIzaSyCI9026Vidnj8iUEUb6je0cdqc1fPd-SQU";
+  const models = ["gemini-2.5-flash","gemini-2.0-flash","gemini-2.0-flash-lite"];
+  let success = false;
+  let lastError = "";
+  
+  for (const model of models) {
+    try {
+      const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: systemCtx }] },
+          contents: chatHistory,
+          generationConfig: { temperature: 0.3, maxOutputTokens: 4096 }
+        })
+      });
+      
+      if (!resp.ok) {
+        const errData = await resp.json().catch(() => ({}));
+        lastError = `${model}: HTTP ${resp.status} - ${errData?.error?.message || 'unknown'}`;
+        continue;
+      }
+      
+      const data = await resp.json();
+      if (data.error) {
+        lastError = `${model}: ${data.error.message || 'API error'}`;
+        continue;
+      }
+      
+      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!reply) { lastError = `${model}: empty response`; continue; }
+      
+      chatHistory.push({ role: "model", parts: [{ text: reply }] });
+      document.getElementById('typing')?.remove();
+      messagesDiv.innerHTML += `<div class="chat-msg ai">${formatMarkdown(reply)}</div>`;
+      success = true;
+      break;
+    } catch (err) {
+      lastError = `${model}: ${err.message || err}`;
+      continue;
+    }
+  }
+  
+  if (!success) {
+    document.getElementById('typing')?.remove();
+    messagesDiv.innerHTML += `<div class="chat-msg ai">⚠️ No se pudo conectar. Error: ${escapeHtml(lastError)}. <button onclick="retryLast()" style="background:var(--primary);color:#fff;border:none;padding:8px 16px;border-radius:16px;cursor:pointer;font-family:inherit;font-size:14px;margin-top:8px;display:block;">🔄 Reintentar</button></div>`;
+  }
+  
+  document.getElementById('send-btn').disabled = false;
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+function retryLast() {
+  // Remove error message
+  const msgs = document.getElementById('chat-messages');
+  const lastMsg = msgs.lastElementChild;
+  if (lastMsg) lastMsg.remove();
+  // Remove last user message from history to re-send
+  if (chatHistory.length > 0) {
+    const lastUserMsg = chatHistory.pop();
+    document.getElementById('chat-input').value = lastUserMsg.parts[0].text;
+    sendChat();
+  }
+}
+
+function askExample(btn) {
+  document.getElementById('chat-input').value = btn.textContent;
+  sendChat();
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function formatMarkdown(text) {
+  // Basic markdown to HTML
+  let html = escapeHtml(text);
+  // Bold
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  // Headers
+  html = html.replace(/^### (.+)$/gm, '<h4>$1</h4>');
+  html = html.replace(/^## (.+)$/gm, '<h3>$1</h3>');
+  // Lists
+  html = html.replace(/^\* (.+)$/gm, '<li>$1</li>');
+  html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+  html = html.replace(/^(\d+)\. (.+)$/gm, '<li>$2</li>');
+  // Wrap consecutive <li> in <ul>
+  html = html.replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>');
+  // Code
+  html = html.replace(/`(.+?)`/g, '<code>$1</code>');
+  // Tables (basic: | col | col |)
+  html = html.replace(/^(\|.+\|)$/gm, function(match) {
+    const cells = match.split('|').filter(c => c.trim());
+    if (cells.every(c => /^[-:]+$/.test(c.trim()))) return '';
+    const tag = match.includes('---') ? 'th' : 'td';
+    return '<tr>' + cells.map(c => `<${tag}>${c.trim()}</${tag}>`).join('') + '</tr>';
+  });
+  html = html.replace(/((?:<tr>.*<\/tr>\n?)+)/g, '<table>$1</table>');
+  // Line breaks
+  html = html.replace(/\n\n/g, '<br><br>');
+  html = html.replace(/\n/g, '<br>');
+  return html;
+}
+
+// Initialize
+showHome();
+</script>
+</body>
+</html>
