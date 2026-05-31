@@ -152,6 +152,22 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 .example-btn { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 16px; text-align:left; cursor:pointer; font-size:13px; color:var(--text); font-family:inherit; transition:.2s; line-height:1.4; }
 .example-btn:hover { border-color:var(--primary); background:var(--primary-light); }
 
+/* PASSWORD GATE */
+.password-gate { position:fixed; top:0; left:0; right:0; bottom:0; background:#fff; z-index:9999; display:flex; align-items:center; justify-content:center; }
+.password-box { text-align:center; padding:32px; max-width:360px; width:90%; }
+.password-box .logo-big { font-size:48px; margin-bottom:12px; }
+.password-box h2 { font-size:22px; margin-bottom:6px; }
+.password-box p { color:var(--text-light); font-size:14px; margin-bottom:20px; }
+.password-box input { width:100%; padding:14px 18px; border:2px solid var(--border); border-radius:12px; font-size:16px; font-family:inherit; outline:none; text-align:center; margin-bottom:12px; }
+.password-box input:focus { border-color:var(--primary); }
+.password-box .login-btn { width:100%; padding:14px; background:var(--primary); color:#fff; border:none; border-radius:12px; font-size:16px; font-weight:600; cursor:pointer; font-family:inherit; }
+.password-box .login-btn:hover { background:var(--primary-dark); }
+.password-box .error-msg { color:#dc2626; font-size:13px; margin-top:8px; display:none; }
+
+/* NEW QUESTION BTN */
+.new-question-btn { display:block; margin:12px auto; padding:10px 20px; background:var(--ai-light); color:var(--ai); border:2px solid var(--ai); border-radius:25px; font-size:14px; font-weight:600; cursor:pointer; font-family:inherit; transition:.2s; }
+.new-question-btn:hover { background:var(--ai); color:#fff; }
+
 /* RESPONSIVE */
 @media(max-width:768px) {
   .topbar { padding:0 12px; }
@@ -164,6 +180,18 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 </style>
 </head>
 <body>
+
+<!-- PASSWORD GATE -->
+<div class="password-gate" id="password-gate">
+  <div class="password-box">
+    <div class="logo-big">🦠</div>
+    <h2>InfectoGuía</h2>
+    <p>Ingresa la contraseña para acceder</p>
+    <input type="password" id="pw-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPassword()">
+    <button class="login-btn" onclick="checkPassword()">Entrar</button>
+    <div class="error-msg" id="pw-error">Contraseña incorrecta</div>
+  </div>
+</div>
 
 <div class="topbar">
   <div class="logo"><span>🦠</span> InfectoGuía</div>
@@ -269,6 +297,26 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 </div>
 
 <script>
+// ===== PASSWORD =====
+const APP_PASSWORD = "infectologia2026";
+
+function checkPassword() {
+  const input = document.getElementById('pw-input');
+  if (input.value === APP_PASSWORD) {
+    document.getElementById('password-gate').style.display = 'none';
+    sessionStorage.setItem('infectoguia_auth', '1');
+  } else {
+    document.getElementById('pw-error').style.display = 'block';
+    input.value = '';
+    input.focus();
+  }
+}
+
+// Check if already authenticated
+if (sessionStorage.getItem('infectoguia_auth') === '1') {
+  document.getElementById('password-gate').style.display = 'none';
+}
+
 // ===== GUIDELINE DATA =====
 const DATA = {
   hiv: {
@@ -988,6 +1036,7 @@ async function sendChat() {
       chatHistory.push({ role: "model", parts: [{ text: reply }] });
       document.getElementById('typing')?.remove();
       messagesDiv.innerHTML += `<div class="chat-msg ai">${formatMarkdown(reply)}</div>`;
+      messagesDiv.innerHTML += `<button class="new-question-btn" onclick="scrollToInput()">💬 Hacer otra pregunta</button>`;
       success = true;
       break;
     } catch (err) {
@@ -1003,6 +1052,12 @@ async function sendChat() {
   
   document.getElementById('send-btn').disabled = false;
   messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+function scrollToInput() {
+  const input = document.getElementById('chat-input');
+  input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  input.focus();
 }
 
 function retryLast() {
