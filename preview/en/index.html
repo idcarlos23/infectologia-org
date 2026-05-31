@@ -207,9 +207,14 @@ img{max-width:100%;display:block}
 .cta-box .btn-primary{background:#fff;color:var(--coral)}
 .cta-box .btn-secondary{border-color:rgba(255,255,255,0.4);color:#fff}
 
-/* IMAGE HERO */
+/* IMAGE HERO & GRIDS */
 .section-hero{max-width:var(--max-w);margin:0 auto;padding:80px var(--px) 0}
 .section-hero-img{width:100%;height:320px;object-fit:cover;border-radius:24px;box-shadow:0 12px 40px rgba(0,0,0,0.08)}
+.img-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:0}
+.img-grid img{width:100%;height:220px;object-fit:cover;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.06);transition:transform .4s}
+.img-grid img:hover{transform:scale(1.02)}
+.img-grid.three{grid-template-columns:1fr 1fr 1fr}
+.img-grid.three img{height:200px}
 
 /* BORDER ALERT */
 .border-note{
@@ -350,6 +355,15 @@ img{max-width:100%;display:block}
   <div class="trust-item"><span>💰</span> Up to 70% savings</div>
 </div>
 
+<!-- Image Grid — Mix -->
+<div class="section" style="padding-bottom:0">
+  <div class="img-grid three">
+    <img src="/images/consultorio-6.jpeg" alt="Dr. Gómez Ponce's office">
+    <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=600&q=80" alt="Medical professional">
+    <img src="/images/consultorio-3.jpeg" alt="Infectious disease clinic">
+  </div>
+</div>
+
 <!-- About -->
 <div class="section" id="about">
   <div class="about-grid">
@@ -404,7 +418,7 @@ img{max-width:100%;display:block}
 
 <!-- Services -->
 <div class="section-hero">
-  <img class="section-hero-img" src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1200&q=80" alt="Medical consultation">
+  <img class="section-hero-img" src="/images/consultorio-6.jpeg" alt="Infectious disease clinic — Dr. Gómez Ponce">
 </div>
 <div class="section" id="services">
   <div class="section-header">
@@ -436,6 +450,18 @@ img{max-width:100%;display:block}
       <div class="icon">👶</div><h3>Pediatric Infections</h3><p>Specialized care for children</p>
       <ul><li>Recurrent infections</li><li>Congenital infections</li><li>Vaccination catch-up</li><li>Immunocompromised patients</li></ul>
     </div>
+  </div>
+</div>
+
+<!-- Clinic Photos -->
+<div class="section" style="padding-top:0;padding-bottom:0">
+  <div class="img-grid">
+    <img src="/images/consultorio-4.jpeg" alt="Private consultation room">
+    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="Medical equipment">
+  </div>
+  <div class="img-grid" style="margin-top:16px">
+    <img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?w=600&q=80" alt="Healthcare professional">
+    <img src="/images/consultorio-8.jpeg" alt="Clinic interior">
   </div>
 </div>
 
@@ -481,6 +507,15 @@ img{max-width:100%;display:block}
     <div class="contact-map">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3395.5!2d-106.4245!3d31.6904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86e75966fdfffa89%3A0xf238454554fbe418!2sCentro+M%C3%A9dico+de+Especialidades+Unidad+Sendero!5e0!3m2!1ses!2smx!4v1" allowfullscreen loading="lazy"></iframe>
     </div>
+  </div>
+</div>
+
+<!-- More clinic photos -->
+<div class="section" style="padding-top:0;padding-bottom:0">
+  <div class="img-grid three">
+    <img src="/images/consultorio-5.jpeg" alt="Office">
+    <img src="/images/consultorio-7.jpeg" alt="Centro Médico Sendero">
+    <img src="/images/consultorio-1.jpeg" alt="Waiting area">
   </div>
 </div>
 
