@@ -1055,9 +1055,21 @@ async function sendChat() {
 }
 
 function scrollToInput() {
-  const input = document.getElementById('chat-input');
-  input.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  input.focus();
+  // Reset chat to show examples again
+  chatHistory = [];
+  const messagesDiv = document.getElementById('chat-messages');
+  messagesDiv.innerHTML = `
+    <div class="chat-msg system">Haz una pregunta sobre guías de VIH, Hepatitis o Tuberculosis</div>
+    <div class="examples-grid">
+      <button class="example-btn" onclick="askExample(this)">¿Cuál es el esquema ARV de inicio recomendado por DHHS para un paciente naïve?</button>
+      <button class="example-btn" onclick="askExample(this)">Compara el tratamiento de Hepatitis C entre AASLD y EASL para genotipo 1a</button>
+      <button class="example-btn" onclick="askExample(this)">¿Qué dice la OMS sobre el esquema de TB en pacientes coinfectados con VIH?</button>
+      <button class="example-btn" onclick="askExample(this)">¿Cuándo inicio profilaxis para PCP según DHHS y cuándo la suspendo?</button>
+      <button class="example-btn" onclick="askExample(this)">Interacciones de rifampicina con antirretrovirales</button>
+      <button class="example-btn" onclick="askExample(this)">Esquema de tratamiento de Hepatitis B según AASLD en paciente coinfectado con VIH</button>
+    </div>
+  `;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function retryLast() {
