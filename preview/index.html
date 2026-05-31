@@ -482,6 +482,34 @@ img{max-width:100%;display:block}
 }
 .contact-map iframe{width:100%;height:100%;min-height:360px;border:none}
 
+/* ═══════════ SECTION HERO IMAGES ═══════════ */
+.section-hero{
+  max-width:var(--max-w);margin:0 auto;padding:80px var(--px) 0;
+}
+.section-hero-img{
+  width:100%;height:320px;object-fit:cover;border-radius:24px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.08);
+}
+
+/* Image grid for visual sections */
+.img-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;
+}
+.img-grid img{
+  width:100%;height:220px;object-fit:cover;border-radius:16px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.06);transition:transform .4s;
+}
+.img-grid img:hover{transform:scale(1.02)}
+.img-grid.three{grid-template-columns:1fr 1fr 1fr}
+.img-grid.three img{height:200px}
+
+@media(max-width:900px){
+  .section-hero-img{height:200px}
+  .img-grid img{height:160px}
+  .img-grid.three{grid-template-columns:1fr}
+  .img-grid.three img{height:180px}
+}
+
 /* Huli Calendar */
 .huli-section{
   max-width:var(--max-w);margin:0 auto;padding:0 var(--px) 80px;
@@ -715,6 +743,15 @@ img{max-width:100%;display:block}
     <div class="stat"><div class="stat-num">5 ⭐</div><div class="stat-label">Calificación pacientes</div></div>
   </div>
 
+  <!-- Image Grid -->
+  <div class="section" style="padding-bottom:0">
+    <div class="img-grid three">
+      <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=600&q=80" alt="Consulta médica">
+      <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="Atención médica">
+      <img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?w=600&q=80" alt="Profesional de salud">
+    </div>
+  </div>
+
   <!-- Quick Grid -->
   <div class="section">
     <div class="section-header">
@@ -848,6 +885,9 @@ img{max-width:100%;display:block}
 
 <!-- ═══════════ PAGE: CONSULTA ═══════════ -->
 <div class="page" id="page-consulta">
+  <div class="section-hero">
+    <img class="section-hero-img" src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1200&q=80" alt="Consulta médica de infectología">
+  </div>
   <div class="section">
     <div class="section-header">
       <h2>Consulta de Especialidad</h2>
@@ -907,6 +947,9 @@ img{max-width:100%;display:block}
 
 <!-- ═══════════ PAGE: VIH ═══════════ -->
 <div class="page" id="page-vih">
+  <div class="section-hero">
+    <img class="section-hero-img" src="https://images.unsplash.com/photo-1676313125237-cacf3e880dc2?w=1200&q=80" alt="Atención integral de VIH - Médico con listón rojo">
+  </div>
   <div class="section">
     <div class="section-header">
       <h2>Atención Integral de VIH</h2>
@@ -935,6 +978,9 @@ img{max-width:100%;display:block}
 
 <!-- ═══════════ PAGE: EMPRESAS ═══════════ -->
 <div class="page" id="page-empresas">
+  <div class="section-hero">
+    <img class="section-hero-img" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80" alt="Asesoría médica empresarial">
+  </div>
   <div class="section">
     <div class="section-header">
       <h2>Consejería para Empresas</h2>
@@ -1016,6 +1062,9 @@ img{max-width:100%;display:block}
 
 <!-- ═══════════ PAGE: VACUNAS ═══════════ -->
 <div class="page" id="page-vacunas">
+  <div class="section-hero">
+    <img class="section-hero-img" src="https://images.unsplash.com/photo-1632053001332-2f0e5df8e78d?w=1200&q=80" alt="Catálogo de vacunas">
+  </div>
   <div class="section">
     <div class="section-header">
       <h2>Catálogo de Vacunas</h2>
