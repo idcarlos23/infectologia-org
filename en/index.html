@@ -298,6 +298,7 @@ img{max-width:100%;display:block}
     <ul class="nav-links">
       <a href="#about" onclick="scrollToSection('about')">About</a>
       <a href="#services" onclick="scrollToSection('services')">Services</a>
+      <a href="#std-labs" onclick="scrollToSection('std-labs')">STD Labs</a>
       <a href="#why-us" onclick="scrollToSection('why-us')">Why Choose Us</a>
       <a href="#getting-here" onclick="scrollToSection('getting-here')">Getting Here</a>
       <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
@@ -316,6 +317,7 @@ img{max-width:100%;display:block}
   <button class="close-btn" onclick="toggleMobileNav()">✕</button>
   <a href="javascript:void(0)" onclick="scrollToSection('about');toggleMobileNav()">👨‍⚕️ About</a>
   <a href="javascript:void(0)" onclick="scrollToSection('services');toggleMobileNav()">🩺 Services</a>
+  <a href="javascript:void(0)" onclick="scrollToSection('std-labs');toggleMobileNav()">🔬 STD Labs</a>
   <a href="javascript:void(0)" onclick="scrollToSection('why-us');toggleMobileNav()">⭐ Why Choose Us</a>
   <a href="javascript:void(0)" onclick="scrollToSection('getting-here');toggleMobileNav()">📍 Getting Here</a>
   <a href="javascript:void(0)" onclick="scrollToSection('contact');toggleMobileNav()">📞 Contact</a>
@@ -462,6 +464,63 @@ img{max-width:100%;display:block}
   <div class="img-grid" style="margin-top:16px">
     <img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?w=600&q=80" alt="Healthcare professional">
     <img src="/images/consultorio-8.jpeg" alt="Clinic interior">
+  </div>
+</div>
+
+
+<!-- STD Lab Tests -->
+<div class="section" id="std-labs">
+  <div class="section-header">
+    <h2>STD Laboratory Testing</h2>
+    <p>Confidential and professional sexually transmitted disease screening. No appointment needed.</p>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">🩸</div><h3>HIV, HCV, HBV & VDRL Serology</h3>
+      <div class="price">$740 MXN (~$40 USD) on Mon, Wed & Sun</div>
+      <p>Screens for HIV, Hepatitis C, Hepatitis B and Syphilis. Other days pricing varies by monthly promotion.</p>
+      <ul><li>Blood sample</li><li>8-hour fasting required</li></ul>
+    </div>
+    <div class="card">
+      <div class="icon">🧬</div><h3>STD PCR Panel (12 Pathogens)</h3>
+      <div class="price">$2,800 MXN (~$150 USD) fixed price</div>
+      <p>Comprehensive molecular detection: Chlamydia (3 variants), Gonorrhea, Herpes 1 & 2, Mycoplasma genitalium & hominis, Ureaplasma, Trichomonas, Chancroid and Syphilis.</p>
+      <ul><li>Blood + urethral swab</li><li>8-hour fasting required</li></ul>
+    </div>
+    <div class="card">
+      <div class="icon">🔬</div><h3>HPV Screening (Urethral Swab)</h3>
+      <div class="price">Women: $1,805 MXN · Men: $1,533 MXN</div>
+      <p>Human Papillomavirus detection by urethral swab.</p>
+      <ul><li>Urethral swab sample</li><li>8-hour fasting required</li></ul>
+    </div>
+  </div>
+
+  <div class="section-header" style="margin-top:48px">
+    <h2>Sample Collection Locations</h2>
+    <p>Walk-in, no appointment needed. Results delivered to your email.</p>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">🏥</div><h3>Centro Médico Unidad Sendero</h3>
+      <p>📍 Av. Francisco Villarreal Torres #2050, Plaza Sendero</p>
+      <p>🕐 Mon–Sun: 7:00 AM – 10:00 AM</p>
+      <ul><li>Women only</li></ul>
+    </div>
+    <div class="card">
+      <div class="icon">🏥</div><h3>Centro Médico Unidad Las Torres</h3>
+      <p>🕐 Mon–Sun: 7:00 AM – 10:00 AM</p>
+      <ul><li>Women and Men</li></ul>
+    </div>
+    <div class="card">
+      <div class="icon">🏥</div><h3>Centro Médico de las Américas</h3>
+      <p>🕐 Mon–Sat: 7:00 AM – 10:00 AM</p>
+      <p>🕐 Sun: 9:00 AM – 11:00 AM</p>
+      <ul><li>Women and Men</li></ul>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:32px">
+    <a href="https://wa.me/528148206457?text=Hello%20Dr.%20G%C3%B3mez%2C%20I%20would%20like%20information%20about%20STD%20lab%20tests" target="_blank" class="btn-primary" onclick="trackEvent('whatsapp_click','std-labs')">💬 Request Information</a>
   </div>
 </div>
 
