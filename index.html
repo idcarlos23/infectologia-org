@@ -666,6 +666,7 @@ img{max-width:100%;display:block}
       <a href="javascript:void(0)" onclick="navigateTo('vih')">VIH</a>
       <a href="javascript:void(0)" onclick="navigateTo('empresas')">Empresas</a>
       <a href="javascript:void(0)" onclick="navigateTo('vacunas')">Vacunas</a>
+      <a href="javascript:void(0)" onclick="navigateTo('laboratorios')">Laboratorios</a>
       <a href="javascript:void(0)" onclick="navigateTo('peritaje')">Peritaje</a>
       <a href="javascript:void(0)" onclick="navigateTo('blog')">Blog</a>
       <a href="javascript:void(0)" onclick="navigateTo('contacto')">Contacto</a>
@@ -688,6 +689,7 @@ img{max-width:100%;display:block}
   <a href="javascript:void(0)" onclick="navigateTo('vih');toggleMobileNav()">🔴 VIH</a>
   <a href="javascript:void(0)" onclick="navigateTo('empresas');toggleMobileNav()">🏭 Empresas</a>
   <a href="javascript:void(0)" onclick="navigateTo('vacunas');toggleMobileNav()">💉 Vacunas</a>
+  <a href="javascript:void(0)" onclick="navigateTo('laboratorios');toggleMobileNav()">🔬 Laboratorios</a>
   <a href="javascript:void(0)" onclick="navigateTo('peritaje');toggleMobileNav()">⚖️ Peritaje</a>
   <a href="javascript:void(0)" onclick="navigateTo('blog');toggleMobileNav()">📝 Blog</a>
   <a href="javascript:void(0)" onclick="navigateTo('contacto');toggleMobileNav()">📞 Contacto</a>
@@ -925,7 +927,7 @@ img{max-width:100%;display:block}
       <div class="service-card"><div class="service-icon">🛡️</div><h3>Sarampión, Tosferina, TB</h3><p>Manejo de enfermedades prevenibles por vacunación.</p></div>
       <div class="service-card"><div class="service-icon">🪲</div><h3>Rickettsiosis</h3><p>Diagnóstico y tratamiento de enfermedades por vectores.</p></div>
       <div class="service-card"><div class="service-icon">✈️</div><h3>Enfermedades del Viajero</h3><p>Consulta pre y post viaje, vacunación.</p></div>
-      <div class="service-card"><div class="service-icon">⚕️</div><h3>ETS</h3><p>Atención discreta, confidencial y sin juicios.</p></div>
+      <div class="service-card" style="cursor:pointer" onclick="navigateTo('laboratorios')"><div class="service-icon">⚕️</div><h3>ETS</h3><p>Atención discreta, confidencial y sin juicios. <strong>Ver estudios →</strong></p></div>
       <div class="service-card"><div class="service-icon">📋</div><h3>Certificados de Vacunación</h3><p>Para trámites escolares, laborales y de viaje.</p></div>
       <div class="service-card"><div class="service-icon">🏢</div><h3>Consejería para Empresas</h3><p>Asesoría en prevención y manejo de brotes.</p></div>
     </div>
@@ -1097,6 +1099,49 @@ img{max-width:100%;display:block}
     </div>
     <div style="text-align:center;margin-top:32px">
       <a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20vacunas" target="_blank" class="btn-primary" onclick="trackEvent('whatsapp_click','vacunas')">💬 Consultar disponibilidad</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════ PAGE: LABORATORIOS ETS ═══════════ -->
+<div class="page" id="page-laboratorios">
+  <div class="section-hero">
+    <img class="section-hero-img" src="https://images.unsplash.com/photo-1579165466741-7f35e4755660?w=1200&q=80" alt="Estudios de laboratorio para ETS">
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <h2>Estudios de Laboratorio para ETS</h2>
+      <p>Detección confidencial y profesional de enfermedades de transmisión sexual</p>
+    </div>
+
+    <div class="vaccine-grid">
+      <div class="vaccine-card"><div class="v-icon">🩸</div><div><h4>Serología VIH, VHC, VHB y VDRL</h4><div class="v-price">$740 MXN (Lun, Mié y Dom)</div><div class="v-detail">Detecta VIH, Hepatitis C, Hepatitis B y Sífilis. Los demás días el costo depende de la promoción del mes.</div><div class="vaccine-tags"><span>Sangre</span><span>Promoción</span></div></div></div>
+
+      <div class="vaccine-card"><div class="v-icon">🧬</div><div><h4>Panel ETS por PCR (12 patógenos)</h4><div class="v-price">$2,800 MXN (precio fijo)</div><div class="v-detail">Chlamydia trachomatis (3 variantes), Neisseria gonorrhoeae, Herpes 1 y 2, Mycoplasma genitalium, Mycoplasma hominis, Ureaplasma, Trichomonas vaginalis, Haemophilus ducreyi y Treponema pallidum.</div><div class="vaccine-tags"><span>Sangre + Hisopado uretral</span></div></div></div>
+
+      <div class="vaccine-card"><div class="v-icon">🔬</div><div><h4>Rastreo de VPH por Hisopado Uretral</h4><div class="v-price">Mujer: $1,805 · Hombre: $1,533</div><div class="v-detail">Detección del Virus del Papiloma Humano por hisopado uretral.</div><div class="vaccine-tags"><span>Hisopado uretral</span></div></div></div>
+    </div>
+
+    <div class="section-header" style="margin-top:48px">
+      <h2>Ubicaciones para Toma de Muestra</h2>
+    </div>
+
+    <div class="vaccine-grid">
+      <div class="vaccine-card"><div class="v-icon">🏥</div><div><h4>Centro Médico Unidad Sendero</h4><div class="v-detail">📍 Av. Francisco Villarreal Torres #2050, Plaza Sendero</div><div class="v-detail">🕐 Lunes a Domingo: 7:00 AM a 10:00 AM</div><div class="vaccine-tags"><span>Solo mujeres</span></div></div></div>
+
+      <div class="vaccine-card"><div class="v-icon">🏥</div><div><h4>Centro Médico Unidad Las Torres</h4><div class="v-detail">🕐 Lunes a Domingo: 7:00 AM a 10:00 AM</div><div class="vaccine-tags"><span>Mujeres</span><span>Hombres</span></div></div></div>
+
+      <div class="vaccine-card"><div class="v-icon">🏥</div><div><h4>Centro Médico de las Américas</h4><div class="v-detail">🕐 Lunes a Sábado: 7:00 AM a 10:00 AM</div><div class="v-detail">🕐 Domingo: 9:00 AM a 11:00 AM</div><div class="vaccine-tags"><span>Mujeres</span><span>Hombres</span></div></div></div>
+    </div>
+
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-top:32px;text-align:center">
+      <p style="font-size:15px;color:var(--text-dim);margin:0"><strong>⏳ Requisito:</strong> Ayuno mínimo de 8 horas</p>
+      <p style="font-size:13px;color:var(--text-dim);margin:8px 0 0 0">🔒 Todos los estudios son confidenciales. Los resultados se entregan directamente al paciente.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:32px">
+      <a href="https://wa.me/528148206457?text=Hola%20Dr.%20Carlos%20G%C3%B3mez%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20estudios%20de%20laboratorio%20para%20ETS" target="_blank" class="btn-primary" onclick="trackEvent('whatsapp_click','laboratorios')">💬 Solicitar información</a>
     </div>
   </div>
 </div>
