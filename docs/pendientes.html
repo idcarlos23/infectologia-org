@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pendientes — Dr. Gómez Ponce</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  /* PASSWORD SCREEN */
+  .lock-screen {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: #0f172a; z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    font-family: 'Inter', sans-serif;
+  }
+  .lock-box {
+    text-align: center; color: #fff; padding: 40px;
+  }
+  .lock-box .lock-icon { font-size: 48px; margin-bottom: 16px; }
+  .lock-box h2 { font-size: 18px; font-weight: 800; margin-bottom: 6px; color: #fff; }
+  .lock-box p { font-size: 12px; color: #64748b; margin-bottom: 20px; }
+  .lock-input {
+    padding: 14px 20px; border-radius: 12px; border: 2px solid #334155;
+    background: #1e293b; color: #fff; font-family: 'Inter', sans-serif;
+    font-size: 15px; width: 260px; text-align: center; outline: none;
+  }
+  .lock-input:focus { border-color: #3b82f6; }
+  .lock-btn {
+    display: block; margin: 16px auto 0; padding: 12px 40px; border-radius: 50px;
+    border: none; background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #fff; font-family: 'Inter', sans-serif; font-size: 14px;
+    font-weight: 700; cursor: pointer;
+  }
+  .lock-btn:hover { transform: scale(1.03); }
+  .lock-error { color: #ef4444; font-size: 12px; margin-top: 10px; display: none; }
+  .hidden { display: none !important; }
+</style>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #0f172a; color: #e2e8f0; padding: 16px; min-height: 100vh; }
+  .container { max-width: 800px; margin: 0 auto; }
+  .header { text-align: center; padding: 28px 0 24px; }
+  .header h1 { font-size: 22px; font-weight: 800; color: #fff; }
+  .header p { font-size: 12px; color: #64748b; margin-top: 6px; }
+  .stats { display: flex; gap: 12px; justify-content: center; margin: 16px 0 24px; flex-wrap: wrap; }
+  .stat { background: #1e293b; border-radius: 12px; padding: 14px 20px; text-align: center; min-width: 100px; }
+  .stat-num { font-size: 28px; font-weight: 800; }
+  .stat-label { font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+  .stat-pending .stat-num { color: #fbbf24; }
+  .stat-done .stat-num { color: #34d399; }
+  .stat-total .stat-num { color: #60a5fa; }
+  .section { margin-bottom: 20px; }
+  .section-title {
+    font-size: 13px; font-weight: 700; color: #fff;
+    padding: 12px 16px; border-radius: 12px 12px 0 0;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cat-pub { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+  .cat-taller { background: linear-gradient(135deg, #0891b2, #0e7490); }
+  .cat-digital { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+  .cat-ig { background: linear-gradient(135deg, #e11d48, #be123c); }
+  .cat-admin { background: linear-gradient(135deg, #059669, #047857); }
+  .cat-neg { background: linear-gradient(135deg, #d97706, #b45309); }
+  .section-body { background: #1e293b; border-radius: 0 0 12px 12px; overflow: hidden; }
+  .item { padding: 14px 16px; border-bottom: 1px solid #2d3a4f; display: flex; align-items: flex-start; gap: 12px; }
+  .item:last-child { border-bottom: none; }
+  .item-check { flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; margin-top: 2px; }
+  .check-pending { background: #fbbf2420; border: 2px solid #fbbf24; color: #fbbf24; }
+  .check-done { background: #34d39920; border: 2px solid #34d399; color: #34d399; }
+  .item-content { flex: 1; }
+  .item-title { font-size: 14px; font-weight: 600; color: #f1f5f9; line-height: 1.4; }
+  .item-title.done { text-decoration: line-through; color: #64748b; }
+  .item-notes { font-size: 11px; color: #94a3b8; margin-top: 4px; line-height: 1.4; }
+  .item-date { font-size: 10px; color: #475569; margin-top: 4px; }
+  .badge { display: inline-block; font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; text-transform: uppercase; letter-spacing: 0.5px; }
+  .badge-pending { background: #fbbf2420; color: #fbbf24; }
+  .badge-done { background: #34d39920; color: #34d399; }
+  .badge-urgent { background: #ef444420; color: #ef4444; }
+  .footer { text-align: center; padding: 20px; font-size: 10px; color: #475569; }
+  .legend { text-align: center; margin-bottom: 20px; font-size: 11px; color: #64748b; }
+  .legend span { margin: 0 10px; }
+</style>
+</head>
+<body>
+
+<!-- LOCK SCREEN -->
+<div class="lock-screen" id="lockScreen">
+  <div class="lock-box">
+    <div class="lock-icon">🔒</div>
+    <h2>Mis Pendientes</h2>
+    <p>Ingresa la contraseña para acceder</p>
+    <input type="password" class="lock-input" id="lockPass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')unlock()">
+    <button class="lock-btn" onclick="unlock()">Entrar</button>
+    <div class="lock-error" id="lockError">Contraseña incorrecta</div>
+  </div>
+</div>
+
+<!-- CONTENIDO (oculto hasta que se desbloquee) -->
+<div class="container" id="mainContent" style="display:none">
+
+<div class="header">
+  <h1>📋 Mis Pendientes</h1>
+  <p>Dr. Carlos Augusto Gómez Ponce · Infectología</p>
+  <p style="font-size:11px; color:#475569; margin-top:6px;">Actualizado: 28 de junio de 2026</p>
+</div>
+
+<div class="stats">
+  <div class="stat stat-pending"><div class="stat-num">26</div><div class="stat-label">Pendientes</div></div>
+  <div class="stat stat-done"><div class="stat-num">6</div><div class="stat-label">Completados</div></div>
+  <div class="stat stat-total"><div class="stat-num">32</div><div class="stat-label">Total</div></div>
+</div>
+
+<div class="legend">
+  <span>🟡 Pendiente</span>
+  <span>✅ Completado</span>
+  <span>🔴 Urgente</span>
+</div>
+
+<!-- PUBLICACIONES / INVESTIGACIÓN -->
+<div class="section">
+  <div class="section-title cat-pub">📄 Publicaciones e Investigación</div>
+  <div class="section-body">
+    <div class="item">
+      <div class="item-check check-done">✓</div>
+      <div class="item-content">
+        <div class="item-title done">Enviar manuscrito absceso cerebral a EID <span class="badge badge-done">Completado</span></div>
+        <div class="item-notes">Manuscript ID: EID-26-1100. Enviado el 13 de junio a Emerging Infectious Diseases.</div>
+        <div class="item-date">Agregado: 4 jun · Completado: 13 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Manuscrito cascada VIH HGZ 35 — revisar y enviar a Revista Médica del IMSS</div>
+        <div class="item-notes">Manuscrito listo. Falta revisión final tuya y envío.</div>
+        <div class="item-date">Agregado: 2 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Estudio Epclusa (Hepatitis C) — vaciar datos en spreadsheet</div>
+        <div class="item-notes">~300 pacientes, 5 años, estudio de vida real. Google Sheets creado.</div>
+        <div class="item-date">Agregado: 12 may 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Estudio Sífilis Congénita — vaciar datos en spreadsheet</div>
+        <div class="item-notes">Google Sheets creado.</div>
+        <div class="item-date">Agregado: 12 may 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Caso clínico VIH + Linfoma de Burkitt</div>
+        <div class="item-notes">Niño de 4 años. Falta que compartas los datos clínicos para redactar el manuscrito.</div>
+        <div class="item-date">Agregado: 12 may 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Caso clínico LLA + Mucormicosis rinosinusal</div>
+        <div class="item-notes">Niña con leucemia. Falta que compartas los datos clínicos para redactar el manuscrito.</div>
+        <div class="item-date">Agregado: 12 may 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Oficio Gilead (MexY-PIDN) — seguimiento con Dr. Sebastián León</div>
+        <div class="item-notes">Enviado por correo el 2 de junio.</div>
+        <div class="item-date">Agregado: 2 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Conferencias para enviar pósters con beca</div>
+        <div class="item-notes">Mejores opciones: AASLD (nov 2026) para Hepatitis C y CROI 2027 (mar 2027) para Cascada VIH. Recordatorio programado para 25 julio.</div>
+        <div class="item-date">Agregado: 27 jun 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AIDS 2026 -->
+<div class="section">
+  <div class="section-title" style="background: linear-gradient(135deg, #dc2626, #b91c1c);">✈️ AIDS 2026 — Río de Janeiro</div>
+  <div class="section-body">
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Sesión virtual pre-departure para becarios IAS</div>
+        <div class="item-notes">Miércoles 1 de julio, 9:30 AM (hora México) por Zoom. Beca #175816. Recordatorio programado.</div>
+        <div class="item-date">Agregado: 27 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Sesión virtual "Meet the Experts"</div>
+        <div class="item-notes">Martes 7 de julio, 7:30 AM (hora México) por Zoom. Recordatorio programado.</div>
+        <div class="item-date">Agregado: 27 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Viaje a Río de Janeiro — AIDS 2026</div>
+        <div class="item-notes">25 jul – 2 ago. Beca IAS #175816. Registro, vuelos y hospedaje confirmados. Agenda personalizada lista.</div>
+        <div class="item-date">Agregado: 27 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Experiencia Airbnb — Partido en el Maracanã ⚽</div>
+        <div class="item-notes">Domingo 26 de julio. Las pre-conferencias se ven después en grabación.</div>
+        <div class="item-date">Agregado: 27 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Actualizar LinkedIn antes del viaje</div>
+        <div class="item-notes">Para networking en la conferencia. Guía ya creada.</div>
+        <div class="item-date">Agregado: 27 jun 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TALLER CLABSI -->
+<div class="section">
+  <div class="section-title cat-taller">🏥 Taller CLABSI</div>
+  <div class="section-body">
+    <div class="item">
+      <div class="item-check check-done">✓</div>
+      <div class="item-content">
+        <div class="item-title done">Taller CLABSI — miércoles 17 de junio <span class="badge badge-done">Completado</span></div>
+        <div class="item-notes">Completado. Presentaciones y evaluación entregadas.</div>
+        <div class="item-date">Agregado: 10 jun · Completado: 17 jun 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IMSS VIH -->
+<div class="section">
+  <div class="section-title cat-taller">🏥 Consulta IMSS — VIH/VHC</div>
+  <div class="section-body">
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Verificar si Google Sheets abre en la computadora del IMSS (red LAN)</div>
+        <div class="item-notes">Si no abre, se hace versión Excel offline de la base de datos.</div>
+        <div class="item-date">Agregado: 23 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Probar checklist clínico VIH en celular durante consulta</div>
+        <div class="item-notes">Abrir con datos móviles y agregar a pantalla de inicio.</div>
+        <div class="item-date">Agregado: 23 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Probar plantillas de nota (copiar/pegar) en el ECE del IMSS</div>
+        <div class="item-notes">ECE sí permite copiar y pegar texto.</div>
+        <div class="item-date">Agregado: 23 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Empezar a llenar base de datos de pacientes VIH/VHC del IMSS</div>
+        <div class="item-notes">Google Sheets con 6 pestañas: Pacientes VIH, Labs, Vacunas, Pacientes VHC, Cascada 95-95-95, Catálogo.</div>
+        <div class="item-date">Agregado: 23 jun 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRESENCIA DIGITAL -->
+<div class="section">
+  <div class="section-title cat-digital">🌐 Presencia Digital</div>
+  <div class="section-body">
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Doctoralia — verificación de perfil y corrección de datos</div>
+        <div class="item-notes">Correo firme enviado 12 junio (caso #02959159). Dirección y especialidad incorrectas en el perfil.</div>
+        <div class="item-date">Agregado: 20 may 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">TopDoctors — confirmar cancelación</div>
+        <div class="item-notes">Follow-up a Lucía Román por confirmación escrita.</div>
+        <div class="item-date">Agregado: 15 may 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">LinkedIn — actualizar perfil profesional</div>
+        <div class="item-notes">Guía ya creada. Falta que actualices tu perfil.</div>
+        <div class="item-date">Agregado: 15 may 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Google Ads — revisar rendimiento de campañas</div>
+        <div class="item-notes">Campañas activas (MX + US El Paso). Crédito vence 17 julio.</div>
+        <div class="item-date">Agregado: 25 may 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Gmail — arreglar botón de envío con info@infectologia.org</div>
+        <div class="item-notes">El "Send as" no funciona.</div>
+        <div class="item-date">Agregado: 2 jun 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INSTAGRAM -->
+<div class="section">
+  <div class="section-title cat-ig">📱 Instagram</div>
+  <div class="section-body">
+    <div class="item">
+      <div class="item-check check-done">✓</div>
+      <div class="item-content">
+        <div class="item-title done">Cortinilla animada para reels (Fiverr - Sabeen) <span class="badge badge-done">Completado</span></div>
+        <div class="item-notes">Estilo minimalista. Logo dorado + tipografía Sora + cédulas. Paquete Standard $45 USD.</div>
+        <div class="item-date">Agregado: 26 jun · Completado: 27 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Plan de contenido de junio — crear y programar posts</div>
+        <div class="item-notes">Continuar con tono humanizado. Coordinar con diseñadora.</div>
+        <div class="item-date">Agregado: 2 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Plan de contenido AIDS 2026 — antes, durante y después</div>
+        <div class="item-notes">El agente prepara todo el 18 de julio con imágenes y textos listos. Recordatorio programado.</div>
+        <div class="item-date">Agregado: 27 jun 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AHORROS -->
+<div class="section">
+  <div class="section-title cat-admin">💰 Ahorros en Suscripciones</div>
+  <div class="section-body">
+    <div class="item">
+      <div class="item-check check-done">✓</div>
+      <div class="item-content">
+        <div class="item-title done">Cancelar Canva Pro <span class="badge badge-done">Completado</span></div>
+        <div class="item-notes">Ahorro: $150/mes. Todo cubierto con herramientas gratuitas.</div>
+        <div class="item-date">Completado: 26 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-done">✓</div>
+      <div class="item-content">
+        <div class="item-title done">Cambiar Adobe Creative Cloud a solo Acrobat Pro <span class="badge badge-done">Completado</span></div>
+        <div class="item-notes">Ahorro: $1,100/mes. Carruseles e imágenes los hace el agente.</div>
+        <div class="item-date">Completado: 26 jun 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMINISTRATIVO -->
+<div class="section">
+  <div class="section-title cat-admin">📋 Administrativo</div>
+  <div class="section-body">
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Definir horarios de consulta en línea (sábados y domingos)</div>
+        <div class="item-notes">Falta que confirmes qué horarios quieres ofrecer.</div>
+        <div class="item-date">Agregado: 2 jun 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Hoja informativa VIH para pacientes del IMSS</div>
+        <div class="item-notes">Versión sin logos del consultorio privado. Para uso institucional.</div>
+        <div class="item-date">Agregado: 2 jun 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEGOCIO -->
+<div class="section">
+  <div class="section-title cat-neg">💼 Crecimiento del Negocio</div>
+  <div class="section-body">
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Propuesta para hospitales — contactar hospitales privados en Juárez</div>
+        <div class="item-notes">Documento listo. Falta identificar hospitales y enviar propuestas.</div>
+        <div class="item-date">Agregado: 15 abr 2026</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-check check-pending">⏳</div>
+      <div class="item-content">
+        <div class="item-title">Carta para abogados — contactar despachos jurídicos en Juárez</div>
+        <div class="item-notes">Documento listo. Falta contactar despachos.</div>
+        <div class="item-date">Agregado: 15 abr 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Dr. Carlos Augusto Gómez Ponce · Infectología · Ciudad Juárez<br>
+  Avísame por Telegram cuando completes alguno y lo marco ✅<br>
+  Generado por tu asistente IA
+</div>
+
+</div>
+
+<script>
+function unlock(){
+  var p=document.getElementById('lockPass').value;
+  if(p==='@mxm7944cSyp'){
+    document.getElementById('lockScreen').classList.add('hidden');
+    document.getElementById('mainContent').style.display='';
+  } else {
+    document.getElementById('lockError').style.display='block';
+  }
+}
+</script>
+</body>
+</html>
