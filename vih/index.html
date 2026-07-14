@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIH — Información y Recursos | Dr. Carlos Gómez | infectologia.org</title>
+  <meta name="description" content="Información actualizada sobre VIH: prevención, diagnóstico, tratamiento y recursos clínicos. Para pacientes y profesionales de salud. Dr. Carlos Gómez Ponce, Infectólogo en Ciudad Juárez.">
+  <link rel="canonical" href="https://infectologia.org/vih/">
+  <link rel="alternate" hreflang="es" href="https://infectologia.org/vih/">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWE4NZ568F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KWE4NZ568F');
+  </script>
+
+  <style>
+/* ═══════════ RESET & BASE ═══════════ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:#f5f0eb;color:#1a1a1a;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{max-width:100%;display:block}
+
+:root{
+  --red:#c41e3a;--red-light:#e63950;--red-glow:rgba(196,30,58,0.1);--red-soft:rgba(196,30,58,0.06);
+  --coral:#d4775c;--coral-light:#e8937a;
+  --teal:#3d9b8f;
+  --bg:#f5f0eb;--bg-card:#ffffff;
+  --border:rgba(0,0,0,0.07);--border-hover:rgba(196,30,58,0.35);
+  --text:#1a1a1a;--text-muted:#666;--text-dim:#999;
+  --max-w:1100px;--px:50px;
+}
+
+/* ═══════════ ANIMATIONS ═══════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes ribbonFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-8px) rotate(-5deg)}}
+.animate{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.animate.visible{opacity:1;transform:translateY(0)}
+
+/* ═══════════ NAV ═══════════ */
+.topbar{
+  background:rgba(245,240,235,0.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  position:fixed;top:0;left:0;right:0;z-index:100;
+}
+.topbar-inner{
+  max-width:var(--max-w);margin:0 auto;padding:0 var(--px);
+  display:flex;align-items:center;justify-content:space-between;height:64px;
+}
+.logo{font-size:19px;font-weight:700;letter-spacing:-0.5px;transition:opacity .3s;color:#1a1a1a}
+.logo:hover{opacity:.7}
+.nav-links{display:flex;gap:24px}
+.nav-links a{color:var(--text-muted);font-size:14px;font-weight:500;transition:color .3s;position:relative}
+.nav-links a:hover{color:#1a1a1a}
+.nav-links a.active{color:var(--red);font-weight:600}
+.nav-cta{
+  padding:10px 24px;background:var(--coral);
+  border:none;border-radius:8px;color:#fff;font-size:14px;font-weight:600;
+  cursor:pointer;transition:all .3s;display:inline-block;
+}
+.nav-cta:hover{background:var(--coral-light);transform:translateY(-1px)}
+.nav-english{color:var(--text-dim);font-size:13px;margin-left:8px;transition:color .3s}
+.nav-english:hover{color:var(--red)}
+.menu-toggle{display:none;background:none;border:none;font-size:28px;cursor:pointer;padding:6px;
+  width:44px;height:44px;border-radius:10px;background:rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.08);color:#1a1a1a;
+  align-items:center;justify-content:center}
+
+/* ═══════════ MOBILE MENU ═══════════ */
+.mobile-menu{
+  display:none;position:fixed;top:0;right:0;bottom:0;width:280px;z-index:200;
+  background:#fff;box-shadow:-4px 0 24px rgba(0,0,0,0.1);
+  padding:80px 30px 30px;flex-direction:column;gap:0;
+}
+.mobile-menu.open{display:flex}
+.mobile-overlay{display:none;position:fixed;inset:0;z-index:199;background:rgba(0,0,0,0.3)}
+.mobile-overlay.open{display:block}
+.mobile-menu a{padding:16px 0;border-bottom:1px solid var(--border);font-size:16px;font-weight:500;color:var(--text-muted)}
+.mobile-menu a.active{color:var(--red)}
+.mobile-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:28px;cursor:pointer;color:#999}
+
+/* ═══════════ HERO ═══════════ */
+.hero-vih{
+  max-width:var(--max-w);margin:0 auto;padding:120px var(--px) 60px;
+  text-align:center;
+}
+.ribbon-icon{font-size:64px;margin-bottom:24px;display:inline-block;animation:ribbonFloat 3s ease-in-out infinite}
+.hero-vih h1{
+  font-size:48px;font-weight:700;line-height:1.1;letter-spacing:-2px;margin-bottom:16px;
+}
+.hero-vih h1 span{color:var(--red)}
+.hero-vih p{font-size:18px;color:var(--text-muted);max-width:600px;margin:0 auto 40px;line-height:1.7}
+
+/* ═══════════ AUDIENCE SELECTOR ═══════════ */
+.audience-selector{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:60px;
+}
+.audience-btn{
+  padding:16px 32px;border-radius:12px;font-size:16px;font-weight:600;
+  cursor:pointer;transition:all .35s;border:2px solid var(--border);
+  background:#fff;color:var(--text);display:flex;align-items:center;gap:10px;
+}
+.audience-btn:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,30,58,0.1)}
+.audience-btn.active{background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 8px 24px rgba(196,30,58,0.2)}
+.audience-btn .icon{font-size:22px}
+
+/* ═══════════ SECTIONS ═══════════ */
+.section{max-width:var(--max-w);margin:0 auto;padding:60px var(--px)}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header h2{font-size:34px;font-weight:700;letter-spacing:-1.5px;margin-bottom:12px}
+.section-header h2 span{color:var(--red)}
+.section-header p{color:var(--text-dim);font-size:16px;max-width:550px;margin:0 auto}
+.divider{max-width:var(--max-w);margin:0 auto;padding:0 var(--px);border-bottom:1px solid var(--border)}
+
+/* Content panels */
+.panel{display:none}
+.panel.active{display:block}
+
+/* ═══════════ INFO CARDS ═══════════ */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.info-card{
+  background:#fff;border-radius:16px;padding:32px;
+  border:1px solid var(--border);transition:all .35s;position:relative;overflow:hidden;
+}
+.info-card:hover{border-color:var(--border-hover);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.06)}
+.info-card .card-icon{font-size:36px;margin-bottom:16px}
+.info-card h3{font-size:20px;font-weight:700;margin-bottom:10px;letter-spacing:-0.5px}
+.info-card p{color:var(--text-muted);font-size:15px;line-height:1.7}
+.info-card .card-tag{
+  display:inline-block;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600;
+  background:var(--red-soft);color:var(--red);margin-bottom:14px;
+}
+
+/* ═══════════ I=I HIGHLIGHT ═══════════ */
+.iei-box{
+  background:linear-gradient(135deg,var(--red),#e63950);
+  border-radius:24px;padding:56px;color:#fff;text-align:center;
+  position:relative;overflow:hidden;margin:40px 0;
+}
+.iei-box::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:250px;height:250px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,0.15),transparent 70%);
+}
+.iei-box h2{font-size:42px;font-weight:700;letter-spacing:-1.5px;margin-bottom:16px;position:relative;z-index:1}
+.iei-box p{font-size:17px;line-height:1.7;opacity:0.9;max-width:600px;margin:0 auto;position:relative;z-index:1}
+.iei-stats{
+  display:flex;gap:40px;justify-content:center;margin-top:32px;flex-wrap:wrap;position:relative;z-index:1;
+}
+.iei-stat{text-align:center}
+.iei-stat .num{font-size:48px;font-weight:700;display:block}
+.iei-stat .label{font-size:14px;opacity:0.8}
+
+/* ═══════════ QUIZ ═══════════ */
+.quiz-container{
+  background:#fff;border-radius:20px;padding:40px;
+  border:1px solid var(--border);max-width:700px;margin:0 auto;
+}
+.quiz-container h3{font-size:22px;font-weight:700;margin-bottom:8px;text-align:center}
+.quiz-container .quiz-sub{color:var(--text-dim);text-align:center;margin-bottom:32px;font-size:15px}
+.quiz-progress{
+  height:6px;background:rgba(0,0,0,0.06);border-radius:100px;margin-bottom:32px;overflow:hidden;
+}
+.quiz-progress-bar{height:100%;background:var(--red);border-radius:100px;transition:width .4s ease}
+.quiz-question{font-size:18px;font-weight:600;margin-bottom:24px;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:12px}
+.quiz-option{
+  padding:16px 20px;border:1.5px solid var(--border);border-radius:12px;
+  cursor:pointer;transition:all .3s;font-size:15px;display:flex;align-items:center;gap:12px;
+}
+.quiz-option:hover{border-color:var(--red);background:var(--red-soft)}
+.quiz-option.selected{border-color:var(--red);background:var(--red-soft);color:var(--red);font-weight:600}
+.quiz-option .opt-circle{
+  width:20px;height:20px;border-radius:50%;border:2px solid var(--border);
+  flex-shrink:0;transition:all .3s;display:flex;align-items:center;justify-content:center;
+}
+.quiz-option.selected .opt-circle{border-color:var(--red);background:var(--red)}
+.quiz-option.selected .opt-circle::after{content:'✓';color:#fff;font-size:12px;font-weight:700}
+.quiz-nav{display:flex;justify-content:space-between;margin-top:28px;gap:12px}
+.quiz-btn{
+  padding:12px 28px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;transition:all .3s;border:none;
+}
+.quiz-btn-next{background:var(--red);color:#fff}
+.quiz-btn-next:hover{background:var(--red-light);transform:translateY(-1px)}
+.quiz-btn-next:disabled{background:#ccc;cursor:not-allowed;transform:none}
+.quiz-btn-back{background:transparent;border:1.5px solid var(--border);color:var(--text)}
+.quiz-result{text-align:center;padding:20px 0}
+.quiz-result .result-icon{font-size:64px;margin-bottom:16px}
+.quiz-result h3{font-size:24px;margin-bottom:12px}
+.quiz-result p{color:var(--text-muted);line-height:1.7;font-size:16px;max-width:500px;margin:0 auto 24px}
+.quiz-result .result-tag{
+  display:inline-block;padding:8px 20px;border-radius:100px;font-size:14px;font-weight:600;margin-bottom:20px;
+}
+.result-low{background:#e8f5e9;color:#2e7d32}
+.result-medium{background:#fff3e0;color:#e65100}
+.result-high{background:#fce4ec;color:#c62828}
+
+/* ═══════════ GUIDELINES TABLE ═══════════ */
+.guide-list{display:flex;flex-direction:column;gap:14px}
+.guide-item{
+  background:#fff;border-radius:14px;padding:24px;
+  border:1px solid var(--border);transition:all .3s;
+  display:flex;align-items:center;gap:20px;
+}
+.guide-item:hover{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.04)}
+.guide-icon{font-size:32px;flex-shrink:0}
+.guide-info h4{font-size:16px;font-weight:700;margin-bottom:4px}
+.guide-info p{color:var(--text-dim);font-size:14px;line-height:1.5}
+.guide-info .guide-tag{font-size:12px;color:var(--red);font-weight:600;margin-top:6px;display:inline-block}
+.guide-link{
+  margin-left:auto;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;
+  background:var(--red-soft);color:var(--red);transition:all .3s;flex-shrink:0;
+}
+.guide-link:hover{background:var(--red);color:#fff}
+
+/* ═══════════ SOTA SECTION ═══════════ */
+.sota-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.sota-card{
+  background:#fff;border-radius:16px;padding:28px;
+  border:1px solid var(--border);border-top:4px solid var(--red);transition:all .3s;
+}
+.sota-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.06)}
+.sota-card h4{font-size:17px;font-weight:700;margin-bottom:10px}
+.sota-card p{color:var(--text-muted);font-size:14px;line-height:1.7}
+.sota-card .sota-year{font-size:12px;color:var(--red);font-weight:700;margin-bottom:8px}
+
+/* ═══════════ RESOURCES ═══════════ */
+.resources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.resource-card{
+  background:#fff;border-radius:14px;padding:24px;text-align:center;
+  border:1px solid var(--border);transition:all .3s;
+}
+.resource-card:hover{border-color:var(--border-hover);transform:translateY(-2px)}
+.resource-card .res-icon{font-size:32px;margin-bottom:12px}
+.resource-card h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.resource-card p{color:var(--text-dim);font-size:13px;line-height:1.5}
+.resource-card a{color:var(--red);font-weight:600;font-size:13px;margin-top:10px;display:inline-block}
+
+/* ═══════════ CTA ═══════════ */
+.cta-box{
+  padding:56px;border-radius:24px;position:relative;overflow:hidden;
+  background:var(--red);color:#fff;text-align:center;
+  max-width:860px;margin:0 auto;
+}
+.cta-box::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:250px;height:250px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,0.15),transparent 70%);
+}
+.cta-box h2{font-size:30px;font-weight:700;letter-spacing:-1px;margin-bottom:14px;position:relative;z-index:1}
+.cta-box p{color:rgba(255,255,255,0.85);margin-bottom:28px;font-size:16px;line-height:1.6;position:relative;z-index:1}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.cta-btn-white{
+  padding:14px 28px;background:#fff;color:var(--red);
+  border:none;border-radius:8px;font-size:15px;font-weight:600;
+  cursor:pointer;transition:all .35s;display:inline-block;
+}
+.cta-btn-white:hover{background:#f5f0eb;transform:translateY(-2px)}
+.cta-btn-outline{
+  padding:14px 28px;background:transparent;color:#fff;
+  border:1.5px solid rgba(255,255,255,0.4);border-radius:8px;font-size:15px;font-weight:500;
+  cursor:pointer;transition:all .35s;display:inline-block;
+}
+.cta-btn-outline:hover{border-color:#fff}
+
+/* ═══════════ WHATSAPP FAB ═══════════ */
+.wa-fab{
+  position:fixed;bottom:24px;right:24px;z-index:90;
+  width:56px;height:56px;border-radius:50%;
+  background:#25D366;color:#fff;font-size:28px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(37,211,102,0.4);
+  transition:all .3s;cursor:pointer;border:none;
+}
+.wa-fab:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(37,211,102,0.5)}
+
+/* ═══════════ LANG TOGGLE ═══════════ */
+.lang-toggle{
+  display:flex;gap:0;border-radius:8px;overflow:hidden;border:1px solid var(--border);
+  margin:0 auto;width:fit-content;margin-bottom:20px;
+}
+.lang-btn{
+  padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;
+  background:#fff;color:var(--text-muted);border:none;
+}
+.lang-btn.active{background:var(--red);color:#fff}
+
+/* ═══════════ FOOTER ═══════════ */
+.footer{
+  max-width:var(--max-w);margin:0 auto;padding:40px var(--px);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+}
+.footer-left{font-size:12px;color:#999;line-height:1.6}
+.footer-social{display:flex;gap:16px}
+.footer-social a{
+  width:36px;height:36px;border-radius:10px;background:#fff;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .3s;
+}
+.footer-social a:hover{border-color:var(--border-hover)}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:900px){
+  :root{--px:16px}
+  .nav-links{display:none}
+  .nav-english{display:none}
+  .nav-cta{display:none}
+  .menu-toggle{display:flex}
+  .topbar-inner{height:56px}
+  .hero-vih{padding:90px var(--px) 40px}
+  .hero-vih h1{font-size:32px;letter-spacing:-1px}
+  .hero-vih p{font-size:16px}
+  .ribbon-icon{font-size:48px}
+  .audience-btn{padding:14px 24px;font-size:14px}
+  .section-header h2{font-size:26px}
+  .cards-grid{grid-template-columns:1fr}
+  .iei-box{padding:36px 24px}
+  .iei-box h2{font-size:30px}
+  .iei-stats{gap:24px}
+  .iei-stat .num{font-size:36px}
+  .quiz-container{padding:24px}
+  .guide-item{flex-direction:column;text-align:center}
+  .guide-link{margin-left:0;margin-top:8px}
+  .sota-grid{grid-template-columns:1fr}
+  .cta-box{padding:36px 24px}
+  .cta-box h2{font-size:24px}
+  .resources-grid{grid-template-columns:1fr}
+}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a href="https://infectologia.org" class="logo"><img src="/images/logo-icono-new.png" alt="infectologia.org" style="height:36px;width:auto"></a>
+    <ul class="nav-links">
+      <a href="https://infectologia.org">Inicio</a>
+      <a href="https://infectologia.org/#sobre">Sobre el Dr.</a>
+      <a href="/vih/" class="active">VIH</a>
+      <a href="https://infectologia.org/#consulta">Consulta</a>
+      <a href="https://infectologia.org/#blog">Blog</a>
+      <a href="https://infectologia.org/#contacto">Contacto</a>
+    </ul>
+    <div style="display:flex;align-items:center;gap:12px">
+      <a href="https://app.hulivida.com/citas/carlos-augusto-gomez-ponce" target="_blank" class="nav-cta">Agendar Cita</a>
+    </div>
+    <button class="menu-toggle" onclick="toggleMobile()">☰</button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobile()"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMobile()">✕</button>
+  <a href="https://infectologia.org">Inicio</a>
+  <a href="/vih/" class="active">VIH</a>
+  <a href="https://infectologia.org/#consulta">Consulta</a>
+  <a href="https://infectologia.org/#blog">Blog</a>
+  <a href="https://infectologia.org/#contacto">Contacto</a>
+  <a href="https://app.hulivida.com/citas/carlos-augusto-gomez-ponce" target="_blank" style="color:var(--red);font-weight:600">Agendar Cita</a>
+</div>
+
+<!-- HERO -->
+<section class="hero-vih">
+  <div class="ribbon-icon">🎗️</div>
+  <h1 id="heroTitle">Información sobre <span>VIH</span></h1>
+  <p id="heroSub">Recursos actualizados para pacientes y profesionales de salud. Porque la información salva vidas.</p>
+
+  <!-- Language toggle -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('es')">🇲🇽 Español</button>
+    <button class="lang-btn" onclick="setLang('en')">🇺🇸 English</button>
+  </div>
+
+  <!-- Audience selector -->
+  <div class="audience-selector">
+    <button class="audience-btn active" onclick="setAudience('patient')" id="btnPatient">
+      <span class="icon">🫶</span>
+      <span id="btnPatientText">Soy paciente</span>
+    </button>
+    <button class="audience-btn" onclick="setAudience('professional')" id="btnPro">
+      <span class="icon">🩺</span>
+      <span id="btnProText">Soy profesional de salud</span>
+    </button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+<!-- PATIENT PANEL -->
+<!-- ═══════════════════════════════════ -->
+<div id="patientPanel" class="panel active">
+
+  <!-- ¿Qué es el VIH? -->
+  <section class="section animate">
+    <div class="section-header">
+      <h2 id="sec1Title">¿Qué es el <span>VIH</span>?</h2>
+      <p id="sec1Sub">Lo que necesitas saber, explicado de forma clara</p>
+    </div>
+    <div class="cards-grid">
+      <div class="info-card">
+        <div class="card-icon">🔬</div>
+        <div class="card-tag" id="tag1">CONCEPTOS BÁSICOS</div>
+        <h3 id="card1Title">VIH vs SIDA</h3>
+        <p id="card1Text">El VIH (Virus de Inmunodeficiencia Humana) ataca al sistema inmunológico. El SIDA es la etapa avanzada de la infección, cuando el sistema inmune está muy debilitado. Con tratamiento, la mayoría de las personas con VIH nunca desarrollan SIDA.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">🔄</div>
+        <div class="card-tag" id="tag2">TRANSMISIÓN</div>
+        <h3 id="card2Title">¿Cómo se transmite?</h3>
+        <p id="card2Text">Se transmite por relaciones sexuales sin protección, compartir agujas, y de madre a hijo durante el embarazo, parto o lactancia. NO se transmite por besos, abrazos, compartir alimentos, sudor o picaduras de insectos.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">💡</div>
+        <div class="card-tag" id="tag3">DATO CLAVE</div>
+        <h3 id="card3Title">Es tratable</h3>
+        <p id="card3Text">Con el tratamiento antirretroviral (TAR), las personas con VIH pueden vivir una vida larga y saludable. El VIH se convierte en una condición crónica manejable, similar a la diabetes o la hipertensión.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- I = I -->
+  <section class="section animate">
+    <div class="iei-box">
+      <h2>I = I</h2>
+      <p id="ieiText"><strong>Indetectable = Intransmisible.</strong> Cuando una persona con VIH toma su tratamiento correctamente y mantiene una carga viral indetectable, NO puede transmitir el virus a su pareja sexual. Esto está respaldado por múltiples estudios científicos con más de 100,000 actos sexuales sin protección entre parejas serodiscordantes, sin una sola transmisión.</p>
+      <div class="iei-stats">
+        <div class="iei-stat">
+          <span class="num">~900</span>
+          <span class="label" id="ieiLabel1">Pacientes en seguimiento<br>HGZ 35, IMSS</span>
+        </div>
+        <div class="iei-stat">
+          <span class="num">0</span>
+          <span class="label" id="ieiLabel2">Transmisiones cuando<br>la carga viral es indetectable</span>
+        </div>
+        <div class="iei-stat">
+          <span class="num">100%</span>
+          <span class="label" id="ieiLabel3">Respaldado por la<br>evidencia científica</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Hazte la prueba -->
+  <section class="section animate">
+    <div class="section-header">
+      <h2 id="sec2Title">Hazte la <span>prueba</span></h2>
+      <p id="sec2Sub">La detección temprana salva vidas. Conoce dónde y cómo hacerte la prueba en Ciudad Juárez</p>
+    </div>
+    <div class="cards-grid">
+      <div class="info-card">
+        <div class="card-icon">🏥</div>
+        <h3 id="test1Title">CAPASITS Ciudad Juárez</h3>
+        <p id="test1Text">Centro Ambulatorio para la Prevención y Atención del SIDA e ITS. Pruebas gratuitas y confidenciales. Ubicado en: Av. Paseo Triunfo de la República, Ciudad Juárez.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">🔴</div>
+        <h3 id="test2Title">Consultorio Dr. Gómez Ponce</h3>
+        <p id="test2Text">Prueba rápida de VIH con resultado en 15 minutos. Consejería pre y post-prueba incluida. Centro Médico de Especialidades, Av. Fco. Villarreal Torres 2050.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">⏱️</div>
+        <h3 id="test3Title">¿Cuándo hacerte la prueba?</h3>
+        <p id="test3Text">Si tuviste una situación de riesgo, la prueba se puede hacer a partir de las 2-4 semanas (prueba de 4ta generación). Si el resultado es negativo, se recomienda repetirla a las 12 semanas para confirmar.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Tratamiento -->
+  <section class="section animate">
+    <div class="section-header">
+      <h2 id="sec3Title"><span>Tratamiento</span> antirretroviral</h2>
+      <p id="sec3Sub">El TAR permite que las personas con VIH vivan una vida plena</p>
+    </div>
+    <div class="cards-grid">
+      <div class="info-card">
+        <div class="card-icon">💊</div>
+        <h3 id="tar1Title">¿Qué es el TAR?</h3>
+        <p id="tar1Text">El tratamiento antirretroviral (TAR) consiste en una combinación de medicamentos que impiden que el VIH se multiplique. Actualmente, muchos esquemas son una sola pastilla al día.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">📉</div>
+        <h3 id="tar2Title">Objetivo: carga viral indetectable</h3>
+        <p id="tar2Text">El TAR reduce la cantidad de virus en la sangre hasta niveles indetectables. Esto protege tu sistema inmunológico y hace imposible transmitir el virus a otros (I=I).</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">🤝</div>
+        <h3 id="tar3Title">Gratuito en México</h3>
+        <p id="tar3Text">En México, el tratamiento antirretroviral es gratuito a través del IMSS, ISSSTE, INSABI/IMSS-Bienestar y CAPASITS. No necesitas seguro social para recibirlo. Pregunta por tus opciones.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Prevención -->
+  <section class="section animate">
+    <div class="section-header">
+      <h2 id="sec4Title"><span>Prevención</span></h2>
+      <p id="sec4Sub">Múltiples herramientas para protegerte y proteger a los demás</p>
+    </div>
+    <div class="cards-grid">
+      <div class="info-card">
+        <div class="card-icon">🛡️</div>
+        <h3 id="prev1Title">PrEP — Profilaxis Pre-Exposición</h3>
+        <p id="prev1Text">Una pastilla diaria que previene la infección por VIH con más del 99% de eficacia. Indicada para personas sin VIH con factores de riesgo. Disponible en CAPASITS y consulta privada.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">🚨</div>
+        <h3 id="prev2Title">PEP — Profilaxis Post-Exposición</h3>
+        <p id="prev2Text">Tratamiento de emergencia que debe iniciarse dentro de las primeras 72 horas después de una posible exposición al VIH. Dura 28 días. Disponible en urgencias y CAPASITS.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">✅</div>
+        <h3 id="prev3Title">Prevención combinada</h3>
+        <p id="prev3Text">Uso de condón, pruebas regulares, PrEP, PEP, tratamiento como prevención (I=I), y circuncisión médica. La combinación de estrategias es la más efectiva.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Quiz: Evalúa tu riesgo -->
+  <section class="section animate">
+    <div class="section-header">
+      <h2 id="sec5Title">Evalúa tu <span>riesgo</span></h2>
+      <p id="sec5Sub">Responde este cuestionario anónimo y recibe una recomendación personalizada</p>
+    </div>
+    <div class="quiz-container" id="quizContainer">
+      <div id="quizContent">
+        <h3 id="quizTitle">Cuestionario de riesgo de VIH</h3>
+        <p class="quiz-sub" id="quizSub">100% anónimo · No se almacena información</p>
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="quizBar" style="width:0%"></div></div>
+        <div id="quizQuestion"></div>
+        <div id="quizOptions" class="quiz-options"></div>
+        <div class="quiz-nav">
+          <button class="quiz-btn quiz-btn-back" id="quizBack" onclick="prevQuestion()" style="visibility:hidden">← Anterior</button>
+          <button class="quiz-btn quiz-btn-next" id="quizNext" onclick="nextQuestion()" disabled>Siguiente →</button>
+        </div>
+      </div>
+      <div id="quizResult" class="quiz-result" style="display:none"></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- PROFESSIONAL PANEL -->
+<!-- ═══════════════════════════════════ -->
+<div id="proPanel" class="panel">
+
+  <!-- Guías Clínicas -->
+  <section class="section animate">
+    <div class="section-header">
+      <h2 id="secG1Title">Guías <span>clínicas</span> actualizadas</h2>
+      <p id="secG1Sub">Las principales referencias internacionales y nacionales para el manejo del VIH</p>
+    </div>
+    <div class="guide-list">
+      <div class="guide-item">
+        <div class="guide-icon">🇲🇽</div>
+        <div class="guide-info">
+          <h4>GPC México — CENSIDA</h4>
+          <p>Guía de Práctica Clínica para el manejo de la infección por VIH en adultos y adolescentes en México. Actualización 2024.</p>
+          <span class="guide-tag">NACIONAL</span>
+        </div>
+        <a href="https://www.gob.mx/censida" target="_blank" class="guide-link">Consultar →</a>
+      </div>
+      <div class="guide-item">
+        <div class="guide-icon">🇺🇸</div>
+        <div class="guide-info">
+          <h4>DHHS Guidelines</h4>
+          <p>Guidelines for the Use of Antiretroviral Agents in Adults and Adolescents with HIV. U.S. Department of Health and Human Services.</p>
+          <span class="guide-tag">REFERENCIA INTERNACIONAL</span>
+        </div>
+        <a href="https://clinicalinfo.hiv.gov/en/guidelines" target="_blank" class="guide-link">Consultar →</a>
+      </div>
+      <div class="guide-item">
+        <div class="guide-icon">🇪🇺</div>
+        <div class="guide-info">
+          <h4>EACS Guidelines</h4>
+          <p>European AIDS Clinical Society. Guías clínicas para el manejo integral del VIH, incluyendo coinfecciones y comorbilidades.</p>
+          <span class="guide-tag">EUROPEA</span>
+        </div>
+        <a href="https://www.eacsociety.org/guidelines/eacs-guidelines/" target="_blank" class="guide-link">Consultar →</a>
+      </div>
+      <div class="guide-item">
+        <div class="guide-icon">🌍</div>
+        <div class="guide-info">
+          <h4>OMS — Consolidated Guidelines</h4>
+          <p>Directrices consolidadas de la Organización Mundial de la Salud sobre prevención, pruebas, tratamiento, prestación de servicios y seguimiento del VIH.</p>
+          <span class="guide-tag">GLOBAL</span>
+        </div>
+        <a href="https://www.who.int/teams/global-hiv-hepatitis-and-stis-programmes/hiv/treatment" target="_blank" class="guide-link">Consultar →</a>
+      </div>
+      <div class="guide-item">
+        <div class="guide-icon">🔬</div>
+        <div class="guide-info">
+          <h4>IAS — International AIDS Society</h4>
+          <p>Recomendaciones del panel de expertos de la IAS-USA para el inicio y cambio de tratamiento antirretroviral.</p>
+          <span class="guide-tag">IAS-USA PANEL</span>
+        </div>
+        <a href="https://www.iasusa.org/guidelines/" target="_blank" class="guide-link">Consultar →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- State of the Art -->
+  <section class="section animate">
+    <div class="section-header">
+      <h2 id="secG2Title">State of the <span>Art</span> — VIH 2025-2026</h2>
+      <p id="secG2Sub">Lo más reciente en tratamiento, prevención y hacia la cura</p>
+    </div>
+    <div class="sota-grid">
+      <div class="sota-card">
+        <div class="sota-year">TRATAMIENTO 2026</div>
+        <h4>Lenacapavir: la revolución del inyectable semestral</h4>
+        <p>Aprobado como PrEP inyectable cada 6 meses. Eficacia del 99.9% en ensayos PURPOSE 1 y 2. Cambio de paradigma en prevención: de la pastilla diaria a dos inyecciones al año.</p>
+      </div>
+      <div class="sota-card">
+        <div class="sota-year">TRATAMIENTO 2025-2026</div>
+        <h4>Cabotegravir/Rilpivirina inyectable</h4>
+        <p>Terapia completa inyectable cada 2 meses para pacientes con carga viral indetectable. Eliminando la necesidad de pastillas diarias para el tratamiento del VIH.</p>
+      </div>
+      <div class="sota-card">
+        <div class="sota-year">INVESTIGACIÓN 2026</div>
+        <h4>Hacia la cura funcional</h4>
+        <p>Avances en terapia génica (CRISPR), anticuerpos ampliamente neutralizantes (bnAbs), y agonistas de latencia (kick-and-kill). Múltiples ensayos clínicos en fase II-III.</p>
+      </div>
+      <div class="sota-card">
+        <div class="sota-year">PREVENCIÓN 2026</div>
+        <h4>Vacunas en desarrollo</h4>
+        <p>Ensayos clínicos con mRNA (Moderna), VLP y anticuerpos ampliamente neutralizantes como prevención. Ninguna aprobada aún, pero los avances son prometedores.</p>
+      </div>
+      <div class="sota-card">
+        <div class="sota-year">CASCADA 2026</div>
+        <h4>Metas 95-95-95 de ONUSIDA</h4>
+        <p>El 95% de las personas con VIH deben conocer su estatus, 95% estar en tratamiento, y 95% tener carga viral suprimida. Meta global para 2025, aún en progreso en muchos países de Latinoamérica.</p>
+      </div>
+      <div class="sota-card">
+        <div class="sota-year">COINFECCIÓN 2026</div>
+        <h4>Eliminación de Hepatitis C en PVVIH</h4>
+        <p>Los antivirales de acción directa (DAAs) curan la hepatitis C en >95% de los casos, incluyendo personas con VIH. Sofosbuvir/Velpatasvir (Epclusa) es el esquema preferido.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Cascada de atención -->
+  <section class="section animate">
+    <div class="section-header">
+      <h2 id="secG3Title">Cascada de <span>atención</span></h2>
+      <p id="secG3Sub">Entendiendo y midiendo la respuesta al VIH</p>
+    </div>
+    <div class="cards-grid">
+      <div class="info-card">
+        <div class="card-icon">📊</div>
+        <h3>¿Qué es la cascada?</h3>
+        <p>Es un marco que mide el continuo de atención del VIH: diagnóstico → vinculación → retención → tratamiento → supresión viral. Cada paso es una oportunidad de intervención.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">🎯</div>
+        <h3>Metas 95-95-95</h3>
+        <p>Para 2025, ONUSIDA propuso que 95% de PVVIH conozcan su diagnóstico, 95% reciban TAR, y 95% logren supresión viral. México avanza pero persisten brechas significativas.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">📈</div>
+        <h3>Experiencia HGZ 35</h3>
+        <p>Nuestra cohorte de ~900 pacientes en el Hospital General de Zona 35 del IMSS en Ciudad Juárez es una de las más grandes de la región fronteriza. Datos disponibles en publicación próxima.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Recursos clínicos -->
+  <section class="section animate">
+    <div class="section-header">
+      <h2 id="secG4Title">Recursos <span>clínicos</span></h2>
+      <p id="secG4Sub">Herramientas prácticas para el manejo diario del VIH</p>
+    </div>
+    <div class="resources-grid">
+      <div class="resource-card">
+        <div class="res-icon">💊</div>
+        <h4>Liverpool HIV Interactions</h4>
+        <p>Verificador de interacciones medicamentosas con antirretrovirales</p>
+        <a href="https://www.hiv-druginteractions.org/" target="_blank">Abrir herramienta →</a>
+      </div>
+      <div class="resource-card">
+        <div class="res-icon">🧪</div>
+        <h4>Manejo de coinfección VIH/VHC</h4>
+        <p>Guías AASLD/IDSA para hepatitis C en personas con VIH</p>
+        <a href="https://www.hcvguidelines.org/" target="_blank">Consultar →</a>
+      </div>
+      <div class="resource-card">
+        <div class="res-icon">🦠</div>
+        <h4>Infecciones oportunistas</h4>
+        <p>Guidelines NIH/CDC/IDSA para profilaxis y tratamiento de IOs en PVVIH</p>
+        <a href="https://clinicalinfo.hiv.gov/en/guidelines/hiv-clinical-guidelines-adult-and-adolescent-opportunistic-infections" target="_blank">Consultar →</a>
+      </div>
+      <div class="resource-card">
+        <div class="res-icon">🧬</div>
+        <h4>Stanford HIV Drug Resistance</h4>
+        <p>Base de datos de resistencia a antirretrovirales y análisis de genotipos</p>
+        <a href="https://hivdb.stanford.edu/" target="_blank">Consultar →</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- CTA -->
+<section class="section">
+  <div class="cta-box animate">
+    <h2 id="ctaTitle">¿Necesitas orientación?</h2>
+    <p id="ctaText">El Dr. Carlos Gómez Ponce es Infectólogo certificado en Ciudad Juárez con experiencia en el manejo integral del VIH. Agenda tu consulta presencial o en línea.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/528148206457?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20de%20VIH" target="_blank" class="cta-btn-white" id="ctaWa">💬 WhatsApp</a>
+      <a href="https://app.hulivida.com/citas/carlos-augusto-gomez-ponce" target="_blank" class="cta-btn-outline" id="ctaBook">📅 Agendar Cita</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">
+    © 2026 Dr. Carlos Gómez Ponce · Especialista en Infectología · Ciudad Juárez<br>
+    CP. 7238054 · CE. 9507713 · CSE. 10407013<br>
+    Permiso de publicidad COFEPRIS: 2408022002A00066
+  </div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/drgomezponce" target="_blank" title="Instagram">📷</a>
+    <a href="https://www.facebook.com/drgomezponce" target="_blank" title="Facebook">📘</a>
+    <a href="https://wa.me/528148206457" target="_blank" title="WhatsApp">💬</a>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/528148206457?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20VIH" target="_blank" class="wa-fab" title="WhatsApp">💬</a>
+
+<script>
+// ═══════════ MOBILE NAV ═══════════
+function toggleMobile(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('mobileOverlay').classList.toggle('open');
+}
+
+// ═══════════ AUDIENCE TOGGLE ═══════════
+function setAudience(type){
+  document.getElementById('patientPanel').classList.toggle('active', type==='patient');
+  document.getElementById('proPanel').classList.toggle('active', type==='professional');
+  document.getElementById('btnPatient').classList.toggle('active', type==='patient');
+  document.getElementById('btnPro').classList.toggle('active', type==='professional');
+  window.scrollTo({top:document.querySelector('.audience-selector').offsetTop-80, behavior:'smooth'});
+  // re-animate
+  document.querySelectorAll('.animate').forEach(el=>{el.classList.remove('visible')});
+  setTimeout(()=>initAnimations(),100);
+}
+
+// ═══════════ LANGUAGE ═══════════
+let currentLang = 'es';
+const translations = {
+  en: {
+    heroTitle: 'Information about <span>HIV</span>',
+    heroSub: 'Updated resources for patients and healthcare professionals. Because information saves lives.',
+    btnPatientText: "I'm a patient",
+    btnProText: "I'm a healthcare professional",
+    sec1Title: 'What is <span>HIV</span>?',
+    sec1Sub: 'What you need to know, explained clearly',
+    tag1:'BASICS', tag2:'TRANSMISSION', tag3:'KEY FACT',
+    card1Title:'HIV vs AIDS',
+    card1Text:'HIV (Human Immunodeficiency Virus) attacks the immune system. AIDS is the advanced stage of infection, when the immune system is severely weakened. With treatment, most people with HIV never develop AIDS.',
+    card2Title:'How is it transmitted?',
+    card2Text:'It is transmitted through unprotected sex, sharing needles, and from mother to child during pregnancy, birth, or breastfeeding. It is NOT transmitted by kissing, hugging, sharing food, sweat, or insect bites.',
+    card3Title:'It is treatable',
+    card3Text:'With antiretroviral therapy (ART), people with HIV can live a long and healthy life. HIV becomes a manageable chronic condition, similar to diabetes or hypertension.',
+    ieiText:'<strong>Undetectable = Untransmittable.</strong> When a person with HIV takes their treatment correctly and maintains an undetectable viral load, they CANNOT transmit the virus to their sexual partner. This is supported by multiple scientific studies with over 100,000 unprotected sexual acts between serodiscordant couples, without a single transmission.',
+    ieiLabel1:'Patients in follow-up<br>HGZ 35, IMSS',
+    ieiLabel2:'Transmissions when<br>viral load is undetectable',
+    ieiLabel3:'Backed by<br>scientific evidence',
+    sec2Title:'Get <span>tested</span>',
+    sec2Sub:'Early detection saves lives. Find out where and how to get tested in Ciudad Juárez',
+    test1Title:'CAPASITS Ciudad Juárez',
+    test1Text:'Outpatient Center for AIDS and STI Prevention and Care. Free and confidential testing. Located at: Av. Paseo Triunfo de la República, Ciudad Juárez.',
+    test2Title:'Dr. Gómez Ponce Office',
+    test2Text:'Rapid HIV test with results in 15 minutes. Pre and post-test counseling included. Centro Médico de Especialidades, Av. Fco. Villarreal Torres 2050.',
+    test3Title:'When to get tested?',
+    test3Text:'If you had a risk situation, testing can be done after 2-4 weeks (4th generation test). If the result is negative, it is recommended to repeat it at 12 weeks to confirm.',
+    sec3Title:'Antiretroviral <span>treatment</span>',
+    sec3Sub:'ART allows people with HIV to live a full life',
+    tar1Title:'What is ART?',
+    tar1Text:'Antiretroviral therapy (ART) consists of a combination of medications that prevent HIV from multiplying. Currently, many regimens are a single pill per day.',
+    tar2Title:'Goal: undetectable viral load',
+    tar2Text:'ART reduces the amount of virus in the blood to undetectable levels. This protects your immune system and makes it impossible to transmit the virus to others (U=U).',
+    tar3Title:'Free in Mexico',
+    tar3Text:'In Mexico, antiretroviral treatment is free through IMSS, ISSSTE, INSABI/IMSS-Bienestar, and CAPASITS. You do not need social security to receive it. Ask about your options.',
+    sec4Title:'<span>Prevention</span>',
+    sec4Sub:'Multiple tools to protect yourself and others',
+    prev1Title:'PrEP — Pre-Exposure Prophylaxis',
+    prev1Text:'A daily pill that prevents HIV infection with over 99% efficacy. Indicated for HIV-negative people with risk factors. Available at CAPASITS and private practice.',
+    prev2Title:'PEP — Post-Exposure Prophylaxis',
+    prev2Text:'Emergency treatment that must be started within the first 72 hours after possible HIV exposure. Lasts 28 days. Available at emergency rooms and CAPASITS.',
+    prev3Title:'Combined prevention',
+    prev3Text:'Condom use, regular testing, PrEP, PEP, treatment as prevention (U=U), and medical circumcision. The combination of strategies is the most effective.',
+    sec5Title:'Assess your <span>risk</span>',
+    sec5Sub:'Answer this anonymous questionnaire and receive a personalized recommendation',
+    quizTitle:'HIV Risk Assessment',
+    quizSub:'100% anonymous · No information is stored',
+    ctaTitle:'Need guidance?',
+    ctaText:'Dr. Carlos Gómez Ponce is a certified Infectious Diseases Specialist in Ciudad Juárez with experience in comprehensive HIV management. Schedule your in-person or online consultation.',
+    // Pro panel
+    secG1Title:'Updated clinical <span>guidelines</span>',
+    secG1Sub:'The main international and national references for HIV management',
+    secG2Title:'State of the <span>Art</span> — HIV 2025-2026',
+    secG2Sub:'The latest in treatment, prevention, and toward a cure',
+    secG3Title:'Care <span>cascade</span>',
+    secG3Sub:'Understanding and measuring the HIV response',
+    secG4Title:'Clinical <span>resources</span>',
+    secG4Sub:'Practical tools for daily HIV management',
+  }
+};
+
+function setLang(lang){
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  if(lang==='en'){
+    const t = translations.en;
+    Object.keys(t).forEach(k=>{
+      const el = document.getElementById(k);
+      if(el) el.innerHTML = t[k];
+    });
+  } else {
+    location.reload(); // simplest way to restore Spanish
+  }
+  // Reset quiz
+  currentQ = 0;
+  answers = {};
+  renderQuestion();
+}
+
+// ═══════════ QUIZ ═══════════
+const questions = [
+  {
+    q: '¿Has tenido relaciones sexuales sin condón en los últimos 12 meses?',
+    qen: 'Have you had sex without a condom in the last 12 months?',
+    opts: [{t:'Sí',ten:'Yes',v:2},{t:'No',ten:'No',v:0},{t:'No estoy seguro/a',ten:'Not sure',v:1}]
+  },
+  {
+    q: '¿Has tenido más de una pareja sexual en los últimos 12 meses?',
+    qen: 'Have you had more than one sexual partner in the last 12 months?',
+    opts: [{t:'Sí',ten:'Yes',v:2},{t:'No',ten:'No',v:0}]
+  },
+  {
+    q: '¿Alguna vez te has inyectado drogas o compartido agujas?',
+    qen: 'Have you ever injected drugs or shared needles?',
+    opts: [{t:'Sí',ten:'Yes',v:3},{t:'No',ten:'No',v:0}]
+  },
+  {
+    q: '¿Has tenido una infección de transmisión sexual (ITS) en los últimos 12 meses?',
+    qen: 'Have you had a sexually transmitted infection (STI) in the last 12 months?',
+    opts: [{t:'Sí',ten:'Yes',v:2},{t:'No',ten:'No',v:0},{t:'No sé',ten:"I don't know",v:1}]
+  },
+  {
+    q: '¿Tu pareja actual vive con VIH?',
+    qen: 'Does your current partner live with HIV?',
+    opts: [{t:'Sí, con tratamiento',ten:'Yes, on treatment',v:1},{t:'Sí, sin tratamiento',ten:'Yes, not on treatment',v:3},{t:'No',ten:'No',v:0},{t:'No sé',ten:"I don't know",v:1}]
+  },
+  {
+    q: '¿Te has realizado una prueba de VIH en el último año?',
+    qen: 'Have you had an HIV test in the last year?',
+    opts: [{t:'Sí, fue negativa',ten:'Yes, it was negative',v:0},{t:'Sí, fue positiva',ten:'Yes, it was positive',v:0},{t:'No',ten:'No',v:1},{t:'Nunca me he hecho una',ten:'I have never had one',v:2}]
+  }
+];
+
+let currentQ = 0;
+let answers = {};
+
+function renderQuestion(){
+  const q = questions[currentQ];
+  const qEl = document.getElementById('quizQuestion');
+  const oEl = document.getElementById('quizOptions');
+  const bar = document.getElementById('quizBar');
+  const backBtn = document.getElementById('quizBack');
+  const nextBtn = document.getElementById('quizNext');
+
+  qEl.innerHTML = '<div class="quiz-question">' + (currentLang==='en' ? q.qen : q.q) + '</div>';
+  bar.style.width = ((currentQ/questions.length)*100)+'%';
+  backBtn.style.visibility = currentQ > 0 ? 'visible' : 'hidden';
+  nextBtn.disabled = answers[currentQ] === undefined;
+  nextBtn.textContent = currentQ === questions.length-1 ? (currentLang==='en'?'See result →':'Ver resultado →') : (currentLang==='en'?'Next →':'Siguiente →');
+
+  oEl.innerHTML = q.opts.map((o,i)=>`
+    <div class="quiz-option ${answers[currentQ]===i?'selected':''}" onclick="selectOption(${i})">
+      <div class="opt-circle"></div>
+      ${currentLang==='en' ? o.ten : o.t}
+    </div>
+  `).join('');
+}
+
+function selectOption(i){
+  answers[currentQ] = i;
+  renderQuestion();
+}
+
+function nextQuestion(){
+  if(currentQ < questions.length-1){
+    currentQ++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function prevQuestion(){
+  if(currentQ > 0){
+    currentQ--;
+    renderQuestion();
+  }
+}
+
+function showResult(){
+  let score = 0;
+  Object.keys(answers).forEach(k=>{
+    score += questions[k].opts[answers[k]].v;
+  });
+
+  let level, icon, title, text, tagClass;
+  const isEn = currentLang==='en';
+
+  if(score <= 2){
+    level = isEn?'Low risk':'Riesgo bajo';
+    icon = '✅';
+    tagClass = 'result-low';
+    title = isEn?'Your risk appears to be low':'Tu riesgo parece ser bajo';
+    text = isEn?'However, we recommend getting tested at least once a year if you are sexually active. Prevention is always the best strategy.':'Sin embargo, te recomendamos hacerte la prueba al menos una vez al año si tienes vida sexual activa. La prevención siempre es la mejor estrategia.';
+  } else if(score <= 5){
+    level = isEn?'Moderate risk':'Riesgo moderado';
+    icon = '⚠️';
+    tagClass = 'result-medium';
+    title = isEn?'You have some risk factors':'Tienes algunos factores de riesgo';
+    text = isEn?'We recommend getting an HIV test and consulting with a specialist about prevention strategies like PrEP. Early detection makes all the difference.':'Te recomendamos realizarte una prueba de VIH y consultar con un especialista sobre estrategias de prevención como la PrEP. La detección temprana hace toda la diferencia.';
+  } else {
+    level = isEn?'High risk':'Riesgo alto';
+    icon = '🔴';
+    tagClass = 'result-high';
+    title = isEn?'We recommend immediate action':'Te recomendamos actuar de inmediato';
+    text = isEn?'It is important that you get tested for HIV as soon as possible and consult with an infectious diseases specialist. PrEP could be an excellent option for you.':'Es importante que te realices la prueba de VIH lo antes posible y que consultes con un infectólogo. La PrEP podría ser una excelente opción para ti.';
+  }
+
+  document.getElementById('quizContent').style.display='none';
+  const r = document.getElementById('quizResult');
+  r.style.display='block';
+  r.innerHTML = `
+    <div class="result-icon">${icon}</div>
+    <div class="result-tag ${tagClass}">${level}</div>
+    <h3>${title}</h3>
+    <p>${text}</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="https://wa.me/528148206457?text=${encodeURIComponent(isEn?'Hello, I would like to schedule an HIV consultation':'Hola, me gustaría agendar una consulta de VIH')}" target="_blank" class="quiz-btn quiz-btn-next">💬 ${isEn?'Contact via WhatsApp':'Contactar por WhatsApp'}</a>
+      <button class="quiz-btn quiz-btn-back" onclick="resetQuiz()">${isEn?'Retake quiz':'Repetir cuestionario'}</button>
+    </div>
+    <p style="font-size:12px;color:#999;margin-top:20px">${isEn?'This questionnaire is for informational purposes only and does not replace a medical consultation.':'Este cuestionario es solo informativo y no sustituye una consulta médica.'}</p>
+  `;
+}
+
+function resetQuiz(){
+  currentQ=0; answers={};
+  document.getElementById('quizContent').style.display='block';
+  document.getElementById('quizResult').style.display='none';
+  renderQuestion();
+}
+
+// ═══════════ SCROLL ANIMATIONS ═══════════
+function initAnimations(){
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+  },{threshold:0.1});
+  document.querySelectorAll('.animate').forEach(el=>observer.observe(el));
+}
+
+// ═══════════ INIT ═══════════
+document.addEventListener('DOMContentLoaded',()=>{
+  renderQuestion();
+  initAnimations();
+});
+</script>
+
+</body>
+</html>
