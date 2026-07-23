@@ -6,31 +6,14 @@
 <title>Pendientes — Dr. Gómez Ponce</title>
 <meta name="robots" content="noindex, nofollow">
 <style>
-  /* PASSWORD SCREEN */
-  .lock-screen {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: #0f172a; z-index: 9999;
-    display: flex; justify-content: center; align-items: center;
-    font-family: 'Inter', sans-serif;
-  }
-  .lock-box {
-    text-align: center; color: #fff; padding: 40px;
-  }
+  .lock-screen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #0f172a; z-index: 9999; display: flex; justify-content: center; align-items: center; font-family: 'Inter', sans-serif; }
+  .lock-box { text-align: center; color: #fff; padding: 40px; }
   .lock-box .lock-icon { font-size: 48px; margin-bottom: 16px; }
   .lock-box h2 { font-size: 18px; font-weight: 800; margin-bottom: 6px; color: #fff; }
   .lock-box p { font-size: 12px; color: #64748b; margin-bottom: 20px; }
-  .lock-input {
-    padding: 14px 20px; border-radius: 12px; border: 2px solid #334155;
-    background: #1e293b; color: #fff; font-family: 'Inter', sans-serif;
-    font-size: 15px; width: 260px; text-align: center; outline: none;
-  }
+  .lock-input { padding: 14px 20px; border-radius: 12px; border: 2px solid #334155; background: #1e293b; color: #fff; font-family: 'Inter', sans-serif; font-size: 15px; width: 260px; text-align: center; outline: none; }
   .lock-input:focus { border-color: #3b82f6; }
-  .lock-btn {
-    display: block; margin: 16px auto 0; padding: 12px 40px; border-radius: 50px;
-    border: none; background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: #fff; font-family: 'Inter', sans-serif; font-size: 14px;
-    font-weight: 700; cursor: pointer;
-  }
+  .lock-btn { display: block; margin: 16px auto 0; padding: 12px 40px; border-radius: 50px; border: none; background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; }
   .lock-btn:hover { transform: scale(1.03); }
   .lock-error { color: #ef4444; font-size: 12px; margin-top: 10px; display: none; }
   .hidden { display: none !important; }
@@ -44,48 +27,43 @@
   .header h1 { font-size: 22px; font-weight: 800; color: #fff; }
   .header p { font-size: 12px; color: #64748b; margin-top: 6px; }
   .stats { display: flex; gap: 12px; justify-content: center; margin: 16px 0 24px; flex-wrap: wrap; }
-  .stat { background: #1e293b; border-radius: 12px; padding: 14px 20px; text-align: center; min-width: 100px; }
+  .stat { background: #1e293b; border-radius: 12px; padding: 14px 20px; text-align: center; min-width: 90px; }
   .stat-num { font-size: 28px; font-weight: 800; }
   .stat-label { font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
   .stat-pending .stat-num { color: #fbbf24; }
+  .stat-wait .stat-num { color: #fb923c; }
   .stat-done .stat-num { color: #34d399; }
   .stat-total .stat-num { color: #60a5fa; }
   .section { margin-bottom: 20px; }
-  .section-title {
-    font-size: 13px; font-weight: 700; color: #fff;
-    padding: 12px 16px; border-radius: 12px 12px 0 0;
-    text-transform: uppercase; letter-spacing: 0.5px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .cat-pub { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
-  .cat-taller { background: linear-gradient(135deg, #0891b2, #0e7490); }
-  .cat-digital { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
-  .cat-ig { background: linear-gradient(135deg, #e11d48, #be123c); }
-  .cat-admin { background: linear-gradient(135deg, #059669, #047857); }
-  .cat-neg { background: linear-gradient(135deg, #d97706, #b45309); }
+  .section-title { font-size: 13px; font-weight: 700; color: #fff; padding: 12px 16px; border-radius: 12px 12px 0 0; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
   .section-body { background: #1e293b; border-radius: 0 0 12px 12px; overflow: hidden; }
   .item { padding: 14px 16px; border-bottom: 1px solid #2d3a4f; display: flex; align-items: flex-start; gap: 12px; }
   .item:last-child { border-bottom: none; }
   .item-check { flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; margin-top: 2px; }
   .check-pending { background: #fbbf2420; border: 2px solid #fbbf24; color: #fbbf24; }
+  .check-wait { background: #fb923c20; border: 2px solid #fb923c; color: #fb923c; }
   .check-done { background: #34d39920; border: 2px solid #34d399; color: #34d399; }
   .item-content { flex: 1; }
   .item-title { font-size: 14px; font-weight: 600; color: #f1f5f9; line-height: 1.4; }
   .item-title.done { text-decoration: line-through; color: #64748b; }
+  .item-action { font-size: 12px; color: #7dd3fc; margin-top: 5px; line-height: 1.4; font-weight: 500; }
   .item-notes { font-size: 11px; color: #94a3b8; margin-top: 4px; line-height: 1.4; }
   .item-date { font-size: 10px; color: #475569; margin-top: 4px; }
-  .badge { display: inline-block; font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; text-transform: uppercase; letter-spacing: 0.5px; }
-  .badge-pending { background: #fbbf2420; color: #fbbf24; }
-  .badge-done { background: #34d39920; color: #34d399; }
+  .badge { display: inline-block; font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 6px; margin-left: 6px; vertical-align: middle; text-transform: uppercase; letter-spacing: 0.5px; }
   .badge-urgent { background: #ef444420; color: #ef4444; }
+  .badge-deadline { background: #60a5fa20; color: #60a5fa; }
+  .badge-wait { background: #fb923c20; color: #fb923c; }
+  .archive summary { cursor: pointer; list-style: none; }
+  .archive summary::-webkit-details-marker { display: none; }
+  .archive-title { font-size: 13px; font-weight: 700; color: #34d399; padding: 12px 16px; border-radius: 12px; background: #1e293b; text-transform: uppercase; letter-spacing: 0.5px; }
+  .archive[open] .archive-title { border-radius: 12px 12px 0 0; }
   .footer { text-align: center; padding: 20px; font-size: 10px; color: #475569; }
   .legend { text-align: center; margin-bottom: 20px; font-size: 11px; color: #64748b; }
-  .legend span { margin: 0 10px; }
+  .legend span { margin: 0 8px; }
 </style>
 </head>
 <body>
 
-<!-- LOCK SCREEN -->
 <div class="lock-screen" id="lockScreen">
   <div class="lock-box">
     <div class="lock-icon">🔒</div>
@@ -97,453 +75,31 @@
   </div>
 </div>
 
-<!-- CONTENIDO (oculto hasta que se desbloquee) -->
 <div class="container" id="mainContent" style="display:none">
 
 <div class="header">
   <h1>📋 Mis Pendientes</h1>
   <p>Dr. Carlos Augusto Gómez Ponce · Infectología</p>
-  <p style="font-size:11px; color:#475569; margin-top:6px;">Actualizado: 21 de julio de 2026</p>
+  <p style="font-size:11px; color:#475569; margin-top:6px;">Actualizado: 23 de julio de 2026</p>
 </div>
 
 <div class="stats">
-  <div class="stat stat-pending"><div class="stat-num">31</div><div class="stat-label">Pendientes</div></div>
-  <div class="stat stat-done"><div class="stat-num">10</div><div class="stat-label">Completados</div></div>
-  <div class="stat stat-total"><div class="stat-num">41</div><div class="stat-label">Total</div></div>
+  <div class="stat stat-pending"><div class="stat-num">23</div><div class="stat-label">Pendientes</div></div>
+  <div class="stat stat-wait"><div class="stat-num">7</div><div class="stat-label">En espera</div></div>
+  <div class="stat stat-done"><div class="stat-num">14</div><div class="stat-label">Completados</div></div>
+  <div class="stat stat-total"><div class="stat-num">44</div><div class="stat-label">Total</div></div>
 </div>
 
 <div class="legend">
   <span>🟡 Pendiente</span>
+  <span>🟠 En espera de terceros</span>
   <span>✅ Completado</span>
-  <span>🔴 Urgente</span>
+  <span>🔴 Fecha límite próxima</span>
 </div>
 
-<!-- GRANTS Y PROYECTOS DE INVESTIGACIÓN -->
-<div class="section">
-  <div class="section-title" style="background: linear-gradient(135deg, #f59e0b, #d97706);">🔬 Grants y Proyectos de Investigación</div>
-  <div class="section-body">
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">OPS/TDR — Crear cuenta en plataforma eTDR <span class="badge badge-urgent">PRIORIDAD — Antes de Brasil</span></div>
-        <div class="item-notes">⚠️ PRIORIDAD: Hacer antes del 25 de julio. Plataforma: <a href="https://who.my.site.com/etdr/s/" style="color:#60a5fa;">who.my.site.com/etdr</a>. Necesario para enviar propuesta CA26-0032 (deadline 19 ago).</div>
-        <div class="item-date">Agregado: 14 jul 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">OPS/TDR — Preparar y enviar propuesta de histoplasmosis en VIH avanzado <span class="badge badge-urgent">Fecha límite: 19 ago</span></div>
-        <div class="item-notes">Convocatoria CA26-0032. Hasta $30,000 USD x 12-18 meses. Propuesta: tamizaje de histoplasma en pacientes con VIH avanzado en IMSS. Multicéntrico (HGZ 35 + otro hospital). Necesitas: identificar co-PI en otro IMSS, presupuesto detallado, protocolo, cartas de apoyo.</div>
-        <div class="item-date">Agregado: 14 jul 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">EACS/HUG — Encuesta global VIH en entornos de salud — correo enviado, esperar respuesta</div>
-        <div class="item-notes">Correo enviado a survey@eacsociety.org (14 jul) para ser Country Focal Point de México. Encuesta se lanza 1 sept 2026. Tareas: traducción cuestionario, aprobación ética, promoción nacional. Beneficios: acceso a datos de México, co-autoría en publicaciones.</div>
-        <div class="item-date">Agregado: 14 jul 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Gilead GATHER AND LISTEN 2026 — LOI enviado, esperando respuesta</div>
-        <div class="item-notes">LOI enviado en portal OPTICS (L-2026-2022) el 30 junio. Integración VIH/hepatitis viral en IMSS HGZ 35. Presupuesto: $200K-$1M USD. Esperar invitación a Full Proposal o declinación. Pendiente: respuesta Dr. del Olmo sobre fondos IMSS.</div>
-        <div class="item-date">Agregado: 14 jul 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="section"><div class="section-title" style="background: linear-gradient(135deg, #ef4444, #dc2626);">🔥 Esta Semana</div><div class="section-body"><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">OPS/TDR — Crear cuenta en plataforma eTDR <span class="badge badge-urgent">⏰ MAÑANA</span></div><div class="item-action">➡️ Crear cuenta HOY en who.my.site.com/etdr — antes de volar el sábado</div><div class="item-notes">PRIORIDAD. Necesaria para enviar propuesta CA26-0032.</div><div class="item-date">Agregado: 14 jul 2026</div></div></div><div class="item"><div class="item-check check-wait">🕐</div><div class="item-content"><div class="item-title">Carrusel PrEP siguiente — El futuro de la PrEP <span class="badge badge-urgent">⏰ MAÑANA</span><span class="badge badge-wait">En espera</span></div><div class="item-action">➡️ Publicación automática mañana 24 jul 12 PM (programada); confirmar que salió</div><div class="item-notes">Slides listos en carousel_futuro/.</div><div class="item-date">Agregado: 23 jul 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Viaje a Río de Janeiro — AIDS 2026 <span class="badge badge-urgent">⏰ 25 jul</span></div><div class="item-action">➡️ Salida sábado 25 julio. Registro y vuelos confirmados</div><div class="item-notes">Beca IAS #175816. Agenda: modassembly.com/show/09ssBK</div><div class="item-date">Agregado: 27 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Experiencia Airbnb — Partido en el Maracanã <span class="badge badge-urgent">⏰ 26 jul</span></div><div class="item-action">➡️ Domingo 26 julio; salir a las 5:30 PM para llegar a la recepción de becarios</div><div class="item-notes">Pre-conferencias se ven en grabación.</div><div class="item-date">Agregado: 27 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Recepción de bienvenida y foto grupal de becarios <span class="badge badge-urgent">⏰ 26 jul</span></div><div class="item-action">➡️ Domingo 26 julio 7:00-8:30 PM (hora Río) — Mezzanine Level Riocentro</div><div class="item-notes">Salir del Maracanã a las 5:30 PM.</div><div class="item-date">Agregado: 29 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Speed networking para becarios <span class="badge badge-urgent">⏰ 29 jul</span></div><div class="item-action">➡️ Miércoles 29 julio 5:00-6:00 PM (hora Río) — Riocentro</div><div class="item-date">Agregado: 29 jun 2026</div></div></div></div></div><div class="section"><div class="section-title" style="background: linear-gradient(135deg, #f59e0b, #d97706);">🔬 Grants</div><div class="section-body"><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">OPS/TDR — Crear cuenta en plataforma eTDR <span class="badge badge-urgent">⏰ MAÑANA</span></div><div class="item-action">➡️ Crear cuenta HOY en who.my.site.com/etdr — antes de volar el sábado</div><div class="item-notes">PRIORIDAD. Necesaria para enviar propuesta CA26-0032.</div><div class="item-date">Agregado: 14 jul 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">OPS/TDR — Preparar y enviar propuesta histoplasmosis en VIH avanzado <span class="badge badge-deadline">📅 19 ago</span></div><div class="item-action">➡️ Completar borrador (modassembly.com/show/Ga8ssP): datos HGZ 35 + co-PI + aval + CV. Recordatorios 28 jul y 11 ago</div><div class="item-notes">Hasta $30K USD x 12-18 meses. Multicéntrico HGZ 35 + otro IMSS.</div><div class="item-date">Agregado: 14 jul 2026</div></div></div><div class="item"><div class="item-check check-wait">🕐</div><div class="item-content"><div class="item-title">EACS/HUG — Encuesta global VIH <span class="badge badge-wait">En espera</span></div><div class="item-action">➡️ Esperar respuesta de survey@eacsociety.org (correo enviado 14 jul)</div><div class="item-notes">Country Focal Point México. Lanzamiento 1 sept 2026.</div><div class="item-date">Agregado: 14 jul 2026</div></div></div><div class="item"><div class="item-check check-wait">🕐</div><div class="item-content"><div class="item-title">Gilead GATHER AND LISTEN 2026 — LOI enviado <span class="badge badge-wait">En espera</span></div><div class="item-action">➡️ Esperar dictamen del LOI L-2026-2022 en portal OPTICS</div><div class="item-notes">Integración VIH/hepatitis viral IMSS HGZ 35. $200K-$1M USD. Estatus: In-Review.</div><div class="item-date">Agregado: 14 jul 2026</div></div></div></div></div><div class="section"><div class="section-title" style="background: linear-gradient(135deg, #dc2626, #b91c1c);">✈️ AIDS 2026</div><div class="section-body"><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Viaje a Río de Janeiro — AIDS 2026 <span class="badge badge-urgent">⏰ 25 jul</span></div><div class="item-action">➡️ Salida sábado 25 julio. Registro y vuelos confirmados</div><div class="item-notes">Beca IAS #175816. Agenda: modassembly.com/show/09ssBK</div><div class="item-date">Agregado: 27 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Experiencia Airbnb — Partido en el Maracanã <span class="badge badge-urgent">⏰ 26 jul</span></div><div class="item-action">➡️ Domingo 26 julio; salir a las 5:30 PM para llegar a la recepción de becarios</div><div class="item-notes">Pre-conferencias se ven en grabación.</div><div class="item-date">Agregado: 27 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Recepción de bienvenida y foto grupal de becarios <span class="badge badge-urgent">⏰ 26 jul</span></div><div class="item-action">➡️ Domingo 26 julio 7:00-8:30 PM (hora Río) — Mezzanine Level Riocentro</div><div class="item-notes">Salir del Maracanã a las 5:30 PM.</div><div class="item-date">Agregado: 29 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Speed networking para becarios <span class="badge badge-urgent">⏰ 29 jul</span></div><div class="item-action">➡️ Miércoles 29 julio 5:00-6:00 PM (hora Río) — Riocentro</div><div class="item-date">Agregado: 29 jun 2026</div></div></div></div></div><div class="section"><div class="section-title" style="background: linear-gradient(135deg, #e11d48, #be123c);">📱 Instagram</div><div class="section-body"><div class="item"><div class="item-check check-wait">🕐</div><div class="item-content"><div class="item-title">Carrusel PrEP siguiente — El futuro de la PrEP <span class="badge badge-urgent">⏰ MAÑANA</span><span class="badge badge-wait">En espera</span></div><div class="item-action">➡️ Publicación automática mañana 24 jul 12 PM (programada); confirmar que salió</div><div class="item-notes">Slides listos en carousel_futuro/.</div><div class="item-date">Agregado: 23 jul 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Plan de contenido AIDS 2026 — antes durante y después </div><div class="item-action">➡️ Siguiente carrusel se publica automático mañana 24 jul 12 PM; contenido durante la conferencia se coordina desde Río</div><div class="item-notes">Carrusel PrEP #2 publicado. Publicación del 24 jul programada (cron).</div><div class="item-date">Agregado: 27 jun 2026</div></div></div></div></div><div class="section"><div class="section-title" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">📄 Publicaciones</div><div class="section-body"><div class="item"><div class="item-check check-wait">🕐</div><div class="item-content"><div class="item-title">Manuscrito absceso cerebral por Bifidobacterium — enviado a Anaerobe (R1) <span class="badge badge-wait">En espera</span></div><div class="item-action">➡️ Esperar dictamen de revisión por pares (4-8 semanas desde 30 jun)</div><div class="item-notes">EID rechazó (jun 2026). Enviado a Anaerobe 28 jun. R1 con correcciones de formato enviada 30 jun 2026. En revisión por pares.</div><div class="item-date">Agregado: 4 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Manuscrito cascada VIH HGZ 35 — revisar y enviar a Revista Médica del IMSS </div><div class="item-action">➡️ Revisión final del manuscrito y envío a la revista</div><div class="item-notes">Manuscrito listo. Falta revisión final y envío.</div><div class="item-date">Agregado: 2 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Estudio Epclusa (Hepatitis C) — vaciar datos en spreadsheet </div><div class="item-action">➡️ Subir expedientes a OneDrive; el agente vacía los datos (cron diario)</div><div class="item-notes">~300 pacientes. Google Sheets creado.</div><div class="item-date">Agregado: 12 may 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Investigar conferencias para enviar pósters con beca </div><div class="item-action">➡️ Revisar opciones el 25 julio (recordatorio programado)</div><div class="item-notes">Info en knowledge/conferencias-poster.md. Mejores opciones: AASLD nov 2026 y CROI mar 2027.</div><div class="item-date">Agregado: 27 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Análisis estadístico para estudios de cohorte (VIH/VHC) </div><div class="item-action">➡️ Se activa cuando estén vaciados los datos de Epclusa/Sífilis</div><div class="item-notes">El agente corre análisis en Python y genera scripts de R. No necesitas comprar SPSS ni Stata.</div><div class="item-date">Agregado: 29 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Estudio Sífilis Congénita — vaciar datos en spreadsheet </div><div class="item-action">➡️ Subir expedientes a OneDrive; el agente vacía los datos</div><div class="item-notes">Google Sheets creado.</div><div class="item-date">Agregado: 12 may 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Caso clínico VIH + Linfoma de Burkitt — compartir datos clínicos </div><div class="item-action">➡️ Compartir los datos clínicos del caso al agente</div><div class="item-notes">Niño de 4 años.</div><div class="item-date">Agregado: 12 may 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Caso clínico LLA + Mucormicosis — compartir datos clínicos </div><div class="item-action">➡️ Compartir los datos clínicos del caso al agente</div><div class="item-notes">Niña con leucemia.</div><div class="item-date">Agregado: 12 may 2026</div></div></div></div></div><div class="section"><div class="section-title" style="background: linear-gradient(135deg, #d97706, #b45309);">💼 Negocio</div><div class="section-body"><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Propuesta para hospitales — contactar hospitales privados en Juárez </div><div class="item-action">➡️ Contactar hospitales con el documento ya listo</div><div class="item-notes">Documento: modassembly.com/show/zvWw6a</div><div class="item-date">Agregado: 15 abr 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Carta para abogados — contactar despachos jurídicos en Juárez </div><div class="item-action">➡️ Contactar despachos con la carta ya lista</div><div class="item-notes">Documento: modassembly.com/show/KgEyAR</div><div class="item-date">Agregado: 15 abr 2026</div></div></div><div class="item"><div class="item-check check-wait">🕐</div><div class="item-content"><div class="item-title">Oficio Gilead / Simposio MexY-PIDN — patrocinio en proceso <span class="badge badge-wait">En espera</span></div><div class="item-action">➡️ Esperar respuesta de Gilead (procesos internos) y buscar 3 ponentes en AIDS 2026</div><div class="item-notes">Reunión 17 jul: Gilead SÍ patrocina ($50,000 MXN). Oficio + programa enviados 21 jul. Dr. León confirmó recepción 22 jul. Ponentes confirmados: Samantha Pérez Cavazos, Mariana Sámano, Rafael Loaeza. Faltan 3.</div><div class="item-date">Agregado: 2 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Pedir a Iván Castillo historial de eventos MexY-PIDN </div><div class="item-action">➡️ Pedir el historial de eventos a Iván</div><div class="item-notes">Contexto para el patrocinio de Gilead.</div><div class="item-date">Agregado: 15 jul 2026</div></div></div></div></div><div class="section"><div class="section-title" style="background: linear-gradient(135deg, #0891b2, #0e7490);">🏥 IMSS VIH</div><div class="section-body"><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Empezar a llenar base de datos de pacientes VIH/VHC del IMSS </div><div class="item-action">➡️ Subir expedientes a OneDrive; el agente vacía los datos (cron diario)</div><div class="item-notes">Google Sheets: 1sbEt11GS8QAccBGHj_1g1sA4Q5cwYzAhghG5wEJUewo</div><div class="item-date">Agregado: 23 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Armar base de datos de pacientes PrEP del IMSS </div><div class="item-action">➡️ Contar pacientes PrEP anotados y armar Google Sheets</div><div class="item-notes">Dato importante para Gilead.</div><div class="item-date">Agregado: 15 jul 2026</div></div></div></div></div><div class="section"><div class="section-title" style="background: linear-gradient(135deg, #0891b2, #0e7490);">🏥 Hospital Infantil</div><div class="section-body"><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Flujograma de atención de fiebre manchada por Rickettsia (FMRR) </div><div class="item-action">➡️ El agente genera el flujograma (leve/moderado/grave) con las guías ya investigadas; Carlos revisa</div><div class="item-notes">Referencia en knowledge/flujograma-fmrr-pediatria.md. Fuentes: CDC AAP CENETEC 2024.</div><div class="item-date">Agregado: 9 jul 2026</div></div></div></div></div><div class="section"><div class="section-title" style="background: linear-gradient(135deg, #0891b2, #0e7490);">🏥 Hospital de la Mujer</div><div class="section-body"><div class="item"><div class="item-check check-wait">🕐</div><div class="item-content"><div class="item-title">Reporte de sensibilidad/antibiograma del laboratorio <span class="badge badge-wait">En espera</span></div><div class="item-action">➡️ Esperar reporte del laboratorio; seguimiento al volver de Río</div><div class="item-notes">Ya solicitado. Hemocultivos de UCIN sin antibiograma.</div><div class="item-date">Agregado: 15 jul 2026</div></div></div></div></div><div class="section"><div class="section-title" style="background: linear-gradient(135deg, #2563eb, #1d4ed8);">🌐 Presencia Digital</div><div class="section-body"><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Google Ads — revisar rendimiento de campaña <span class="badge badge-deadline">📅 4 ago</span></div><div class="item-action">➡️ Revisión programada 4 agosto (al volver de Río): estado de campaña y uso del crédito</div><div class="item-notes">Campaña activa (MX + US El Paso). El crédito venció el 17 de julio.</div><div class="item-date">Agregado: 25 may 2026</div></div></div><div class="item"><div class="item-check check-wait">🕐</div><div class="item-content"><div class="item-title">TopDoctors — confirmar cancelación <span class="badge badge-wait">En espera</span></div><div class="item-action">➡️ Esperar confirmación escrita de Lucía Román; follow-up al volver de Río</div><div class="item-notes">Solicitud de cancelación ya enviada.</div><div class="item-date">Agregado: 15 may 2026</div></div></div></div></div><div class="section"><div class="section-title" style="background: linear-gradient(135deg, #059669, #047857);">📋 Administrativo</div><div class="section-body"><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Definir horarios de consulta en línea (sábados y domingos) </div><div class="item-action">➡️ Confirmar horarios de sábados y domingos</div><div class="item-date">Agregado: 2 jun 2026</div></div></div><div class="item"><div class="item-check check-pending">⏳</div><div class="item-content"><div class="item-title">Hoja informativa VIH para pacientes del IMSS (sin logos del consultorio) </div><div class="item-action">➡️ El agente prepara borrador sin branding; Carlos revisa</div><div class="item-notes">Versión sin branding personal para el IMSS.</div><div class="item-date">Agregado: 2 jun 2026</div></div></div></div></div><details class="section archive"><summary class="archive-title">✅ Completados (14) — clic para ver</summary><div class="section-body"><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Plan de contenido de junio — crear y programar posts </div><div class="item-notes">Cerrado. Se continúa con el plan de contenido AIDS 2026 (#31).</div><div class="item-date">Agregado: 2 jun 2026 · Completado: 23 jul 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Carrusel PrEP #2 — PrEP en México: ¿Dónde conseguirla? </div><div class="item-notes">Publicado. Siguiente carrusel programado para 24 jul 12 PM.</div><div class="item-date">Agregado: 15 jul 2026 · Completado: 23 jul 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Actualizar LinkedIn antes del viaje </div><div class="item-notes">Actualizado por Carlos.</div><div class="item-date">Agregado: 27 jun 2026 · Completado: 21 jul 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Doctoralia — verificación de perfil y corrección de datos </div><div class="item-notes">Correo firme enviado 12 junio (caso #02959159).</div><div class="item-date">Agregado: 20 may 2026 · Completado: 17 jul 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">LinkedIn — actualizar perfil profesional </div><div class="item-notes">Guía: modassembly.com/show/feXCrX</div><div class="item-date">Agregado: 15 may 2026 · Completado: 17 jul 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Gmail — arreglar botón de envío de info@infectologia.org </div><div class="item-notes">Resuelto.</div><div class="item-date">Agregado: 2 jun 2026 · Completado: 17 jul 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Reunión con representante Gilead — enfocarse en PrEP y ser speaker </div><div class="item-notes">Carlos es de los que más mueve Descovy a nivel nacional. Propuesto como speaker.</div><div class="item-date">Agregado: 15 jul 2026 · Completado: 15 jul 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Reporte PROA + Comité de Antibióticos + Manual de Antibióticos </div><div class="item-notes">Documentos v3 en Drive. HTML: modassembly.com/show/NTjxIU</div><div class="item-date">Agregado: 9 jul 2026 · Completado: 11 jul 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Sesión virtual Meet the Experts </div><div class="item-date">Agregado: 27 jun 2026 · Completado: 7 jul 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Sesión virtual pre-departure para becarios IAS </div><div class="item-notes">Beca #175816.</div><div class="item-date">Agregado: 27 jun 2026 · Completado: 1 jul 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Cortinilla animada para reels (Fiverr - Sabeen) </div><div class="item-notes">Logo dorado + Sora font + cédulas. $45 USD.</div><div class="item-date">Agregado: 26 jun 2026 · Completado: 27 jun 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Cancelar Canva Pro </div><div class="item-notes">Ahorro: $150/mes.</div><div class="item-date">Agregado: 26 jun 2026 · Completado: 26 jun 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Cambiar Adobe Creative Cloud a solo Acrobat Pro </div><div class="item-notes">Ahorro: $1,100/mes.</div><div class="item-date">Agregado: 26 jun 2026 · Completado: 26 jun 2026</div></div></div><div class="item"><div class="item-check check-done">✓</div><div class="item-content"><div class="item-title done">Taller CLABSI — miércoles 17 de junio </div><div class="item-notes">Completado. Presentaciones y evaluación entregadas.</div><div class="item-date">Agregado: 10 jun 2026 · Completado: 17 jun 2026</div></div></div></div></details>
 
-<!-- PUBLICACIONES / INVESTIGACIÓN -->
-<div class="section">
-  <div class="section-title cat-pub">📄 Publicaciones e Investigación</div>
-  <div class="section-body">
-    <div class="item">
-      <div class="item-check check-done">✓</div>
-      <div class="item-content">
-        <div class="item-title done">Manuscrito absceso cerebral por Bifidobacterium — enviado a Anaerobe (R1) <span class="badge badge-done">Completado</span></div>
-        <div class="item-notes">EID rechazó (jun 2026). Enviado a Anaerobe 28 jun. Editora pidió correcciones de formato (## y tabla). Revisión R1 enviada 30 jun 2026. Ahora en revisión por pares (4-8 semanas).</div>
-        <div class="item-date">Agregado: 4 jun · Completado: 30 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Manuscrito cascada VIH HGZ 35 — revisar y enviar a Revista Médica del IMSS</div>
-        <div class="item-notes">Manuscrito listo. Falta revisión final tuya y envío.</div>
-        <div class="item-date">Agregado: 2 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Estudio Epclusa (Hepatitis C) — vaciar datos en spreadsheet</div>
-        <div class="item-notes">~300 pacientes, 5 años, estudio de vida real. Google Sheets creado.</div>
-        <div class="item-date">Agregado: 12 may 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Estudio Sífilis Congénita — vaciar datos en spreadsheet</div>
-        <div class="item-notes">Google Sheets creado.</div>
-        <div class="item-date">Agregado: 12 may 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Caso clínico VIH + Linfoma de Burkitt</div>
-        <div class="item-notes">Niño de 4 años. Falta que compartas los datos clínicos para redactar el manuscrito.</div>
-        <div class="item-date">Agregado: 12 may 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Caso clínico LLA + Mucormicosis rinosinusal</div>
-        <div class="item-notes">Niña con leucemia. Falta que compartas los datos clínicos para redactar el manuscrito.</div>
-        <div class="item-date">Agregado: 12 may 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Oficio Gilead (MexY-PIDN) — seguimiento con Dr. Sebastián León</div>
-        <div class="item-notes">Enviado por correo el 2 de junio.</div>
-        <div class="item-date">Agregado: 2 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Conferencias para enviar pósters con beca</div>
-        <div class="item-notes">Mejores opciones: AASLD (nov 2026) para Hepatitis C y CROI 2027 (mar 2027) para Cascada VIH. Recordatorio programado para 25 julio.</div>
-        <div class="item-date">Agregado: 27 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Análisis estadístico para estudios de cohorte (VIH/VHC) — no necesitas SPSS ni Stata</div>
-        <div class="item-notes">El agente corre análisis en Python (scipy, statsmodels, lifelines). Para publicaciones formales, genera scripts de R listos para correr. R es gratuito. No necesitas comprar software adicional.</div>
-        <div class="item-date">Agregado: 29 jun 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- AIDS 2026 -->
-<div class="section">
-  <div class="section-title" style="background: linear-gradient(135deg, #dc2626, #b91c1c);">✈️ AIDS 2026 — Río de Janeiro</div>
-  <div class="section-body">
-    <div class="item">
-      <div class="item-check check-done">✓</div>
-      <div class="item-content">
-        <div class="item-title done">Sesión virtual pre-departure para becarios IAS <span class="badge badge-done">Completado</span></div>
-        <div class="item-notes">Miércoles 1 de julio, 9:30 AM (hora México) por Zoom. Beca #175816.</div>
-        <div class="item-date">Agregado: 27 jun · Completado: 1 jul 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-done">✓</div>
-      <div class="item-content">
-        <div class="item-title done">Sesión virtual "Meet the Experts" <span class="badge badge-done">Completado</span></div>
-        <div class="item-notes">Martes 7 de julio, 6:30 AM (hora México) por Zoom.</div>
-        <div class="item-date">Agregado: 27 jun · Completado: 7 jul 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Viaje a Río de Janeiro — AIDS 2026</div>
-        <div class="item-notes">25 jul – 2 ago. Beca IAS #175816. Registro, vuelos y hospedaje confirmados. Agenda personalizada lista.</div>
-        <div class="item-date">Agregado: 27 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Experiencia Airbnb — Partido en el Maracanã ⚽</div>
-        <div class="item-notes">Domingo 26 de julio. Las pre-conferencias se ven después en grabación.</div>
-        <div class="item-date">Agregado: 27 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Recepción de bienvenida y foto grupal de becarios</div>
-        <div class="item-notes">Domingo 26 de julio, 7:00–8:30 PM (hora de Río). Mezzanine Level, Riocentro Convention Centre. Salir del Maracaná a las 5:30 PM.</div>
-        <div class="item-date">Agregado: 29 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Speed networking para becarios</div>
-        <div class="item-notes">Miércoles 29 de julio, 5:00–6:00 PM (hora de Río). Riocentro Convention Centre.</div>
-        <div class="item-date">Agregado: 29 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-done">✓</div>
-      <div class="item-content">
-        <div class="item-title done">Actualizar LinkedIn antes del viaje <span class="badge badge-done">Completado</span></div>
-        <div class="item-notes">Perfil actualizado antes de AIDS 2026.</div>
-        <div class="item-date">Agregado: 27 jun · Completado: 21 jul 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TALLER CLABSI -->
-<div class="section">
-  <div class="section-title cat-taller">🏥 Taller CLABSI</div>
-  <div class="section-body">
-    <div class="item">
-      <div class="item-check check-done">✓</div>
-      <div class="item-content">
-        <div class="item-title done">Taller CLABSI — miércoles 17 de junio <span class="badge badge-done">Completado</span></div>
-        <div class="item-notes">Completado. Presentaciones y evaluación entregadas.</div>
-        <div class="item-date">Agregado: 10 jun · Completado: 17 jun 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- IMSS VIH -->
-<div class="section">
-  <div class="section-title cat-taller">🏥 Consulta IMSS — VIH/VHC</div>
-  <div class="section-body">
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Verificar si Google Sheets abre en la computadora del IMSS (red LAN)</div>
-        <div class="item-notes">Si no abre, se hace versión Excel offline de la base de datos.</div>
-        <div class="item-date">Agregado: 23 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Probar checklist clínico VIH en celular durante consulta</div>
-        <div class="item-notes">Abrir con datos móviles y agregar a pantalla de inicio.</div>
-        <div class="item-date">Agregado: 23 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Probar plantillas de nota (copiar/pegar) en el ECE del IMSS</div>
-        <div class="item-notes">ECE sí permite copiar y pegar texto.</div>
-        <div class="item-date">Agregado: 23 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Empezar a llenar base de datos de pacientes VIH/VHC del IMSS</div>
-        <div class="item-notes">Google Sheets con 6 pestañas: Pacientes VIH, Labs, Vacunas, Pacientes VHC, Cascada 95-95-95, Catálogo.</div>
-        <div class="item-date">Agregado: 23 jun 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- HOSPITAL INFANTIL -->
-<div class="section">
-  <div class="section-title cat-taller">🏥 Hospital Infantil</div>
-  <div class="section-body">
-    <div class="item">
-      <div class="item-check check-done">✓</div>
-      <div class="item-content">
-        <div class="item-title done">Reporte PROA + Comité de Antibióticos + Manual de Antibióticos (IAAS + Antibiograma + CPM + indicadores PROA) <span class="badge badge-done">Completado</span></div>
-        <div class="item-notes">Cruce de 3 bases de datos (IAAS SINAVE 30 casos, antibiograma, CPM). Indicadores PROA: DOT 349.3/1000dp, DOT:LOT 1.65, DDD carbapenémicos 0.22/100dc, AWaRe Access 18.1%, desescalamiento 4.3%, BLEE Klebsiella 100%, SARM 0%. Documentos v3 en Drive (carpeta PROA y Guía de Antibióticos): Reporte Word, Presentación 15 slides, Manual de Antibióticos. <a href="https://modassembly.com/show/NTjxIU" style="color:#60a5fa;">Ver reporte HTML integrado</a></div>
-        <div class="item-date">Agregado: 9 jul · Completado: 11 jul 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Flujograma de atención de fiebre manchada por Rickettsia (FMRR) — escenarios de tratamiento</div>
-        <div class="item-notes">Flujograma para hospital infantil con escenarios: leve (ambulatorio), moderado (hospitalización) y grave (UCI). Dosis pediátricas, criterios de ingreso, datos de alarma. Documentos actualizados con logos subidos al Drive (14 jul): PDF con logos, documento de referencia con logos, documento modificado, logos actualizados.</div>
-        <div class="item-date">Agregado: 9 jul 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- HOSPITAL DE LA MUJER -->
-<div class="section">
-  <div class="section-title cat-taller">🏥 Hospital de la Mujer</div>
-  <div class="section-body">
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Solicitar reporte de sensibilidad/antibiograma al laboratorio</div>
-        <div class="item-notes">El archivo "Antibiograma enero a abril 2026" que está en Drive es del Hospital Infantil, NO del Hospital de la Mujer. Falta pedirle al laboratorio del Hospital de la Mujer su bitácora de análisis de sensibilidad/resistencia (punto 3 de lo que pide la supervisión).</div>
-        <div class="item-date">Agregado: 15 jul 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PRESENCIA DIGITAL -->
-<div class="section">
-  <div class="section-title cat-digital">🌐 Presencia Digital</div>
-  <div class="section-body">
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Doctoralia — actualizar perfil (ya tienes acceso)</div>
-        <div class="item-notes">Acceso recuperado 14 julio. Falta actualizar: dirección correcta (Av. Villarreal Torres 2050, Plaza Sendero), especialidad (Infectología), teléfonos y horarios.</div>
-        <div class="item-date">Agregado: 20 may 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">TopDoctors — confirmar cancelación</div>
-        <div class="item-notes">Follow-up a Lucía Román por confirmación escrita.</div>
-        <div class="item-date">Agregado: 15 may 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">LinkedIn — actualizar perfil profesional</div>
-        <div class="item-notes">Guía ya creada. Falta que actualices tu perfil.</div>
-        <div class="item-date">Agregado: 15 may 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Google Ads — revisar rendimiento de campañas</div>
-        <div class="item-notes">Campañas activas (MX + US El Paso). Crédito vence 17 julio.</div>
-        <div class="item-date">Agregado: 25 may 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Gmail — arreglar botón de envío con info@infectologia.org</div>
-        <div class="item-notes">El "Send as" no funciona.</div>
-        <div class="item-date">Agregado: 2 jun 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- INSTAGRAM -->
-<div class="section">
-  <div class="section-title cat-ig">📱 Instagram</div>
-  <div class="section-body">
-    <div class="item">
-      <div class="item-check check-done">✓</div>
-      <div class="item-content">
-        <div class="item-title done">Cortinilla animada para reels (Fiverr - Sabeen) <span class="badge badge-done">Completado</span></div>
-        <div class="item-notes">Estilo minimalista. Logo dorado + tipografía Sora + cédulas. Paquete Standard $45 USD.</div>
-        <div class="item-date">Agregado: 26 jun · Completado: 27 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Plan de contenido de junio — crear y programar posts</div>
-        <div class="item-notes">Continuar con tono humanizado. Coordinar con diseñadora.</div>
-        <div class="item-date">Agregado: 2 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Plan de contenido AIDS 2026 — antes, durante y después</div>
-        <div class="item-notes">El agente prepara todo el 18 de julio con imágenes y textos listos. Recordatorio programado.</div>
-        <div class="item-date">Agregado: 27 jun 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- AHORROS -->
-<div class="section">
-  <div class="section-title cat-admin">💰 Ahorros en Suscripciones</div>
-  <div class="section-body">
-    <div class="item">
-      <div class="item-check check-done">✓</div>
-      <div class="item-content">
-        <div class="item-title done">Cancelar Canva Pro <span class="badge badge-done">Completado</span></div>
-        <div class="item-notes">Ahorro: $150/mes. Todo cubierto con herramientas gratuitas.</div>
-        <div class="item-date">Completado: 26 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-done">✓</div>
-      <div class="item-content">
-        <div class="item-title done">Cambiar Adobe Creative Cloud a solo Acrobat Pro <span class="badge badge-done">Completado</span></div>
-        <div class="item-notes">Ahorro: $1,100/mes. Carruseles e imágenes los hace el agente.</div>
-        <div class="item-date">Completado: 26 jun 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ADMINISTRATIVO -->
-<div class="section">
-  <div class="section-title cat-admin">📋 Administrativo</div>
-  <div class="section-body">
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Definir horarios de consulta en línea (sábados y domingos)</div>
-        <div class="item-notes">Falta que confirmes qué horarios quieres ofrecer.</div>
-        <div class="item-date">Agregado: 2 jun 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Hoja informativa VIH para pacientes del IMSS</div>
-        <div class="item-notes">Versión sin logos del consultorio privado. Para uso institucional.</div>
-        <div class="item-date">Agregado: 2 jun 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- NEGOCIO -->
-<div class="section">
-  <div class="section-title cat-neg">💼 Crecimiento del Negocio</div>
-  <div class="section-body">
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Propuesta para hospitales — contactar hospitales privados en Juárez</div>
-        <div class="item-notes">Documento listo. Falta identificar hospitales y enviar propuestas.</div>
-        <div class="item-date">Agregado: 15 abr 2026</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-check check-pending">⏳</div>
-      <div class="item-content">
-        <div class="item-title">Carta para abogados — contactar despachos jurídicos en Juárez</div>
-        <div class="item-notes">Documento listo. Falta contactar despachos.</div>
-        <div class="item-date">Agregado: 15 abr 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="footer">
-  Dr. Carlos Augusto Gómez Ponce · Infectología · Ciudad Juárez<br>
-  Avísame por Telegram cuando completes alguno y lo marco ✅<br>
-  Generado por tu asistente IA
-</div>
-
+<div class="footer">Generado automáticamente por tu asistente · 23 de julio de 2026</div>
 </div>
 
 <script>
