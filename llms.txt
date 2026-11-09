@@ -19,17 +19,17 @@
 - Medicina del viajero.
 
 ## Páginas
-- Inicio: https://infectologia.org/
-- VIH, PrEP y PEP: https://infectologia.org/vih/
-- Tuve una relación de riesgo, qué hago (PEP): https://infectologia.org/blog/relacion-de-riesgo-que-hacer-pep-ciudad-juarez.html
-- Sífilis: https://infectologia.org/blog/sifilis-sintomas-diagnostico-tratamiento.html
-- Gonorrea y clamidia: https://infectologia.org/blog/gonorrea-clamidia-sintomas-prueba-tratamiento.html
-- VIH en Ciudad Juárez: https://infectologia.org/blog/vih-deteccion-tratamiento-ciudad-juarez.html
-- Hepatitis: https://infectologia.org/blog/hepatitis-tipos-sintomas-tratamiento.html
-- Cuándo ir al infectólogo: https://infectologia.org/blog/cuando-ir-al-infectologo.html
-- Fiebre en niños: https://infectologia.org/blog/fiebre-en-ninos-cuando-preocuparse.html
-- Blog: https://infectologia.org/blog/
+- Inicio: https://www.infectologia.org/
+- VIH, PrEP y PEP: https://www.infectologia.org/vih/
+- Tuve una relación de riesgo, qué hago (PEP): https://www.infectologia.org/blog/relacion-de-riesgo-que-hacer-pep-ciudad-juarez.html
+- Sífilis: https://www.infectologia.org/blog/sifilis-sintomas-diagnostico-tratamiento.html
+- Gonorrea y clamidia: https://www.infectologia.org/blog/gonorrea-clamidia-sintomas-prueba-tratamiento.html
+- VIH en Ciudad Juárez: https://www.infectologia.org/blog/vih-deteccion-tratamiento-ciudad-juarez.html
+- Hepatitis: https://www.infectologia.org/blog/hepatitis-tipos-sintomas-tratamiento.html
+- Cuándo ir al infectólogo: https://www.infectologia.org/blog/cuando-ir-al-infectologo.html
+- Fiebre en niños: https://www.infectologia.org/blog/fiebre-en-ninos-cuando-preocuparse.html
+- Blog: https://www.infectologia.org/blog/
 
 ## English (patients from El Paso, Texas)
 - Infectious disease specialist (adults and children) in Ciudad Juárez, minutes from El Paso. Confidential STI, HIV, PrEP and PEP care. Walk-in Monday to Friday, 3-5 PM. Consultation $49 USD.
-- English site: https://infectologia.org/en/
+- English site: https://www.infectologia.org/en/
