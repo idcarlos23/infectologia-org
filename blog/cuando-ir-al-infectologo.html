@@ -50,6 +50,10 @@
         .highlight p{margin:0;font-size:16px;color:#1a1a1a}
         .warning{background:rgba(212,119,92,0.08);border-left:4px solid #d4775c;padding:20px 25px;border-radius:0 12px 12px 0;margin:25px 0}
         .warning p{margin:0;font-size:16px;color:#1a1a1a}
+        .wa-mini{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:#fff;border:1px solid rgba(0,0,0,.08);border-left:4px solid #d4775c;border-radius:12px;padding:16px 20px;margin:24px 0}
+        .wa-mini p{margin:0;font-size:15px}
+        .wa-mini a{background:#d4775c;color:#fff;padding:10px 22px;border-radius:50px;font-weight:600;font-size:15px;white-space:nowrap}
+        .wa-mini a:hover{background:#c06a50;text-decoration:none}
         .cta{background:#1a1a1a;color:white;padding:35px;border-radius:16px;text-align:center;margin:40px 0}
         .cta h3{font-size:22px;margin-bottom:12px;font-weight:600}.cta p{color:rgba(255,255,255,.7);margin-bottom:20px}
         .cta a{display:inline-block;background:#d4775c;color:white;padding:14px 32px;border-radius:50px;font-weight:600;font-size:16px;transition:background .3s}
@@ -75,7 +79,9 @@
 
     <p>El infectólogo es el médico especialista en diagnosticar y tratar enfermedades causadas por bacterias, virus, hongos y parásitos. Muchas personas no saben cuándo deben acudir a uno. Aquí te explico las señales más importantes.</p>
 
-    <h2>Las 7 señales principales</h2>
+    <div class="wa-mini"><p>¿Ya tienes alguna de estas señales? Escríbeme y te digo si necesitas consulta.</p><a data-pos="arriba" href="https://wa.me/528148206457?text=Hola%20Dr.%20G%C3%B3mez%2C%20le%C3%AD%20su%20art%C3%ADculo%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita" target="_blank">Escribir por WhatsApp</a></div>
+
+<h2>Las 7 señales principales</h2>
 
     <div class="signal">
         <div class="num">1</div>
@@ -133,9 +139,7 @@
         </div>
     </div>
 
-    <div class="highlight">
-        <p><strong>Recuerda:</strong> No necesitas referencia de otro médico para acudir al infectólogo. Puedes agendar tu cita directamente.</p>
-    </div>
+    <div class="wa-mini"><p><strong>No necesitas referencia</strong> de otro médico. Consulta lunes a viernes de 3 a 5 PM en CME Sendero, sin cita previa.</p><a data-pos="medio" href="https://wa.me/528148206457?text=Hola%20Dr.%20G%C3%B3mez%2C%20le%C3%AD%20su%20art%C3%ADculo%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita" target="_blank">Agendar por WhatsApp</a></div>
 
     <h2>Infectólogo en Ciudad Juárez</h2>
     <p>Soy el Dr. Carlos Augusto Gómez Ponce, especialista en Infectología con formación en la UNAM. Atiendo a niños y adultos en el Centro Médico de Especialidades Unidad Sendero. Si tienes dudas, con gusto te oriento.</p>
@@ -143,11 +147,12 @@
     <div class="cta">
         <h3>¿Crees que necesitas un infectólogo?</h3>
         <p>Agenda tu consulta. Con gusto te ayudo a resolver tus dudas.</p>
-        <a href="https://wa.me/526566032434?text=Hola%20Dr.%20G%C3%B3mez%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita" target="_blank">💬 Agendar por WhatsApp</a>
+        <a data-pos="final" href="https://wa.me/528148206457?text=Hola%20Dr.%20G%C3%B3mez%2C%20le%C3%AD%20su%20art%C3%ADculo%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita" target="_blank">💬 Agendar por WhatsApp</a>
     </div>
 </div>
 <footer>
     <p>© 2026 Dr. Carlos Gómez Ponce · Infectólogo · Ciudad Juárez · <a href="https://www.infectologia.org" style="color:rgba(255,255,255,.7)">infectologia.org</a></p>
 </footer>
+<script>/*medicion-clics*/document.addEventListener('DOMContentLoaded',function(){function t(a,l){if(typeof gtag!=='undefined')gtag('event',a,{event_category:'conversion',event_label:l,value:1})}document.querySelectorAll('a[href*="wa.me"]').forEach(function(e){e.addEventListener('click',function(){t('whatsapp_click','cuando_ir_'+(e.dataset.pos||'cta'))})});document.querySelectorAll('a[href^="tel:"]').forEach(function(e){e.addEventListener('click',function(){t('phone_click','cuando_ir')})});document.querySelectorAll('a[href*="hulivida"]').forEach(function(e){e.addEventListener('click',function(){t('booking_click','cuando_ir')})})});</script>
 </body>
 </html>
